@@ -6,20 +6,24 @@ import HomePage from './pages/HomePage/HomePage';
 import MyAccountPage from './pages/MyAccountPage/MyAccountPage';
 import TrainingPage from './pages/TrainingPage/TrainingPage';
 import JoinUsPage from './pages/JoinUsPage/JoinUsPage';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          {/* <Route path='/' element={<TestComponent />} /> */}
-          <Route path='/' element={<HomePage />} />
-          <Route path='/myaccount' element={<MyAccountPage />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/training' element={<TrainingPage />} />
-          <Route path='/joinus' element={<JoinUsPage />} />
-          <Route path='*' element={<Navigate to='/' />} />
-        </Routes>
+        <div className='app'>
+          <Header />
+          <Routes>
+            {/* <Route path='/' element={<TestComponent />} /> */}
+            <Route path='/' element={<HomePage />} />
+            <Route path='/myaccount' element={<MyAccountPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/training' element={<TrainingPage />} />
+            <Route path='/joinus' element={<JoinUsPage />} />
+            <Route path='*' element={<Navigate to='/' />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </>
   );
