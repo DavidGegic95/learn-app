@@ -23,12 +23,28 @@ body,
   width: 100%;
   min-height: 100vh;
 }
-.profile {
+.profileIcon {
   background-image: url('./assets/Profile.svg');
   background-repeat: no-repeat;
   /* background-position: left; */
   background-position: 8px center;
 }
+.passwordIcon {
+  background-image: url('./assets/Lock.svg');
+  background-repeat: no-repeat;
+  /* background-position: left; */
+  background-position: 8px center;
+}
+
+.error {
+  color: #f22128ff;
+}
+.error-border {
+  border: 1px solid #f22128ff;
+  outline: none;
+}
+/* .input-wrapper:focus-within {
+} */
 /* .loginPage {
   display: flex;
   align-items: center;

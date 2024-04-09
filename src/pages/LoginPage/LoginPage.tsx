@@ -4,7 +4,7 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 
 const LoginPage = () => {
   return (
-    <div className='w-[400px]  m-auto flex flex-col align-center justify-center'>
+    <div className='w-[400px]  mx-auto my-[32px] flex flex-col align-center justify-center'>
       <div className='flex w-[400px] flex-col align-center justify-center'>
         <h1 className='font-montserrat text-center text-[32px] leading-48 font-bold text-[#171A1FFF]'>
           Sign In
