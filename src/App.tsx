@@ -7,6 +7,7 @@ import MyAccountPage from './pages/MyAccountPage/MyAccountPage';
 import TrainingPage from './pages/TrainingPage/TrainingPage';
 import JoinUsPage from './pages/JoinUsPage/JoinUsPage';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path='/joinus' element={<JoinUsPage />} />
             <Route path='*' element={<Navigate to='/' />} />
           </Routes>
+          <Footer />
         </div>
       </BrowserRouter>
     </>

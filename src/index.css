@@ -16,23 +16,23 @@ body,
   min-height: 100vh;
 }
 .app {
-  /* display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between; */
   width: 100%;
   min-height: 100vh;
 }
 .profileIcon {
   background-image: url('./assets/Profile.svg');
   background-repeat: no-repeat;
-  /* background-position: left; */
   background-position: 8px center;
 }
 .passwordIcon {
   background-image: url('./assets/Lock.svg');
   background-repeat: no-repeat;
   /* background-position: left; */
+  background-position: 8px center;
+}
+.mailIcon {
+  background-image: url('./assets/Mail.svg');
+  background-repeat: no-repeat;
   background-position: 8px center;
 }
 
