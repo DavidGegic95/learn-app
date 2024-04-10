@@ -48,7 +48,6 @@ const LoginForm = () => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsLoading(false);
-    console.log('Submitting login form...');
   };
   return (
     <>

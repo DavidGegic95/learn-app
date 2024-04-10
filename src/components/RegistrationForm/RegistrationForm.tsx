@@ -1,5 +1,12 @@
 // import React,{useState} from 'react';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 import Select from '../Select/Select';
 import Loading from '../Loading/Loading';
 import {
@@ -11,14 +18,26 @@ import {
   inputsListTrainer,
   areValuesTruthy,
 } from './utils';
-import Role from '../../pages/JoinUsPage/utils';
+import Role, { UserData } from '../../pages/JoinUsPage/utils';
+import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 
-const RegistrationForm = ({ role }: { role: Role }) => {
+const RegistrationForm = ({
+  role,
+  setIsSubmitted,
+  setUserData,
+}: {
+  role: Role;
+  setIsSubmitted: Dispatch<SetStateAction<boolean>>;
+  setUserData: Dispatch<SetStateAction<UserData>>;
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [inputsList, setInputsList] = useState(inputsListTrainer);
   const [formData, setFormData] = useState<FormDataType>(trainerList);
   const [valueSelectTag, setValueSelectTag] = useState('');
   const [errors, setErrors] = useState<FormDataType>(trainerList);
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (role === 'Student') {
       setFormData(studentList);
@@ -61,10 +80,17 @@ const RegistrationForm = ({ role }: { role: Role }) => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsLoading(false);
-    console.log('Submitting registration form...', {
-      ...formData,
-      specialization: valueSelectTag,
+    setUserData({
+      username: formData.firstname + '-' + formData.lastname,
+      password: uuidv4().slice(0, 6),
     });
+    setIsSubmitted(true);
+    navigate(`/joinus/${role}/validation`);
+
+    // console.log('Submitting registration form...', {
+    //   ...formData,
+    //   specialization: valueSelectTag,
+    // });
   };
   return (
     <>

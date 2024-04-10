@@ -3,25 +3,52 @@
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
 import registrationImage from '../../assets/Registration.png';
 import { useEffect, useState } from 'react';
-import Role from './utils';
+import Role, { UserData } from './utils';
 import JoinUsBox from '../../components/JoinUsBox/JoinUsBox';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import SuccessfulRegistration from '../../components/SuccessfulRegistration/SuccessfulRegistration';
 
 const JoinUsPage = () => {
+  const navigate = useNavigate();
+  let location = useLocation();
   let { roleparams } = useParams();
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [userData, setUserData] = useState<UserData>({
+    username: '',
+    password: '',
+  });
   const [role, setRole] = useState<Role>('');
-  console.log(roleparams);
 
   useEffect(() => {
     let value = '' as Role;
     if (roleparams) {
       value = roleparams as Role;
     }
+    if (!roleparams) {
+      setIsSubmitted(false);
+      setUserData({
+        username: '',
+        password: '',
+      });
+      navigate('/joinus');
+    }
     setRole(value);
   }, [roleparams]);
+  useEffect(() => {
+    const { pathname } = location;
+    let path = pathname.split('/');
+    const validationPath = path[path.length - 1];
+    if (validationPath !== 'validation') {
+      setIsSubmitted(false);
+      setUserData({
+        username: '',
+        password: '',
+      });
+    }
+  }, [location]);
   return (
     <div className='py-[64px]'>
-      {role && (
+      {!isSubmitted && role && (
         <>
           <div className='w-[80%] mx-auto'>
             <h1 className='font-montserrat text-4xl leading-16 font-bold text-[#171A1FFF]'>
@@ -33,7 +60,11 @@ const JoinUsPage = () => {
           </div>
           <div className='flex mx-auto gap-[64px] items-start w-[80%]  h-[625px]'>
             <img src={registrationImage} alt='' />
-            <RegistrationForm role={role} />
+            <RegistrationForm
+              setUserData={setUserData}
+              setIsSubmitted={setIsSubmitted}
+              role={role}
+            />
           </div>
         </>
       )}
@@ -46,6 +77,11 @@ const JoinUsPage = () => {
             <JoinUsBox setRole={setRole} role={'Trainer'} />
             <JoinUsBox setRole={setRole} role={'Student'} />
           </div>
+        </>
+      )}
+      {isSubmitted && (
+        <>
+          <SuccessfulRegistration data={userData} />
         </>
       )}
     </div>

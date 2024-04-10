@@ -22,6 +22,10 @@ function App() {
             <Route path='/training' element={<TrainingPage />} />
             <Route path='/joinus' element={<JoinUsPage />} />
             <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
+            <Route
+              path='/joinus/:roleparams/validation'
+              element={<JoinUsPage />}
+            />
             <Route path='*' element={<Navigate to='/' />} />
           </Routes>
           <Footer />
