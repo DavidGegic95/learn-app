@@ -5,7 +5,7 @@ const Loading = () => {
   return (
     <div className='modal'>
       <div className='loading-spinner'></div>
-      <div>Loading</div>
+      <div>Loading...</div>
     </div>
   );
 };

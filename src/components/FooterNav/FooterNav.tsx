@@ -1,4 +1,5 @@
 // import React from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 interface FooterNav {
   title: string;
@@ -13,7 +14,10 @@ const FooterNav = ({ title, list }: FooterNav) => {
       </span>
       {list.map((item) => {
         return (
-          <span className='font-poppins font-normal text-base leading-6'>
+          <span
+            key={item + uuidv4()}
+            className='font-poppins font-normal text-base leading-6'
+          >
             {item}
           </span>
         );

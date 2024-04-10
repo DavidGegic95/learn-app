@@ -16,12 +16,12 @@ function App() {
         <div className='app'>
           <Header />
           <Routes>
-            {/* <Route path='/' element={<TestComponent />} /> */}
             <Route path='/' element={<HomePage />} />
             <Route path='/myaccount' element={<MyAccountPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/training' element={<TrainingPage />} />
             <Route path='/joinus' element={<JoinUsPage />} />
+            <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
             <Route path='*' element={<Navigate to='/' />} />
           </Routes>
           <Footer />

@@ -1,19 +1,41 @@
 // import React from 'react';
 
-const Select = ({ languages }: { languages: string[] }) => {
+const Select = ({
+  list,
+  valueSelectTag,
+  setValueSelectTag,
+  className,
+}: {
+  list: string[];
+  setValueSelectTag?: (p: string) => void;
+  valueSelectTag?: string;
+  className?: string;
+}) => {
+  const handleChange = (event: any) => {
+    const { value } = event.target;
+    if (value && setValueSelectTag) {
+      setValueSelectTag(value);
+    }
+  };
   return (
     <select
-      name='language'
-      id='language'
-      className='mt-1 bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 text-sm font-poppins font-normal'
+      value={valueSelectTag}
+      onChange={handleChange}
+      name='select'
+      id='select'
+      className={
+        'flex flex-col  mt-1 bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 text-sm font-poppins font-normal' +
+        ` ${className}`
+      }
     >
-      {languages.map((language) => {
+      {list.map((item, index) => {
         return (
           <option
+            key={item + index}
             className='mt-1 bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 text-sm font-poppins font-normal'
-            value='language'
+            value={item}
           >
-            {language}
+            {item}
           </option>
         );
       })}

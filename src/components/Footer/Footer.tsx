@@ -19,7 +19,7 @@ const Footer = () => {
         <FooterForm />
       </div>
       <div className='flex items-center justify-between w-[80%] py-[8px] mx-auto border-t-2 border-[#D9D9D9] bg-color-blue'>
-        <Select languages={['English', 'Italian', 'German']} />
+        <Select list={['English', 'Italian', 'German']} />
         <span className='font-poppins font-normal text-base leading-normal text-[#424955]'>
           @2024 Learn Inc. · Privacy · Terms
         </span>
