@@ -43,6 +43,14 @@ body,
   border: 1px solid #f22128ff;
   outline: none;
 }
+.bg-image {
+  background-image: url('./assets/container.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  aspect-ratio: 3.0625;
+}
+
 /* .input-wrapper:focus-within {
 } */
 /* .loginPage {
