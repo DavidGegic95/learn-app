@@ -1,6 +1,5 @@
 // import React from 'react';
 import videoImg from '../../assets/video.svg';
-import container from '../../assets/container.svg';
 import Button from '../../components/Button/Button';
 
 const HomePage = () => {

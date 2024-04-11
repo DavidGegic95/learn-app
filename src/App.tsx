@@ -9,6 +9,8 @@ import JoinUsPage from './pages/JoinUsPage/JoinUsPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import BlogPage from './pages/BlogPage/BlogPage';
+import AboutUsPage from './pages/AboutUsPage/AboutUsPage';
+import FeaturesPage from './pages/FeaturesPage/FeaturesPage';
 
 function App() {
   return (
@@ -17,8 +19,11 @@ function App() {
         <div className='app'>
           <Header />
           <Routes>
+            Features
             <Route path='/' element={<HomePage />} />
             <Route path='/blog' element={<BlogPage />} />
+            <Route path='/features' element={<FeaturesPage />} />
+            <Route path='/aboutus' element={<AboutUsPage />} />
             <Route path='/home' element={<HomePage />} />
             <Route path='/myaccount' element={<MyAccountPage />} />
             <Route path='/login' element={<LoginPage />} />
