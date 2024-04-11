@@ -8,6 +8,7 @@ import TrainingPage from './pages/TrainingPage/TrainingPage';
 import JoinUsPage from './pages/JoinUsPage/JoinUsPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import BlogPage from './pages/BlogPage/BlogPage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Header />
           <Routes>
             <Route path='/' element={<HomePage />} />
+            <Route path='/blog' element={<BlogPage />} />
             <Route path='/myaccount' element={<MyAccountPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/training' element={<TrainingPage />} />
