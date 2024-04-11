@@ -21,6 +21,7 @@ import {
 import Role, { UserData } from '../../pages/JoinUsPage/utils';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import Button from '../Button/Button';
 
 const RegistrationForm = ({
   role,
@@ -143,12 +144,11 @@ const RegistrationForm = ({
             </>
           )}
         </div>
-        <button
-          className='w-full self-start h-[40px] mt-[24px] text-white bg-[#6355D8FF] border-none rounded-md'
+        <Button
+          text='Submit'
           type='submit'
-        >
-          Submit
-        </button>
+          className='w-full self-start h-[40px] mt-[24px] text-white bg-[#6355D8FF] border-none rounded-md'
+        />
       </form>
     </>
   );

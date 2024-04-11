@@ -1,5 +1,7 @@
 // import React from 'react';
 
+import Button from '../Button/Button';
+
 const FooterForm = () => {
   return (
     <div className='flex flex-col gap-[8px]'>
@@ -20,12 +22,11 @@ const FooterForm = () => {
           placeholder='Input your email'
           className='mailIcon w-68 h-8 pl-[32px] border border-[#9095A0] rounded-l-lg font-poppins font-normal text-base leading-6'
         />
-        <button
+        <Button
           type='submit'
           className='w-28 h-9 border text-white rounded-r-lg bg-[#6355D8]'
-        >
-          Subscribe
-        </button>
+          text='Subscribe'
+        />
       </form>
     </div>
   );

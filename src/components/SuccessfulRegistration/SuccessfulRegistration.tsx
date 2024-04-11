@@ -1,6 +1,7 @@
 // import React from 'react';
 import checkmark from '../../assets/checkmark.svg';
 import { UserData } from '../../pages/JoinUsPage/utils';
+import Button from '../Button/Button';
 
 const SuccessfulRegistration = ({ data }: { data: UserData }) => {
   return (
@@ -23,9 +24,11 @@ const SuccessfulRegistration = ({ data }: { data: UserData }) => {
         </span>
         <span>{data.password || ''}</span>
       </div>
-      <button className='w-[146px] h-[52px] text-white mt-[24px]  bg-[#6355D8] rounded-md'>
-        My account
-      </button>
+      <Button
+        text='My account'
+        className='w-[146px] h-[52px] text-white mt-[24px]  bg-[#6355D8] rounded-md'
+        type='button'
+      />
     </div>
   );
 };
