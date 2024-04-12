@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 import BlogPage from './pages/BlogPage/BlogPage';
 import AboutUsPage from './pages/AboutUsPage/AboutUsPage';
 import FeaturesPage from './pages/FeaturesPage/FeaturesPage';
+import PricingPage from './pages/PricingPage/PricingPage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             Features
             <Route path='/' element={<HomePage />} />
             <Route path='/blog' element={<BlogPage />} />
+            <Route path='/pricing' element={<PricingPage />} />
             <Route path='/features' element={<FeaturesPage />} />
             <Route path='/aboutus' element={<AboutUsPage />} />
             <Route path='/home' element={<HomePage />} />

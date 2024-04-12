@@ -51,19 +51,11 @@ body,
   aspect-ratio: 3.0625;
 }
 
-/* .input-wrapper:focus-within {
-} */
-/* .loginPage {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
-/* .background-image-profile {
-  background-image: url('./assets/Profile.svg');
-  background-repeat: no-repeat;
+.accordionTitle {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 30px;
+  color: #171a1f;
 }
-
-.background-image-profile:focus {
-  background-image: none;
-} */
