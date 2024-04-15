@@ -9,7 +9,13 @@ export default function AccordionContainer() {
   return (
     <div>
       {accordionContent.map((content, index) => {
-        return <AccordionComponent index={index} content={content} />;
+        return (
+          <AccordionComponent
+            key={content.title}
+            index={index}
+            content={content}
+          />
+        );
       })}
     </div>
   );

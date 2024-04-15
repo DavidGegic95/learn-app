@@ -1,6 +1,8 @@
 // import React from 'react';
 
 import AccordionContainer from '../../components/Accordion/Accordion';
+import PricingOptionBox from '../../components/PricingOptionBox/PricingOptionBox';
+import { PricingOptionContent } from '../../components/PricingOptionBox/utils';
 
 const PricingPage = () => {
   return (
@@ -14,7 +16,11 @@ const PricingPage = () => {
         cater to individual learners, groups, and organizations. Let's explore
         each option below:
       </p>
-      <div className='w-full flex'></div>
+      <div className='w-full flex items-center justify-center'>
+        {PricingOptionContent.map((content) => {
+          return <PricingOptionBox key={content.title} {...content} />;
+        })}
+      </div>
       <h2 className='font-montserrat text-[48px] font-semibold text-4xl leading-17 text-center text-[#171A1F]'>
         Frequently asked questions
       </h2>
