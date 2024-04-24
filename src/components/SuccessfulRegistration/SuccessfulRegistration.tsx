@@ -1,6 +1,7 @@
 // import React from 'react';
 import checkmark from '../../assets/checkmark.svg';
 import { UserData } from '../../pages/JoinUsPage/utils';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 import Button from '../Button/Button';
 
 const SuccessfulRegistration = ({ data }: { data: UserData }) => {
@@ -26,7 +27,9 @@ const SuccessfulRegistration = ({ data }: { data: UserData }) => {
       </div>
       <Button
         text='My account'
-        className='w-[146px] h-[52px] text-white mt-[24px]  bg-[#6355D8] rounded-md'
+        className={
+          purpleButtonStyle + ' w-[146px] h-[52px] text-white mt-[24px]'
+        }
         type='button'
       />
     </div>

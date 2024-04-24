@@ -2,6 +2,7 @@
 
 import Box from '../../components/Box/Box';
 import Button from '../../components/Button/Button';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 import paths from './utils';
 
 const BlogPage = () => {
@@ -19,7 +20,7 @@ const BlogPage = () => {
       <div className='flex mt-[32px] w-full items-center justify-center'>
         <Button
           type='button'
-          className='p-[8px] bg-[#6355D8] rounded-md border border-solid border-[#565E6C]  font-poppins font-normal text-xs leading-5 text-[#FFF]'
+          className={purpleButtonStyle + ' p-[8px]'}
           text='Load more articles'
         />
       </div>

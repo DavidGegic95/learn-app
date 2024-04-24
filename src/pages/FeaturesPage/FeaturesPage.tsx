@@ -2,6 +2,7 @@
 import featureImg0 from '../../assets/features/feature-0.svg';
 import featureImg1 from '../../assets/features/feature-1.svg';
 import Button from '../../components/Button/Button';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const FeaturesPage = () => {
   return (
@@ -30,7 +31,7 @@ const FeaturesPage = () => {
           <Button
             text='Try now'
             type='button'
-            className='py-[8px] px-[24px] bg-[#6355D8] rounded-[12px] text-[#FFFFFF]'
+            className={purpleButtonStyle + ' py-[8px] px-[24px]'}
           />
         </div>
 
@@ -51,7 +52,7 @@ const FeaturesPage = () => {
           <Button
             text='Try now'
             type='button'
-            className='py-[8px] px-[24px] bg-[#6355D8] rounded-[12px] text-[#FFFFFF]'
+            className={purpleButtonStyle + ' py-[8px] px-[24px]'}
           />
         </div>
       </div>

@@ -1,6 +1,7 @@
 // import React from 'react';
 import videoImg from '../../assets/video.svg';
 import Button from '../../components/Button/Button';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const HomePage = () => {
   return (
@@ -24,11 +25,7 @@ const HomePage = () => {
           ipsum ex nulla ea adipisicing sit consequat enim <br /> elit cupidatat
           o
         </p>
-        <Button
-          text='Join us'
-          type='button'
-          className='bg-[#6355D8] rounded-md py-[8px] px-[16px] text-[#FFFFFF]'
-        />
+        <Button text='Join us' type='button' className={purpleButtonStyle} />
       </div>
     </div>
   );

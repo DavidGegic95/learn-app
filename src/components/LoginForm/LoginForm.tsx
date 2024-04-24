@@ -4,6 +4,7 @@ import Loading from '../Loading/Loading';
 import ReCAPTCHA from 'react-google-recaptcha';
 import PasswordIcon from '../PasswordIcon/PasswordIcon';
 import Button from '../Button/Button';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
 
@@ -98,7 +99,7 @@ const LoginForm = () => {
         <Button
           text='Sign in'
           type='submit'
-          className='w-full h-[40px] mt-[24px] text-white bg-[#6355D8FF] border-none rounded-md'
+          className={purpleButtonStyle + ' w-full h-[40px] mt-[24px]'}
         />
       </form>
       <span className='text-center mt-[24px] font-poppins text-12 leading-20 font-bold text-[#6E7787FF]'>

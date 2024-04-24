@@ -22,6 +22,7 @@ import Role, { UserData } from '../../pages/JoinUsPage/utils';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import Button from '../Button/Button';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const RegistrationForm = ({
   role,
@@ -147,7 +148,9 @@ const RegistrationForm = ({
         <Button
           text='Submit'
           type='submit'
-          className='w-full self-start h-[40px] mt-[24px] text-white bg-[#6355D8FF] border-none rounded-md'
+          className={
+            purpleButtonStyle + ' w-full self-start h-[40px] mt-[24px]'
+          }
         />
       </form>
     </>

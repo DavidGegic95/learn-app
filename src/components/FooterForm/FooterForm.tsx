@@ -1,6 +1,7 @@
 // import React from 'react';
 
 import Button from '../Button/Button';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const FooterForm = () => {
   return (
@@ -14,7 +15,7 @@ const FooterForm = () => {
         </span>
       </div>
 
-      <form>
+      <form className='flex'>
         <input
           type='text'
           id='email'
@@ -24,7 +25,7 @@ const FooterForm = () => {
         />
         <Button
           type='submit'
-          className='w-28 h-9 border text-white rounded-r-lg bg-[#6355D8]'
+          className={purpleButtonStyle + '  border rounded-none rounded-r-lg'}
           text='Subscribe'
         />
       </form>

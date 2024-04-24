@@ -70,3 +70,7 @@ body,
   max-width: 75ch;
   text-align: center;
 }
+
+.button-purple-active:hover:active {
+  background-color: #3d2dc7ff;
+}

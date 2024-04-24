@@ -4,6 +4,7 @@ import trainerImg from '../../assets/joinus-trainer.png';
 import Role from '../../pages/JoinUsPage/utils';
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button';
+import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const JoinUsBox = ({
   role,
@@ -27,7 +28,7 @@ const JoinUsBox = ({
         <Button
           type='button'
           text='Join us'
-          className='w-[112px] h-[52px]  flex items-center justify-center font-poppins text-18 leading-28 font-normal text-white bg-[#6355D8FF] opacity-100 rounded-lg'
+          className={purpleButtonStyle + ' w-[112px] h-[52px]'}
           onClick={() => {
             setRole(role);
             navigate(`/joinus/${role}`);
