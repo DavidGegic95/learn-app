@@ -1,15 +1,14 @@
 // import React from 'react';
 import aboutUsImg from '../../assets/about-us.svg';
 import AboutProfile from '../../components/AboutProfile/AboutProfile';
+import { headerStyle } from '../../styles-for-tailwind';
 import { styleClasses, profilesData } from './utils';
 
 const AboutUsPage = () => {
   return (
     <div className='py-[64px] w-[80%] mx-auto'>
-      <h1 className='font-montserrat font-semibold text-7xl leading-11 text-center text-[#171A1F]'>
-        About Us
-      </h1>
-      <p className='font-poppins font-normal text-base leading-7 text-center text-[#9095A0]'>
+      <h1 className={headerStyle}>About Us</h1>
+      <p className='font-poppins font-normal text-base leading-7 text-center text-[#9095A0] my-[64px]'>
         Welcome to the 'About Us' section of Learn Platform, where we aim to
         provide you with a deeper <br /> understanding of our philosophy,
         values, and mission. Established in 2023, Learn Platform was born out of

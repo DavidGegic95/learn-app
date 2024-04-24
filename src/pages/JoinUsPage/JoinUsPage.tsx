@@ -1,7 +1,9 @@
 // import React from 'react';
 
 import RegistrationForm from '../../components/RegistrationForm/RegistrationForm';
-import registrationImage from '../../assets/Registration.png';
+import registrationStudent from '../../assets/registration-student.svg';
+import registrationTrainer from '../../assets/registration-trainer.png';
+
 import { useEffect, useState } from 'react';
 import Role, { UserData } from './utils';
 import JoinUsBox from '../../components/JoinUsBox/JoinUsBox';
@@ -59,7 +61,17 @@ const JoinUsPage = () => {
             </h2>
           </div>
           <div className='flex mx-auto gap-[64px] items-start w-[80%]  h-[625px]'>
-            <img src={registrationImage} alt='' />
+            {role === 'Student' ? (
+              <img
+                src={registrationStudent}
+                alt='student picture for registration form'
+              />
+            ) : (
+              <img
+                src={registrationTrainer}
+                alt='trainer picture for registration form'
+              />
+            )}
             <RegistrationForm
               setUserData={setUserData}
               setIsSubmitted={setIsSubmitted}

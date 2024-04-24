@@ -2,14 +2,12 @@
 import featureImg0 from '../../assets/features/feature-0.svg';
 import featureImg1 from '../../assets/features/feature-1.svg';
 import Button from '../../components/Button/Button';
-import { purpleButtonStyle } from '../../styles-for-tailwind';
+import { headerStyle, purpleButtonStyle } from '../../styles-for-tailwind';
 
 const FeaturesPage = () => {
   return (
     <div className='py-[64px] w-[80%] mx-auto'>
-      <h1 className='mb-[64px] font-montserrat font-semibold text-7xl leading-11 text-center text-[#171A1F]'>
-        Features
-      </h1>
+      <h1 className={headerStyle + ' mb-[64px]'}>Features</h1>
       <h2 className='mb-[16px] font-montserrat font-semibold text-4xl leading-17 text-center text-[#171A1F]'>
         Learning
       </h2>
