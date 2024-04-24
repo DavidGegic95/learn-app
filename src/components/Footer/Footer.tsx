@@ -13,9 +13,21 @@ const Footer = () => {
     <footer className='w-full bg-[#FAFAFBFF]'>
       <div className='w-[80%] py-[64px] mx-auto flex justify-between items-start'>
         <img src={logo} alt='' />
-        <FooterNav title='Product' list={['Features', 'Pricing']} />
-        <FooterNav title='Resources' list={['Blog', 'Webinars']} />
-        <FooterNav title='Company' list={['About us', 'Contacts us']} />
+        <FooterNav
+          title='Product'
+          routes={['/features', '/pricing']}
+          list={['Features', 'Pricing']}
+        />
+        <FooterNav
+          routes={['/blog', '/']}
+          title='Resources'
+          list={['Blog', 'Webinars']}
+        />
+        <FooterNav
+          routes={['/aboutus', '/']}
+          title='Company'
+          list={['About us', 'Contacts us']}
+        />
         <FooterForm />
       </div>
       <div className='flex items-center justify-between w-[80%] py-[8px] mx-auto border-t-2 border-[#D9D9D9] bg-color-blue'>
