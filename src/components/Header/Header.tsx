@@ -1,10 +1,12 @@
 // import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-header.png';
+import mobileNavMenu from '../../assets/mobile-nav-menu.svg';
 
 const Header = () => {
   return (
     <header className='w-full bg-white border border-gray-300  flex items-center justify-start p-3 gap-[32px]'>
+      <img src={mobileNavMenu} alt='mobile menu icon' className='md:hidden' />
       <img src={logo} alt='logo-header' />
       <nav className='w-full flex justify-between items-center'>
         <div className='flex items-center justify-between gap-[16px]'>
