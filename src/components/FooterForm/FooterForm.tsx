@@ -5,9 +5,9 @@ import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const FooterForm = () => {
   return (
-    <div className='flex flex-col gap-[8px]'>
+    <div className='flex flex-col gap-[8px] mobile-view-custom'>
       <div className='flex flex-col'>
-        <span className='text-[#6355D8] font-montserrat font-bold text-base leading-9'>
+        <span className='text-[#6355D8] font-montserrat font-bold text-base leading-9 mobile-view-text'>
           Subscribe to our newsletter
         </span>
         <span className='text-[#424955] font-poppins font-normal text-xs leading-5'>

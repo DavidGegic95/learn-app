@@ -16,7 +16,7 @@ const FooterNav = ({ title, list, routes }: FooterNav) => {
     });
   };
   return (
-    <div className='flex flex-col gap-[14px]'>
+    <div className='flex flex-col gap-[14px] mobile-view-custom'>
       <span className='font-montserrat font-bold text-20 leading-30'>
         {title}
       </span>

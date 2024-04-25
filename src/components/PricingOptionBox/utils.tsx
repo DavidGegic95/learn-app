@@ -1,3 +1,5 @@
+import { purpleButtonStyle } from '../../styles-for-tailwind';
+
 export type ItemType = {
   text: string;
   checked: boolean;
@@ -25,7 +27,7 @@ export type PricingOptionStyle = {
 };
 
 export const popularButtonClassNames =
-  'bg-[#6355D8] text-[#FFFFFF] w-full py-[8px] px-[16px]  border border-purple-600 rounded-md font-poppins font-normal text-base leading-6';
+  purpleButtonStyle + ' w-full py-[8px] px-[16px]';
 const popuarDiv =
   'flex flex-col px-[32px] py-[40px] items-start justify-between w-[353px] h-[438px]  gap-[12px] bg-[#FFFFFF] boxShadow rounded-l-lg';
 

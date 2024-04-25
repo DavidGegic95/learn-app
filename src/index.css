@@ -74,3 +74,31 @@ body,
 .button-purple-active:hover:active {
   background-color: #3d2dc7ff;
 }
+.mobile-view-show {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-view-custom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .mobile-view-hidden {
+    display: none;
+  }
+  .mobile-view-show {
+    display: flex;
+  }
+  .mobile-view-text {
+    text-align: center;
+  }
+  .mobile-view-center {
+    justify-content: center;
+  }
+  .mobile-view-p {
+    padding: 16px 0;
+    gap: 32px;
+  }
+}
