@@ -9,8 +9,7 @@ const BlogPage = () => {
   return (
     <div className='py-[64px] w-[80%] mx-auto'>
       <h1 className={headerStyle + ' mb-[64px]'}>Blog</h1>
-      <div className='grid grid-cols-3 grid-rows-2 gap-5'>
-        {/* <div className='flex flex-wrap justify-between gap-[16px]'> */}
+      <div className='grid grid-cols-3 grid-rows-2 gap-5 mobile-view-blog'>
         {paths.map((path) => {
           return <Box key={path} path={path} />;
         })}

@@ -108,6 +108,12 @@ body,
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  .mobile-view-blog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 }
 
 .show-mobile-nav {

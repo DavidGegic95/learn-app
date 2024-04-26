@@ -39,6 +39,7 @@ const MobileNav = ({
         {linksData.map((link) => {
           return (
             <Link
+              onClick={() => setIsClicked((prev) => !prev)}
               key={link.path}
               className={
                 'pl-[16px] font-poppins font-normal font-medium text-base leading-6 text-[#565E6C]' +
