@@ -3,13 +3,13 @@
 import AccordionContainer from '../../components/Accordion/Accordion';
 import PricingOptionBox from '../../components/PricingOptionBox/PricingOptionBox';
 import { PricingOptionContent } from '../../components/PricingOptionBox/utils';
-import { headerStyle } from '../../styles-for-tailwind';
+import { grayText, headerStyle } from '../../styles-for-tailwind';
 
 const PricingPage = () => {
   return (
     <div className='py-[64px] w-[80%] mx-auto flex flex-col gap-[48px] items-center'>
       <h1 className={headerStyle}>Pricing</h1>
-      <p className='max-min-in-char font-poppins font-normal text-base leading-9 text-center text-[#9095A0]'>
+      <p className={grayText + ' max-min-in-char  text-center'}>
         At Learn Platform, we believe in providing high-quality education that's
         accessible and affordable. We offer diverse pricing plans designed to
         cater to individual learners, groups, and organizations. Let's explore

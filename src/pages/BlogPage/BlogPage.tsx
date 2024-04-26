@@ -12,7 +12,7 @@ const BlogPage = () => {
       <div className='grid grid-cols-3 grid-rows-2 gap-5'>
         {/* <div className='flex flex-wrap justify-between gap-[16px]'> */}
         {paths.map((path) => {
-          return <Box path={path} />;
+          return <Box key={path} path={path} />;
         })}
       </div>
       <div className='flex mt-[32px] w-full items-center justify-center'>

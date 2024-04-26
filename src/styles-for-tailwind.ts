@@ -3,3 +3,6 @@ export const purpleButtonStyle =
 
 export const headerStyle =
   'font-montserrat text-[3.5rem] leading-[4.75rem] font-bold text-[#171A1FFF] text-center';
+
+export const grayText =
+  'font-poppins text-[1.25rem] leading-[2rem] font-normal text-[#9095A0FF] text-base';
