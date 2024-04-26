@@ -7,7 +7,7 @@ import { grayText, headerStyle } from '../../styles-for-tailwind';
 
 const PricingPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mx-auto flex flex-col gap-[48px] items-center'>
+    <div className='py-[64px] w-[80%] mx-auto flex flex-col gap-[48px] items-center mobile-view-pricingPage'>
       <h1 className={headerStyle}>Pricing</h1>
       <p className={grayText + ' max-min-in-char  text-center'}>
         At Learn Platform, we believe in providing high-quality education that's
@@ -15,7 +15,7 @@ const PricingPage = () => {
         cater to individual learners, groups, and organizations. Let's explore
         each option below:
       </p>
-      <div className='w-full flex items-center justify-center'>
+      <div className='w-full flex items-center justify-center mobile-view-pricing-boxes'>
         {PricingOptionContent.map((content) => {
           return <PricingOptionBox key={content.title} {...content} />;
         })}

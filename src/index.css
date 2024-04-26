@@ -114,6 +114,17 @@ body,
     justify-content: center;
     flex-direction: column;
   }
+  .mobile-view-pricing-boxes {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .mobile-view-pricingPage {
+    width: 100%;
+    justify-content: center;
+    padding: 64px 8px;
+    gap: 64px;
+  }
 }
 
 .show-mobile-nav {
