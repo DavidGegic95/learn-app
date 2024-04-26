@@ -11,7 +11,7 @@ import FooterForm from '../FooterForm/FooterForm';
 const Footer = () => {
   return (
     <footer className='w-full bg-[#FAFAFBFF] mobile-view-custom'>
-      <div className='w-[80%] py-[64px] mx-auto flex justify-between items-start mobile-view-custom mobile-view-p'>
+      <div className='w-[80%] mobile-view-w-90 py-[64px] mx-auto flex justify-between items-start mobile-view-custom mobile-view-p'>
         <img src={logo} alt='learn app logo' className='mobile-view-hidden' />
         <FooterNav
           title='Product'
@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <FooterForm />
       </div>
-      <div className=' flex items-center justify-between w-[80%] py-[8px] mx-auto border-t-2 border-[#D9D9D9] bg-color-blue mobile-view-center'>
+      <div className=' flex items-center justify-between w-[80%] mobile-view-w-90 py-[8px] mx-auto border-t-2 border-[#D9D9D9] bg-color-blue mobile-view-center'>
         <Select
           className='mobile-view-hidden'
           list={['English', 'Italian', 'German']}

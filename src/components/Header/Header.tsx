@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo-header.png';
 import mobileNavMenu from '../../assets/mobile-nav-menu.svg';
 import MobileNav from '../MobileNav/MobileNav';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 
 const Header = () => {
   const [isClicked, setIsClicked] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className='w-full relative bg-white border border-gray-300  flex items-center justify-start p-3 gap-[32px]'>
@@ -18,7 +19,12 @@ const Header = () => {
       />
       <MobileNav setIsClicked={setIsClicked} isClicked={isClicked} />
 
-      <img src={logo} alt='logo-header' className='mobile-view-self-align' />
+      <img
+        onClick={() => navigate('/')}
+        src={logo}
+        alt='logo-header'
+        className='mobile-view-self-align'
+      />
       <nav className='w-full flex justify-between items-center mobile-view-hidden'>
         <div className='flex items-center justify-between gap-[16px]'>
           <Link

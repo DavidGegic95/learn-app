@@ -88,11 +88,6 @@ const RegistrationForm = ({
     });
     setIsSubmitted(true);
     navigate(`/joinus/${role}/validation`);
-
-    // console.log('Submitting registration form...', {
-    //   ...formData,
-    //   specialization: valueSelectTag,
-    // });
   };
   return (
     <>

@@ -16,8 +16,8 @@ const JoinUsBox = ({
   const navigate = useNavigate();
 
   return (
-    <div className='grid grid-cols-2 w-[80%] mx-auto'>
-      <div className='bg-[#FAFAFBFF] p-[64px]'>
+    <div className='grid grid-cols-2 w-[80%] mobile-view-w-90 mx-auto mobile-view-joinusBox'>
+      <div className='bg-[#FAFAFBFF] p-[64px] mobile-view-joinusBox'>
         <h2 className='font-montserrat text-[48px] leading-[68px] font-bold text-[#171A1FFF]'>
           Register as {role}
         </h2>

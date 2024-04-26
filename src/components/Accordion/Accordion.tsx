@@ -40,7 +40,7 @@ function AccordionComponent({
         </p>
       </AccordionSummary>
       <AccordionDetails>
-        <p className='font-poppins font-normal text-base leading-6 text-[#323842] min-w-[360px] max-w-[600px]'>
+        <p className='font-poppins font-normal text-base leading-6 text-[#323842] min-w-[300px] max-w-[600px]'>
           {content.text}
         </p>
       </AccordionDetails>

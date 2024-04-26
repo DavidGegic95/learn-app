@@ -6,7 +6,7 @@ import { headerStyle, purpleButtonStyle } from '../../styles-for-tailwind';
 
 const FeaturesPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mx-auto'>
+    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto'>
       <h1 className={headerStyle + ' mb-[64px]'}>Features</h1>
       <h2 className='mb-[16px] font-montserrat font-semibold text-4xl leading-17 text-center text-[#171A1F]'>
         Learning
@@ -16,12 +16,12 @@ const FeaturesPage = () => {
         ullamco <br /> reprehenderit exercitation sunt non tempor exercitation
         exercitation
       </p>
-      <div className='my-[48px] flex items-center justify-between'>
-        <div className='flex flex-col items-start justify-center gap-[12px]'>
+      <div className='my-[48px] flex items-center justify-between mobile-view-aboutus-reverse'>
+        <div className='flex flex-col items-start justify-center gap-[12px] mobile-view-featurePage'>
           <h3 className='font-montserrat font-semibold text-5xl leading-14 text-[#171A1F]'>
             Feature
           </h3>
-          <p className='w-[476px] font-poppins font-normal text-base leading-7 text-[#9095A0]'>
+          <p className='w-[476px] font-poppins font-normal text-base leading-7 text-[#9095A0] mobile-view-featurePage-p'>
             Do consectetur proident proident id eiusmod deserunt consequat
             pariatur ad ex velit do Lorem reprehenderit. id eiusmod deserunt
             consequat pariatur ad ex velit do Lorem reprehenderit.
@@ -35,14 +35,14 @@ const FeaturesPage = () => {
 
         <img src={featureImg0} alt='feature image' />
       </div>
-      <div className='my-[48px] flex items-center justify-between'>
+      <div className='my-[48px] flex items-center justify-between mobile-view-featurePage'>
         <img src={featureImg1} alt='feature image' />
 
-        <div className='flex flex-col items-start justify-center gap-[12px]'>
+        <div className='flex flex-col items-start justify-center gap-[12px] mobile-view-featurePage'>
           <h3 className='font-montserrat font-semibold text-5xl leading-14 text-[#171A1F]'>
             Feature
           </h3>
-          <p className='w-[476px] font-poppins font-normal text-base leading-7 text-[#9095A0]'>
+          <p className='w-[476px] font-poppins font-normal text-base leading-7 text-[#9095A0] mobile-view-featurePage-p'>
             Do consectetur proident proident id eiusmod deserunt consequat
             pariatur ad ex velit do Lorem reprehenderit. id eiusmod deserunt
             consequat pariatur ad ex velit do Lorem reprehenderit.

@@ -5,7 +5,7 @@ const Box = ({ path }: { path: string }) => {
 
   useEffect(() => {
     const importImage = async () => {
-      const { default: logo } = await import(path);
+      const { default: logo } = await import(/* @vite-ignore */ path);
       setImgUrl(logo);
     };
     importImage();

@@ -29,10 +29,10 @@ export type PricingOptionStyle = {
 export const popularButtonClassNames =
   purpleButtonStyle + ' w-full py-[8px] px-[16px]';
 const popuarDiv =
-  'flex flex-col px-[32px] py-[40px] items-start justify-between w-[353px] h-[438px]  gap-[12px] bg-[#FFFFFF] boxShadow rounded-l-lg';
+  'flex flex-col px-[32px] py-[40px] items-start justify-between w-[353px] mobile-view-w-auto h-[438px]  gap-[12px] bg-[#FFFFFF] boxShadow rounded-l-lg';
 
 const notPopuar =
-  'flex flex-col p-[32px] items-start justify-between w-[353px] h-[402px]  gap-[12px] bg-[#F8F9FA] boxShadow rounded-l-lg';
+  'flex flex-col p-[32px] items-start justify-between w-[353px] mobile-view-w-auto h-[402px]  gap-[12px] bg-[#F8F9FA] boxShadow rounded-l-lg';
 export const PricingOptionStyleObj = {
   title:
     'font-montserrat text-[40px] leading-56 font-semibold text-[#6355D8FF]',

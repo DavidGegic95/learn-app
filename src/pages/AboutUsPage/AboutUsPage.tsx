@@ -6,7 +6,7 @@ import { styleClasses, profilesData } from './utils';
 
 const AboutUsPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mx-auto'>
+    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto'>
       <h1 className={headerStyle}>About Us</h1>
       <p className={grayText + ' text-center  my-[64px]'}>
         Welcome to the 'About Us' section of Learn Platform, where we aim to
@@ -20,7 +20,7 @@ const AboutUsPage = () => {
         alt=''
         className='w-full aspect-w-1176 aspect-h-600'
       />
-      <div className='grid grid-cols-4 gap-5 w-full h-full'>
+      <div className='grid grid-cols-4 gap-5 w-full h-full mobile-view-aboutus'>
         <div className='flex flex-col items-start justify-center w-full px-[8px] gap-[16px]'>
           <h2 className='font-montserrat font-semibold text-4xl leading-17 text-[#171A1F]'>
             Our Team

@@ -52,7 +52,7 @@ const JoinUsPage = () => {
     <div className='py-[64px]'>
       {!isSubmitted && role && (
         <>
-          <div className='w-[80%] mx-auto'>
+          <div className='w-[80%] mobile-view-w-90 mx-auto'>
             <h1 className='font-montserrat text-4xl leading-16 font-bold text-[#171A1FFF]'>
               Registration
             </h1>
@@ -60,7 +60,7 @@ const JoinUsPage = () => {
               {role}
             </h2>
           </div>
-          <div className='flex mx-auto gap-[64px] items-start w-[80%]  h-[625px]'>
+          <div className='flex mx-auto gap-[64px] items-start w-[80%] mobile-view-w-90  h-[625px] mobile-view-registration'>
             {role === 'Student' ? (
               <img
                 src={registrationStudent}
