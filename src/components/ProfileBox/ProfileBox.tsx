@@ -1,25 +1,31 @@
 import { subHeaderStyle } from '../../styles-for-tailwind';
 import avatarImg from '../../assets/profile-box-avatar.svg';
 import checkIcon from '../../assets/profile-box-check.svg';
+import { useState } from 'react';
+import { classname_p, classname_span, studentList, trainerList } from './utils';
+import { ProfileBoxData } from '../../pages/MyAccountPage/utils';
 
-interface MyProfileInterface {
-  status: boolean;
-  name: string;
-  lastname: string;
-  dateOfBirth: string;
-  address: string;
-  email: string;
-}
-
-const ProfileBox = ({ data }: { data: MyProfileInterface }) => {
-  const classname_p =
-    'font-poppins text-[1rem] leading-[1.75rem] font-bold text-[#424955]';
-  const classname_span =
-    'font-poppins text-[1rem] leading-[1.75rem] font-normal text-[#171A1F]';
+const ProfileBox = ({
+  data,
+  role,
+}: {
+  data: ProfileBoxData;
+  role: 'student' | 'trainer';
+}) => {
+  const [list, setList] = useState(
+    role === 'student' ? trainerList : studentList
+  );
+  const dataValues = Object.values(data);
 
   return (
     <div className='flex flex-col gap-[16px]'>
-      <p className={subHeaderStyle + ' text-start'}>My profile</p>
+      <p
+        className={
+          'font-montserrat font-normal text-[2rem] leading-[3rem] text-[#171A1F]'
+        }
+      >
+        My profile
+      </p>
       <div className='flex gap-[32px]'>
         <img src={avatarImg} alt='' />
         <div>
@@ -32,31 +38,15 @@ const ProfileBox = ({ data }: { data: MyProfileInterface }) => {
           </div>
         </div>
       </div>
-      <p className={classname_p}>
-        First Name
-        <br />
-        <span className={classname_span}>{data.name}</span>
-      </p>
-      <p className={classname_p}>
-        Last Name
-        <br />
-        <span className={classname_span}>{data.lastname}</span>
-      </p>
-      <p className={classname_p}>
-        Date of birth
-        <br />
-        <span className={classname_span}>{data.dateOfBirth}</span>
-      </p>
-      <p className={classname_p}>
-        Address
-        <br />
-        <span className={classname_span}>{data.address}</span>
-      </p>
-      <p className={classname_p}>
-        Email
-        <br />
-        <span className={classname_span}>{data.email}</span>
-      </p>
+      {list.map((item, index) => {
+        return (
+          <p className={classname_p}>
+            {item}
+            <br />
+            <span className={classname_span}>{dataValues[index + 1]}</span>
+          </p>
+        );
+      })}
     </div>
   );
 };
