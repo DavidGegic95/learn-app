@@ -78,6 +78,14 @@ body,
 .button-purple-active:hover:active {
   background-color: #3d2dc7ff;
 }
+.button-green-active:hover:active {
+  background-color: #2f9c72ff;
+}
+
+.button-red-active:hover:active {
+  background-color: #b90b11ff;
+}
+
 .mobile-view-show {
   display: none;
 }

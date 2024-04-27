@@ -2,10 +2,12 @@ import React from 'react';
 import {
   grayText,
   headerStyle,
+  purpleButtonStyle,
   subHeaderStyle,
 } from '../../styles-for-tailwind';
 import { loginBoxData } from './utils';
 import LoginHomeBox from '../../components/LoginHomeBox/LoginHomeBox';
+import Button from '../../components/Button/Button';
 
 const LoginHomePage = ({ name }: { name: string }) => {
   return (
@@ -28,6 +30,11 @@ const LoginHomePage = ({ name }: { name: string }) => {
           );
         })}
       </div>
+      <Button
+        className={purpleButtonStyle + ' py-[8px]'}
+        text='Read more articles'
+        type='button'
+      />
     </div>
   );
 };
