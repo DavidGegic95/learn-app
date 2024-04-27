@@ -17,9 +17,12 @@ import {
   mockStudentList,
   mockTrainersList,
 } from './utils';
+import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import { useNavigate } from 'react-router-dom';
 
 const MyAccountPage = () => {
-  const [role, setRole] = useState<'student' | 'trainer'>('trainer');
+  const navigate = useNavigate();
+  const [role, setRole] = useState<'student' | 'trainer'>('student');
   const [data, setData] = useState(
     role === 'student' ? mockDataStudent : mockDataTrainer
   );
@@ -28,6 +31,7 @@ const MyAccountPage = () => {
   );
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-center justify-center gap-[32px]'>
+      <Breadcrumbs />
       <h1 className={headerStyle}>My Account</h1>
       <div className='flex items-start w-full justify-between'>
         <ProfileBox role={role} data={data} />
@@ -39,6 +43,7 @@ const MyAccountPage = () => {
             </p>
             {role === 'student' && (
               <Button
+                onClick={() => navigate('/my-account/addTrainer')}
                 type='button'
                 text='Add trainer'
                 className={purpleButtonStyle + ' py-[8px]'}

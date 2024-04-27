@@ -13,6 +13,7 @@ import AboutUsPage from './pages/AboutUsPage/AboutUsPage';
 import FeaturesPage from './pages/FeaturesPage/FeaturesPage';
 import PricingPage from './pages/PricingPage/PricingPage';
 import LoginHomePage from './pages/LoginHomePage/LoginHomePage';
+import AddTrainerPage from './pages/AddTrainerPage/AddTrainerPage';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path='/aboutus' element={<AboutUsPage />} />
             <Route path='/home' element={<HomePage />} />
             <Route path='/my-account' element={<MyAccountPage />} />
+            <Route path='/my-account/:edit' element={<AddTrainerPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/training' element={<TrainingPage />} />
             <Route path='/joinus' element={<JoinUsPage />} />

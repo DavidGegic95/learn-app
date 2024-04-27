@@ -44,7 +44,7 @@ const ProfileBox = ({
       </div>
       {list.map((item, index) => {
         return (
-          <p className={classname_p}>
+          <p key={item} className={classname_p}>
             {item}
             <br />
             <span className={classname_span}>{dataValues[index + 1]}</span>
