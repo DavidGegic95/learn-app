@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import {
   headerStyle,
@@ -12,6 +12,18 @@ import { trainerList } from '../../components/ProfileBox/utils';
 import { mockTrainersList } from '../MyAccountPage/utils';
 
 const AddTrainerPage = () => {
+  const [formData, setFormData] = useState();
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+  };
+  const handleChange = (event: any) => {};
+  const rows = [
+    { id: 1, name: 'Elizabeth Watson', specialization: 'Go Lang' },
+    { id: 2, name: 'Elizabeth Allen', specialization: 'Rust' },
+    { id: 3, name: 'Caleb Jones', specialization: 'Python' },
+    { id: 4, name: 'Javier Ortiz', specialization: 'HTML' },
+    { id: 5, name: 'Brandon Taylor', specialization: 'CSS' },
+  ];
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-start justify-center gap-[32px]'>
       <Breadcrumbs />
@@ -25,12 +37,16 @@ const AddTrainerPage = () => {
           <p className='font-montserrat font-normal text-[2rem] leading-[3rem] text-[#171A1F]'>
             All Trainers
           </p>
-          <DataTable />
-          <Button
-            text='Add'
-            className={purpleButtonStyle + ' max-w-[80px]  py-[8px]'}
-            type='button'
-          />
+          <form action='' onChange={handleChange} onSubmit={handleSubmit}>
+            <BasicTable rows={rows} role='student' checkbox />
+            <Button
+              text='Add'
+              className={
+                purpleButtonStyle + ' mt-[16px] max-w-[80px]  py-[8px]'
+              }
+              type='submit'
+            />
+          </form>
         </section>
         <section className='flex flex-col gap-[16px]'>
           <p className='font-montserrat font-normal text-[2rem] leading-[3rem] text-[#171A1F]'>
