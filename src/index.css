@@ -85,6 +85,10 @@ body,
 .button-red-active:hover:active {
   background-color: #b90b11ff;
 }
+.button-gray-active:hover:active {
+  background-color: #dee1e6ff;
+  color: #9095a0ff;
+}
 
 .mobile-view-show {
   display: none;
@@ -220,7 +224,18 @@ header {
     0px 0px 2px rgba(23, 26, 31, 0.12),
     0px 0px 1px rgba(23, 26, 31, 0.07);
 }
+.custom-box-shadow-modal {
+  box-shadow:
+    0px 4px 9px #171a1f,
+    0px 0px 2px #171a1f;
+}
 
 .fill-purple {
   fill: #6355d8;
+}
+.custom-hover-x-icon:hover {
+  background-color: #eaecefff;
+}
+.custom-hover-x-icon:hover:active {
+  background-color: #dee1e6ff;
 }

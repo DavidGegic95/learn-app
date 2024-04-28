@@ -17,8 +17,8 @@ import {
   mockStudentList,
   mockTrainersList,
 } from './utils';
-import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import { useNavigate } from 'react-router-dom';
+import BasicModal from '../../components/Modal/Modal';
 
 const MyAccountPage = () => {
   const navigate = useNavigate();
@@ -31,7 +31,6 @@ const MyAccountPage = () => {
   );
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-center justify-center gap-[32px]'>
-      <Breadcrumbs />
       <h1 className={headerStyle}>My Account</h1>
       <div className='flex items-start w-full justify-between'>
         <ProfileBox role={role} data={data} />
@@ -69,13 +68,7 @@ const MyAccountPage = () => {
           />
         </div>
 
-        {role === 'student' && (
-          <Button
-            text='Delete profile'
-            type='button'
-            className={redButtonStyle + ' py-[8px]'}
-          />
-        )}
+        {role === 'student' && <BasicModal type='delete' />}
       </div>
       <h2 className={subHeaderStyle}>My Trainings</h2>
       <p className='font-poppins text-[1rem] leading-[1.75rem] text-[#171A1FFF] text-center max-min-in-char'>
