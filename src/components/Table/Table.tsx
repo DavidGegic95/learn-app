@@ -7,16 +7,22 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableType, TrainerType } from '../../pages/MyAccountPage/utils';
 import Checkbox from '@mui/material/Checkbox';
+import { useState } from 'react';
 
 export default function BasicTable({
   rows,
   role,
   checkbox,
+  state,
 }: {
   rows: TableType[];
   role: 'student' | 'trainer';
   checkbox?: boolean;
+  state?: any;
 }) {
+  // const handleChange = (event: any): void => {
+  //   event.target.checked = state[event.target.name].checked;
+  // };
   return (
     <TableContainer sx={{ minWidth: '400px' }} component={Paper}>
       <Table aria-label='simple table'>
@@ -35,7 +41,7 @@ export default function BasicTable({
             >
               {checkbox && (
                 <TableCell component='th' scope='row'>
-                  <Checkbox />
+                  <Checkbox name={row.name} key={row.name} />
                 </TableCell>
               )}
               <TableCell component='th' scope='row'>

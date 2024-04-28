@@ -15,8 +15,8 @@ const AddTrainerPage = () => {
   const [formData, setFormData] = useState();
   const handleSubmit = (event: any) => {
     event.preventDefault();
+    console.log(controlObject);
   };
-  const handleChange = (event: any) => {};
   const rows = [
     { id: 1, name: 'Elizabeth Watson', specialization: 'Go Lang' },
     { id: 2, name: 'Elizabeth Allen', specialization: 'Rust' },
@@ -24,6 +24,20 @@ const AddTrainerPage = () => {
     { id: 4, name: 'Javier Ortiz', specialization: 'HTML' },
     { id: 5, name: 'Brandon Taylor', specialization: 'CSS' },
   ];
+  let object: any = {};
+  rows.forEach((row) => {
+    const newObj: any = { ...row };
+    newObj.checked = false;
+    object[newObj.name] = { ...newObj };
+  });
+  const [controlObject, setControlObject] = useState(object);
+
+  const handleChange = (event: any) => {
+    const checkedCurrent = controlObject[event.target.name].checked;
+    const newState = { ...controlObject };
+    newState[event.target.name].checked = checkedCurrent;
+    setControlObject(newState);
+  };
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-start justify-center gap-[32px]'>
       <Breadcrumbs />
@@ -38,7 +52,12 @@ const AddTrainerPage = () => {
             All Trainers
           </p>
           <form action='' onChange={handleChange} onSubmit={handleSubmit}>
-            <BasicTable rows={rows} role='student' checkbox />
+            <BasicTable
+              state={controlObject}
+              rows={rows}
+              role='student'
+              checkbox
+            />
             <Button
               text='Add'
               className={
