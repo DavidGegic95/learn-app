@@ -15,7 +15,6 @@ const AddTrainerPage = () => {
   const [formData, setFormData] = useState();
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    console.log(controlObject);
   };
   const rows = [
     { id: 1, name: 'Elizabeth Watson', specialization: 'Go Lang' },

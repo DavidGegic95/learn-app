@@ -13,5 +13,3 @@ rows.forEach((row) => {
   newObj.checked = false;
   object[newObj.name] = { ...newObj };
 });
-
-console.log(object);

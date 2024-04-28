@@ -16,6 +16,7 @@ import LoginHomePage from './pages/LoginHomePage/LoginHomePage';
 import AddTrainerPage from './pages/AddTrainerPage/AddTrainerPage';
 import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
+import MyAccountEditPage from './pages/MyAccountPage/MyAccountEditPage';
 
 function App() {
   return (
@@ -41,7 +42,14 @@ function App() {
             <Route path='/aboutus' element={<AboutUsPage />} />
             <Route path='/home' element={<HomePage />} />
             <Route path='/my-account' element={<MyAccountPage />} />
-            <Route path='/my-account/:edit' element={<AddTrainerPage />} />
+            <Route
+              path='/my-account/add-trainer'
+              element={<AddTrainerPage />}
+            />
+            <Route
+              path='/my-account/edit-profile'
+              element={<MyAccountEditPage />}
+            />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/training' element={<TrainingPage />} />
             <Route path='/joinus' element={<JoinUsPage />} />

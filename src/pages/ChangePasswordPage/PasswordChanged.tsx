@@ -1,7 +1,5 @@
-import React from 'react';
 import {
   grayText,
-  headerStyle,
   purpleButtonStyle,
   subHeaderStyle,
 } from '../../styles-for-tailwind';
