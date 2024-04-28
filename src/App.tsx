@@ -14,6 +14,8 @@ import FeaturesPage from './pages/FeaturesPage/FeaturesPage';
 import PricingPage from './pages/PricingPage/PricingPage';
 import LoginHomePage from './pages/LoginHomePage/LoginHomePage';
 import AddTrainerPage from './pages/AddTrainerPage/AddTrainerPage';
+import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
+import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
 
 function App() {
   return (
@@ -30,6 +32,11 @@ function App() {
             />
             <Route path='/blog' element={<BlogPage />} />
             <Route path='/pricing' element={<PricingPage />} />
+            <Route path='/change-password' element={<ChangePasswordPage />} />
+            <Route
+              path='/change-password/changed-successful'
+              element={<PasswordChanged />}
+            />
             <Route path='/features' element={<FeaturesPage />} />
             <Route path='/aboutus' element={<AboutUsPage />} />
             <Route path='/home' element={<HomePage />} />

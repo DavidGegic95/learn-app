@@ -31,7 +31,6 @@ body,
 .passwordIcon {
   background-image: url('./assets/Lock.svg');
   background-repeat: no-repeat;
-  /* background-position: left; */
   background-position: 8px center;
 }
 .mailIcon {

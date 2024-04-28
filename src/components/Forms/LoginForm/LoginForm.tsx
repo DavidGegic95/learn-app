@@ -1,16 +1,14 @@
 // import React from 'react';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import Loading from '../Loading/Loading';
+import Loading from '../..//Loading/Loading';
 import ReCAPTCHA from 'react-google-recaptcha';
-import PasswordIcon from '../PasswordIcon/PasswordIcon';
-import Button from '../Button/Button';
-import { purpleButtonStyle } from '../../styles-for-tailwind';
+import PasswordIcon from '../../PasswordIcon/PasswordIcon';
+import Button from '../../Button/Button';
+import { purpleButtonStyle } from '../../../styles-for-tailwind';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
 
 const LoginForm = () => {
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
