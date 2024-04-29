@@ -12,6 +12,7 @@ import {
 } from '../../styles-for-tailwind';
 import Switch from '@mui/material/Switch';
 import SwitchComp from './SwitchComp';
+import UploadFile from '../UploadFile/UploadFile';
 
 interface FormData {
   name: string;
@@ -27,6 +28,7 @@ const ProfileBoxEdit = ({
   data: ProfileBoxData;
   role: 'student' | 'trainer';
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const newObject = { ...data } as Omit<typeof data, 'status'>;
   const [status, setStatus] = useState(true);
   const [formData, setFormData] = useState(newObject as FormData);
@@ -60,7 +62,7 @@ const ProfileBoxEdit = ({
     });
   };
   return (
-    <div className='flex flex-col gap-[32px] w-full'>
+    <div className='flex flex-col gap-[32px] w-full '>
       <p
         className={
           'font-montserrat font-normal text-[2rem] leading-[3rem] text-[#171A1F]'
@@ -85,8 +87,10 @@ const ProfileBoxEdit = ({
               <span className='font-poppins font-normal text-[0.75rem] leading-[1.25rem] text-[#565E6C]'>
                 Your photo should be in PNG or JPG format
               </span>
+              <UploadFile setIsOpen={setIsOpen} isOpen={isOpen} />
               <div className='flex items-center justify-start gap-[8px]'>
                 <Button
+                  onClick={() => setIsOpen((prev) => !prev)}
                   text='Choose image'
                   className={grayPurpleButtonStyle + ' py-[8px]'}
                   type='button'
