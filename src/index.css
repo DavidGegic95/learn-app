@@ -88,6 +88,10 @@ body,
   background-color: #dee1e6ff;
   color: #9095a0ff;
 }
+.button-grayPurple-active:hover:active {
+  color: #3d2dc7ff;
+  background-color: #dee1e6ff;
+}
 
 .mobile-view-show {
   display: none;

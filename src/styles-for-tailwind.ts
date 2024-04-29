@@ -6,6 +6,8 @@ export const redButtonStyle =
   'bg-[#ED5D56FF] border-none rounded-md hover:text-white hover:bg-[#D20C13FF] disabled:opacity-40 button-red-active px-[24px] text-white flex items-center justify-center font-poppins font-normal';
 export const grayButtonStyle =
   'bg-[#00000000] border-none rounded-md hover:text-[#9095A0FF] hover:bg-[#EAECEFFF] disabled:opacity-40 button-gray-active px-[24px] text-[#9095A0FF] flex items-center justify-center font-poppins font-normal';
+export const grayPurpleButtonStyle =
+  'bg-[#00000000] border border-solid border-[#6355D8FF] rounded-md hover:text-[#4D3ED3FF] hover:bg-[#EAECEFFF]  disabled:opacity-40 button-grayPurple-active px-[24px] text-[#6355D8FF] flex items-center justify-center font-poppins font-normal';
 
 export const headerStyle =
   'font-montserrat text-[3.5rem] leading-[4.75rem] font-bold text-[#171A1FFF] text-center';

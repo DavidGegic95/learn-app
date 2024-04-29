@@ -1,12 +1,15 @@
 import avatarStudentImg from '../../assets/profile-box-avatar.svg';
 import avatarTrainerImg from '../../assets/profile-box-avatar-trainer.svg';
 import checkIcon from '../../assets/profile-box-check.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { classname_p, classname_span, studentList, trainerList } from './utils';
 import { ProfileBoxData } from '../../pages/MyAccountPage/utils';
-import { String } from 'aws-sdk/clients/codebuild';
 import Button from '../Button/Button';
-import { grayButtonStyle, purpleButtonStyle } from '../../styles-for-tailwind';
+import {
+  grayButtonStyle,
+  grayPurpleButtonStyle,
+  purpleButtonStyle,
+} from '../../styles-for-tailwind';
 import Switch from '@mui/material/Switch';
 import SwitchComp from './SwitchComp';
 
@@ -47,6 +50,7 @@ const ProfileBoxEdit = ({
   });
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    console.log({ ...formData, status: status });
   };
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -64,28 +68,46 @@ const ProfileBoxEdit = ({
       >
         Edit profile
       </p>
-      <div className='flex gap-[32px] w-full'>
-        <img
-          src={role === 'student' ? avatarStudentImg : avatarTrainerImg}
-          alt=''
-        />
-        <div>
-          <p>Status</p>
-          <div className='flex gap-[8px]'>
-            <img src={checkIcon} alt='' />
-            <span className={classname_span + ' text-[#60CFA5]'}>
-              {data.status ? 'Active' : 'Not Active'}
-            </span>
+      <div className='flex flex-col gap-[16px]'>
+        <p className='font-poppins font-normal text-[0.9rem] leading-[1.4rem] text-[#323842]'>
+          Profile photo
+        </p>
+        <div className='flex gap-[32px] w-full'>
+          <img
+            src={role === 'student' ? avatarStudentImg : avatarTrainerImg}
+            alt=''
+          />
+          <div className='flex flex-col items-start justify-center gap-[16px]'>
+            <p className='font-poppins font-normal text-[0.9rem] leading-[1.4rem] text-[#171A1F]'>
+              Upload your photo
+            </p>
+            <div className='flex flex-col gap-[16px]'>
+              <span className='font-poppins font-normal text-[0.75rem] leading-[1.25rem] text-[#565E6C]'>
+                Your photo should be in PNG or JPG format
+              </span>
+              <div className='flex items-center justify-start gap-[8px]'>
+                <Button
+                  text='Choose image'
+                  className={grayPurpleButtonStyle + ' py-[8px]'}
+                  type='button'
+                />
+                <Button
+                  text='Remove'
+                  className={grayButtonStyle + ' py-[8px]'}
+                  type='button'
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className='flex flex-col w-full'>
-        {valuesForMap.map((key: string) => {
+        {valuesForMap.map((key: string, index) => {
           return (
             <div key={key}>
               <label key={key + 'label'} className={classname_p}>
-                {key}
+                {list[index]}
               </label>
               <input
                 className={`flex mb-[16px] pl-[16px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 min-w-[400px] w-[50%] h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors[key as keyof typeof formData] ? 'error-border' : ''}`}
