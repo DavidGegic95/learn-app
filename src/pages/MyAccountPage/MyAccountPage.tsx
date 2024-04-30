@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Button from '../../components/Button/Button';
 import ProfileBox from '../../components/ProfileBox/ProfileBox';
-import BasicTable from '../../components/Table/Table';
+import BasicTable from '../../components/Table/BasicTable';
 import {
   greenButtonStyle,
   headerStyle,
@@ -49,7 +49,7 @@ const MyAccountPage = () => {
               />
             )}
           </div>
-          <BasicTable role={role} rows={tableData} />
+          <BasicTable rows={tableData} cells={Object.keys(tableData[0])} />
         </div>
       </div>
 
