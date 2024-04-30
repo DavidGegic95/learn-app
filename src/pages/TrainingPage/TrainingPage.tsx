@@ -12,13 +12,28 @@ import {
   subHeaderStyle,
 } from '../../styles-for-tailwind';
 import { myPassedTrainings } from './utils';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import toasterIcon from '../../assets/toaster-icon.svg';
+
+const ToasterMessage = () => (
+  <div className='flex items-center justify-start gap-[8px]'>
+    <img src={toasterIcon} alt='' />
+    Training added
+  </div>
+);
 
 const TrainingPage = () => {
+  const notify = () => toast(<ToasterMessage />, { theme: 'light' });
+
   return (
     <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto'>
       <Breadcrumbs />
+      <ToastContainer hideProgressBar={true} theme='light' autoClose={5000} />
+
       <h1 className={headerStyle}>Trainings</h1>
       <Button
+        onClick={notify}
         text='Add training'
         type='button'
         className={greenButtonStyle + ' py-[8px]'}
