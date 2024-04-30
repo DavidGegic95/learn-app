@@ -15,6 +15,7 @@ import { rows } from './utils';
 const AddTrainerPage = () => {
   // const [formData, setFormData] = useState();
   const [currentList, setCurrentList] = useState(mockTrainersList);
+  const [allTrainers, setAllTrainers] = useState(rows);
   let objectOfCheckedRows = {};
   [...rows].forEach((row) => {
     objectOfCheckedRows = {
@@ -35,13 +36,16 @@ const AddTrainerPage = () => {
     const updateList: TrainerType[] = [];
     Object.keys(listChecked).forEach((key) => {
       if (listChecked[key as keyof typeof listChecked] === true) {
-        rows.forEach((row, index) => {
+        allTrainers.forEach((row, index) => {
           if (row.name === key) {
             const newCurrentList: TrainerType[] = [];
             [...currentList].forEach((item) => {
               if (!(item.name === key)) {
                 newCurrentList.push(item);
               }
+              const newAlltrainers = [...allTrainers];
+              newAlltrainers.splice(index, 1);
+              setAllTrainers(newAlltrainers);
             });
             setCurrentList(newCurrentList);
             updateList.push(row);
@@ -80,7 +84,7 @@ const AddTrainerPage = () => {
           <form action='' onSubmit={handleSubmit}>
             <BasicTable
               cells={Object.keys(rows[0])}
-              rows={rows}
+              rows={allTrainers}
               checkbox
               listChecked={listChecked}
               setListChecked={setListChecked}
