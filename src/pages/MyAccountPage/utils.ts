@@ -1,3 +1,5 @@
+import { PassedTrainigType } from '../TrainingPage/utils';
+
 export const mockDataStudent = {
   status: true,
   name: 'Marta',
@@ -75,7 +77,7 @@ export interface StudentType {
   status: 'ACTIVE' | 'NOT ACTIVE';
 }
 
-export type TableType = TrainerType | StudentType;
+export type TableType = TrainerType | StudentType | PassedTrainigType;
 
 type StudentData = {
   status: boolean;

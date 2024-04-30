@@ -3,6 +3,7 @@
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import Button from '../../components/Button/Button';
 import DatePicker from '../../components/DatePicker/DatePicker';
+import BasicTable from '../../components/Table/BasicTable';
 // import BasicTable from '../../components/Table/Table';
 import {
   greenButtonStyle,
@@ -10,6 +11,7 @@ import {
   purpleButtonStyle,
   subHeaderStyle,
 } from '../../styles-for-tailwind';
+import { myPassedTrainings } from './utils';
 
 const TrainingPage = () => {
   return (
@@ -63,6 +65,10 @@ const TrainingPage = () => {
           My passed trainings
         </h3>
         {/* <BasicTable checkbox rows={[{ firstname: '' }]} role='student' /> */}
+        <BasicTable
+          cells={Object.keys(myPassedTrainings[0])}
+          rows={myPassedTrainings}
+        />
       </div>
     </div>
   );
