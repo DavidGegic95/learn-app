@@ -17,6 +17,7 @@ import AddTrainerPage from './pages/AddTrainerPage/AddTrainerPage';
 import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
 import MyAccountEditPage from './pages/MyAccountPage/MyAccountEditPage';
+import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedTrainig';
 
 function App() {
   return (
@@ -49,6 +50,10 @@ function App() {
             <Route
               path='/my-account/edit-profile'
               element={<MyAccountEditPage />}
+            />
+            <Route
+              path='/my-account/add-passed-training'
+              element={<MyAccountAddPassedTrainig />}
             />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/training' element={<TrainingPage />} />

@@ -267,6 +267,15 @@ header {
 .custom-hover-x-icon:hover:active {
   background-color: #dee1e6ff;
 }
-.css-1juxbee-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected {
+.css-1juxbee-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected,
+.css-tbuks1-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected,
+.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected,
+.css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   background-color: #6355d8 !important;
 }
+/* .css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
+  background-color: #6355d8 !important;
+}
+.css-tbuks1-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected {
+  background-color: #6355d8 !important;
+} */
