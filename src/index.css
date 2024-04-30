@@ -273,9 +273,26 @@ header {
 .css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   background-color: #6355d8 !important;
 }
-/* .css-1wy8uaa-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
-  background-color: #6355d8 !important;
+
+.textarea:hover {
+  border-color: #9095a0ff;
+  box-shadow: 0px 0px 5px #9095a0;
 }
-.css-tbuks1-MuiButtonBase-root-MuiPickersDay-root-MuiDateRangePickerDay-day.Mui-selected {
-  background-color: #6355d8 !important;
-} */
+.textarea {
+  background: #f3f4f6ff;
+  border-color: #9095a0ff;
+}
+.textarea:focus {
+  background: #ffffffff;
+  border-color: #9095a0ff;
+  box-shadow: 0px 0px 5px #9095a0;
+  outline: none;
+}
+
+input:hover,
+select:hover,
+input:focus,
+select:focus {
+  box-shadow: 0px 0px 5px #9095a0;
+  outline: none;
+}
