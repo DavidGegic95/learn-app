@@ -9,6 +9,7 @@ import { TableType, TrainerType } from '../../pages/MyAccountPage/utils';
 import Checkbox from '@mui/material/Checkbox';
 import { Dispatch, SetStateAction, useState } from 'react';
 import SimpleCheckbox from '../SimpleCheckbox/SimpleCheckbox';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function BasicTable({
   rows,
@@ -32,7 +33,7 @@ export default function BasicTable({
             {checkbox && <TableCell align='left'></TableCell>}
             {cells.map((cell) => {
               return (
-                <TableCell align='left' key={cell}>
+                <TableCell align='left' key={uuidv4()}>
                   {cell.toUpperCase()}
                 </TableCell>
               );
@@ -43,16 +44,16 @@ export default function BasicTable({
           {rows.map((row) => {
             return (
               <TableRow
-                key={row.name}
+                key={uuidv4()}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 {checkbox && listChecked && setListChecked && (
-                  <TableCell component='th' scope='row'>
+                  <TableCell key={uuidv4()} component='th' scope='row'>
                     <SimpleCheckbox
                       listChecked={listChecked}
                       setListChecked={setListChecked}
                       name={row.name}
-                      key={row.name}
+                      key={uuidv4()}
                     />
                   </TableCell>
                 )}
@@ -60,6 +61,7 @@ export default function BasicTable({
                   if ('status' in row && key === 'status') {
                     return (
                       <TableCell
+                        key={uuidv4()}
                         sx={{
                           color: `${row.status === 'ACTIVE' ? '#60CFA5FF' : '#F22128FF'}`,
                         }}
@@ -70,7 +72,7 @@ export default function BasicTable({
                     );
                   } else {
                     return (
-                      <TableCell component='th' scope='row' key={key}>
+                      <TableCell component='th' scope='row' key={uuidv4()}>
                         {row[key as keyof typeof row]}
                       </TableCell>
                     );

@@ -90,7 +90,7 @@ type StudentData = {
 
 type TrainerData = {
   status: boolean;
-  firstname: string;
+  name: string;
   lastname: string;
   username: string;
   specialization: string;

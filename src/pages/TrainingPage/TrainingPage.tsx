@@ -28,7 +28,7 @@ const TrainingPage = () => {
 
   return (
     <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto'>
-      <Breadcrumbs />
+      <Breadcrumbs steps={['My Account', 'Tranings']} />
       <ToastContainer hideProgressBar={true} theme='light' autoClose={5000} />
 
       <h1 className={headerStyle}>Trainings</h1>

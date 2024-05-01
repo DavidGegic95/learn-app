@@ -58,8 +58,8 @@ export default function SwitchComp({
   status,
   setStatus,
 }: {
-  status: boolean;
-  setStatus: any;
+  status?: boolean;
+  setStatus?: any;
 }) {
   return (
     <>

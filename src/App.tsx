@@ -18,13 +18,26 @@ import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
 import MyAccountEditPage from './pages/MyAccountPage/MyAccountEditPage';
 import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedTrainig';
+import { useState } from 'react';
+
+export type loggedinObject = {
+  name: string;
+  username: string;
+  email: string;
+};
 
 function App() {
+  const [isloggedin, setIsLoggedin] = useState<loggedinObject | null>({
+    name: 'Naomi Smith',
+    username: 'naomi_sm',
+    email: 'demis@email.com',
+  });
+
   return (
     <>
       <BrowserRouter>
         <div className='app'>
-          <Header />
+          <Header isloggedin={isloggedin} />
           <Routes>
             Features
             <Route path='/' element={<HomePage />} />
@@ -56,7 +69,7 @@ function App() {
               element={<MyAccountAddPassedTrainig />}
             />
             <Route path='/login' element={<LoginPage />} />
-            <Route path='/training' element={<TrainingPage />} />
+            <Route path='/trainings' element={<TrainingPage />} />
             <Route path='/joinus' element={<JoinUsPage />} />
             <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
             <Route

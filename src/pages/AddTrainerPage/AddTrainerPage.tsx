@@ -70,8 +70,8 @@ const AddTrainerPage = () => {
 
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-start justify-center gap-[32px]'>
-      <Breadcrumbs />
-      <h1 className={headerStyle}>Add trainer</h1>
+      <Breadcrumbs steps={['My Account', 'Add trainer']} />
+      <h1 className={headerStyle + ' w-full text-center'}>Add trainer</h1>
       <p className='w-[50%] self-start'>
         Please select trainers for adding them into your trainers list * - There
         is no possibility to remove the trainer.{' '}

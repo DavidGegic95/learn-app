@@ -72,12 +72,12 @@ const MyAccountAddPassedTrainig = () => {
   };
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-start justify-center gap-[16px]'>
-      <Breadcrumbs />
+      <Breadcrumbs steps={['My Account', 'Tranings', 'Add training']} />
       <h1 className={headerStyle + ' text-center w-full'}>
         Add passed training
       </h1>
       <h2>Training</h2>
-      <main className='flex items-start justify-between w-full'>
+      <main className='flex items-start justify-start gap-[10%] w-full'>
         <section>
           <form
             onSubmit={handleSubmit}

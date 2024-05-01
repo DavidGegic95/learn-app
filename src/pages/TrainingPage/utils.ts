@@ -1,6 +1,6 @@
 export type PassedTrainigType = {
   date: string;
-  trainingName: string;
+  name: string;
   type: string;
   trainerName: string;
   duration: string;
