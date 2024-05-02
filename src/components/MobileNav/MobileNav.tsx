@@ -1,18 +1,23 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import avatar from '../../assets/avatar-mobile-nav.svg';
 import xButton from '../../assets/x-mobile-nav.svg';
 import logoutIcon from '../../assets/mobile-nav-logout.svg';
 
 import { Dispatch, SetStateAction } from 'react';
+import { idFromLocalStorage } from '../MiniProfile/utils';
+import { loggedinObject } from '../../App';
 
 const MobileNav = ({
   isClicked,
   setIsClicked,
+  setIsLoggedin,
 }: {
   isClicked: boolean;
   setIsClicked: Dispatch<SetStateAction<boolean>>;
+  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
 }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { pathname } = location;
   const linksData = [
     { path: '/blog', text: 'Blog' },
@@ -20,6 +25,31 @@ const MobileNav = ({
     { path: '/aboutus', text: 'About us' },
     { path: '/home', text: 'My Account' },
   ];
+  const signout = () => {
+    let userId = idFromLocalStorage();
+    fetch(
+      `https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/logout?id=${userId}`
+    )
+      .then((response: any) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data: any) => {
+        setIsLoggedin(null);
+        localStorage.removeItem('user');
+        setIsClicked((prev) => !prev);
+        window.scrollTo({
+          top: 0,
+          behavior: 'instant',
+        });
+        navigate('/');
+      })
+      .catch((error: any) => {
+        console.error('Error:', error);
+      });
+  };
   return (
     <div className={`${isClicked ? ' show-mobile-nav' : ' hide-mobile-nav'}`}>
       <div className='w-full  flex items-center justify-between gap-[16px] p-[16px]'>
@@ -57,13 +87,7 @@ const MobileNav = ({
 
       <button
         className='flex gap-[8px] pl-[8px]  pb-[32px] font-poppins font-normal font-medium text-base leading-6 text-[#565E6C]'
-        onClick={() => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'instant',
-          });
-          setIsClicked((prev) => !prev);
-        }}
+        onClick={signout}
       >
         <img src={logoutIcon} alt='' />
         Sign out

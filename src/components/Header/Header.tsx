@@ -10,8 +10,10 @@ import MiniProfile from '../MiniProfile/MiniProfile';
 
 const Header = ({
   isloggedin,
+  setIsLoggedin,
 }: {
   isloggedin: loggedinObject | null;
+  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [miniProfile, setMiniProfile] = useState(false);
@@ -25,7 +27,11 @@ const Header = ({
         alt='mobile menu icon'
         className='mobile-view-show'
       />
-      <MobileNav setIsClicked={setIsClicked} isClicked={isClicked} />
+      <MobileNav
+        setIsLoggedin={setIsLoggedin}
+        setIsClicked={setIsClicked}
+        isClicked={isClicked}
+      />
 
       <img
         onClick={() => navigate('/')}
@@ -82,7 +88,11 @@ const Header = ({
         )}
       </nav>
       {miniProfile && (
-        <MiniProfile setMiniProfile={setMiniProfile} isloggedin={isloggedin} />
+        <MiniProfile
+          setIsLoggedin={setIsLoggedin}
+          setMiniProfile={setMiniProfile}
+          isloggedin={isloggedin}
+        />
       )}
     </header>
   );

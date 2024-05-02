@@ -37,7 +37,7 @@ function App() {
     <>
       <BrowserRouter>
         <div className='app'>
-          <Header isloggedin={isloggedin} />
+          <Header setIsLoggedin={setIsLoggedin} isloggedin={isloggedin} />
           <Routes>
             Features
             <Route path='/' element={<HomePage />} />

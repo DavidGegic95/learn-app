@@ -15,7 +15,6 @@ import { loggedinObject } from '../../../App';
 import { useNavigate } from 'react-router-dom';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
-// const authApiURI = import.meta.env.AUTH_SERVICE || 'invalid api';
 
 const LoginForm = ({
   setIsLoggedin,
@@ -26,11 +25,11 @@ const LoginForm = ({
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
   const [errors, setErrors] = useState({
-    username: '',
+    email: '',
     password: '',
   });
   const loginUser = async () => {
@@ -42,13 +41,17 @@ const LoginForm = ({
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: formData.username,
+          email: formData.email,
           password: formData.password,
         }),
       }
     )
       .then((response: any) => {
         if (!response.ok) {
+          setErrors({
+            email: 'Email or password is not valid',
+            password: 'Email or password is not valid',
+          });
           throw new Error('Network response was not ok');
         }
         return response.json();
@@ -84,11 +87,11 @@ const LoginForm = ({
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!formData.username || !formData.password) {
-      if (!formData.username) {
+    if (!formData.email || !formData.password) {
+      if (!formData.email) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          username: 'Username is required',
+          email: 'Email is required',
         }));
       }
       if (!formData.password) {
@@ -101,7 +104,6 @@ const LoginForm = ({
     }
     setIsLoading(true);
     await loginUser();
-    // await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsLoading(false);
   };
   return (
@@ -112,28 +114,29 @@ const LoginForm = ({
         onSubmit={handleSubmit}
       >
         <div className='flex flex-col'>
-          <label className={errors.username ? 'error' : ''} htmlFor='username'>
-            User name
-          </label>
+          <label htmlFor='email'>User email</label>
           <input
-            className={`profileIcon flex mb-[16px] pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors.username ? 'error-border' : ''}`}
+            className={`profileIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors.email ? 'error-border' : ''}`}
             type='text'
-            id='username'
-            name='username'
+            id='email'
+            name='email'
             placeholder='Enter email'
-            value={formData.username}
+            value={formData.email}
             onChange={handleInputChange}
           />
+          {errors.password ? (
+            <span className='error'>{errors.email}</span>
+          ) : (
+            <br></br>
+          )}
         </div>
         <div className='flex flex-col'>
-          <label className={errors.password ? 'error' : ''} htmlFor='password'>
-            Password
-          </label>
+          <label htmlFor='password'>Password</label>
           <div
-            className={`focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full h-[40px] ${errors.password ? 'error-border' : ''}`}
+            className={`boxShadow focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full h-[40px] ${errors.password ? 'error-border' : ''}`}
           >
             <input
-              className={`passwordIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:bg-white`}
+              className={`passwordIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:bg-white hover:border-none`}
               type={isVisible ? 'text' : 'password'}
               id='password'
               name='password'
@@ -148,6 +151,11 @@ const LoginForm = ({
               <PasswordIcon isVisible={isVisible} />
             </span>
           </div>
+          {errors.password ? (
+            <span className='error'>{errors.password}</span>
+          ) : (
+            <br></br>
+          )}
         </div>
         <Button
           text='Sign in'

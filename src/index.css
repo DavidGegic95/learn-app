@@ -43,11 +43,13 @@ body,
   width: 100%;
   min-height: 100vh;
 }
-.profileIcon {
+.profileIcon,
+.profileIcon:focus {
   background-image: url('./assets/Profile.svg');
   background-repeat: no-repeat;
   background-position: 8px center;
 }
+
 .passwordIcon {
   background-image: url('./assets/Lock.svg');
   background-repeat: no-repeat;
@@ -309,4 +311,11 @@ select:focus {
   left: 0;
   right: 0;
   z-index: 99;
+}
+
+#password {
+  box-shadow: none;
+}
+.boxShadow:hover {
+  box-shadow: 0px 0px 5px #9095a0;
 }

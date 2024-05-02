@@ -5,14 +5,40 @@ import moonIcon from '../../assets/mini-profile/moon-icon.svg';
 import profileIcon from '../../assets/mini-profile/profile-icon.svg';
 import SwitchComp from '../ProfileBox/SwitchComp';
 import logoutIcon from '../../assets/mobile-nav-logout.svg';
+import { idFromLocalStorage } from './utils';
+import { useNavigate } from 'react-router-dom';
 
 const MiniProfile = ({
   isloggedin,
   setMiniProfile,
+  setIsLoggedin,
 }: {
   isloggedin: loggedinObject | null;
   setMiniProfile: Dispatch<SetStateAction<boolean>>;
+  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
 }) => {
+  const navigate = useNavigate();
+  const signout = () => {
+    let userId = idFromLocalStorage();
+    fetch(
+      `https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/logout?id=${userId}`
+    )
+      .then((response: any) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data: any) => {
+        setIsLoggedin(null);
+        localStorage.removeItem('user');
+        setMiniProfile(false);
+        navigate('/');
+      })
+      .catch((error: any) => {
+        console.error('Error:', error);
+      });
+  };
   return (
     <>
       <div onClick={() => setMiniProfile(false)} className='custom-fixed'></div>
@@ -44,7 +70,10 @@ const MiniProfile = ({
               <SwitchComp />
             </div>
           </div>
-          <div className='flex w-full gap-[8px] border-t-[1px] border-[#DEE1E6] p-[16px]'>
+          <div
+            onClick={signout}
+            className='flex w-full gap-[8px] border-t-[1px] border-[#DEE1E6] p-[16px] cursor-pointer'
+          >
             <img src={logoutIcon} alt='' />
             <span className='font-poppins text-[14px] leading-[22px] text-[#565E6C]'>
               Sign out
