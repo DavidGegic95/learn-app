@@ -21,7 +21,7 @@ const MiniProfile = ({
           <img src={avatarHeader} alt='' />
           <div className='w-full'>
             <p className='font-poppins font-bold text-[14px] leading-[22px] text-[#171A1FFF]'>
-              {isloggedin?.name}
+              {isloggedin?.username}
               <br />
               <span className='font-poppins font-normal text-[12px] leading-[20px] text-[#9095A0FF]'>
                 {isloggedin?.email}

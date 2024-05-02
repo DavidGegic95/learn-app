@@ -3,12 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo-header.png';
 import mobileNavMenu from '../../assets/mobile-nav-menu.svg';
 import MobileNav from '../MobileNav/MobileNav';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { loggedinObject } from '../../App';
 import avatarHeader from '../../assets/avatar-header.svg';
 import MiniProfile from '../MiniProfile/MiniProfile';
 
-const Header = ({ isloggedin }: { isloggedin: loggedinObject | null }) => {
+const Header = ({
+  isloggedin,
+}: {
+  isloggedin: loggedinObject | null;
+}) => {
   const [isClicked, setIsClicked] = useState(false);
   const [miniProfile, setMiniProfile] = useState(false);
   const navigate = useNavigate();

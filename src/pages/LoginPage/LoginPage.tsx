@@ -1,8 +1,14 @@
 // import React from 'react';
 
+import { Dispatch, SetStateAction } from 'react';
 import LoginForm from '../../components/Forms/LoginForm/LoginForm';
+import { loggedinObject } from '../../App';
 
-const LoginPage = () => {
+const LoginPage = ({
+  setIsLoggedin,
+}: {
+  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
+}) => {
   return (
     <div className='w-[400px]  mx-auto my-[64px] flex flex-col align-center justify-center'>
       <div className='flex w-[400px] flex-col align-center justify-center'>
@@ -13,7 +19,7 @@ const LoginPage = () => {
           Welcome back
         </span>
       </div>
-      <LoginForm />
+      <LoginForm setIsLoggedin={setIsLoggedin} />
     </div>
   );
 };

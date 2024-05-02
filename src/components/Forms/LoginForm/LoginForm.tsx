@@ -1,14 +1,28 @@
 // import React from 'react';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useState,
+} from 'react';
 import Loading from '../..//Loading/Loading';
 import ReCAPTCHA from 'react-google-recaptcha';
 import PasswordIcon from '../../PasswordIcon/PasswordIcon';
 import Button from '../../Button/Button';
 import { purpleButtonStyle } from '../../../styles-for-tailwind';
+import { loggedinObject } from '../../../App';
+import { useNavigate } from 'react-router-dom';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
+// const authApiURI = import.meta.env.AUTH_SERVICE || 'invalid api';
 
-const LoginForm = () => {
+const LoginForm = ({
+  setIsLoggedin,
+}: {
+  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
+}) => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
@@ -19,6 +33,46 @@ const LoginForm = () => {
     username: '',
     password: '',
   });
+  const loginUser = async () => {
+    fetch(
+      'https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/login',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.username,
+          password: formData.password,
+        }),
+      }
+    )
+      .then((response: any) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data: any) => {
+        setIsLoggedin({
+          firstName: data.user.firstName,
+          username: data.user.username,
+          email: data.user.email,
+        });
+
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            token: data.token,
+            userId: data.user.id,
+          })
+        );
+        navigate('/');
+      })
+      .catch((error: any) => {
+        console.error('Error:', error);
+      });
+  };
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -46,7 +100,8 @@ const LoginForm = () => {
       return;
     }
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await loginUser();
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsLoading(false);
   };
   return (

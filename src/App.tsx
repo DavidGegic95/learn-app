@@ -21,14 +21,14 @@ import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedT
 import { useState } from 'react';
 
 export type loggedinObject = {
-  name: string;
+  firstName: string;
   username: string;
   email: string;
 };
 
 function App() {
   const [isloggedin, setIsLoggedin] = useState<loggedinObject | null>({
-    name: 'Naomi Smith',
+    firstName: 'Naomi Smith',
     username: 'naomi_sm',
     email: 'demis@email.com',
   });
@@ -68,7 +68,10 @@ function App() {
               path='/my-account/add-passed-training'
               element={<MyAccountAddPassedTrainig />}
             />
-            <Route path='/login' element={<LoginPage />} />
+            <Route
+              path='/login'
+              element={<LoginPage setIsLoggedin={setIsLoggedin} />}
+            />
             <Route path='/trainings' element={<TrainingPage />} />
             <Route path='/joinus' element={<JoinUsPage />} />
             <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
