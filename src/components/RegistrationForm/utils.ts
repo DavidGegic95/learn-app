@@ -1,3 +1,5 @@
+import Role from '../../pages/JoinUsPage/utils';
+
 export const scienceSpecializations = [
   'Physics',
   'Chemistry',
@@ -11,28 +13,30 @@ export const scienceSpecializations = [
 ];
 
 type TrainerListType = {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  specialization?: string;
+  specialization: string;
 };
 
 type StudentListType = {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   dateofBirth?: string;
   address?: string;
 };
+export type FormDataType = TrainerListType | StudentListType;
 
-export const trainerList = {
-  firstname: '',
-  lastname: '',
+export const trainerList: TrainerListType = {
+  firstName: '',
+  lastName: '',
   email: '',
+  specialization: '',
 };
-export const studentList = {
-  firstname: '',
-  lastname: '',
+export const studentList: StudentListType = {
+  firstName: '',
+  lastName: '',
   email: '',
   dateofBirth: '',
   address: '',
@@ -46,16 +50,77 @@ export const inputsListStudent = [
   'Address (optional)',
 ];
 
-export function areValuesTruthy(obj: FormDataType): boolean {
-  return Object.values(obj).every((value) => !!value);
+export function requiredFields(
+  data: FormDataType,
+  role: Role,
+  valueSelectTag: string
+): boolean {
+  const reqFieldsList = ['firstName', 'lastName', 'email', 'specialization'];
+  for (let field of reqFieldsList) {
+    if (field === 'specialization' && role !== 'Trainer') {
+      continue;
+    } else if (field === 'specialization' && role === 'Trainer') {
+      if (valueSelectTag === '') return false;
+    } else if (
+      !(field in data) ||
+      data[field as keyof typeof data].trim() === ''
+    ) {
+      return false;
+    }
+  }
+  return true;
 }
-export type FormDataType = TrainerListType | StudentListType;
-
 export default {
   scienceSpecializations,
   trainerList,
   studentList,
   inputsListTrainer,
   inputsListStudent,
-  areValuesTruthy,
+  requiredFields,
 };
+
+// const registerUserFetch = async (formData: FormData) => {
+//   fetch(
+//     'https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/register',
+//     {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(formData),
+//     }
+//   );
+// };
+
+export async function fetchUserRegistration(
+  formData: FormDataType,
+  role: Role,
+  valueSelectTag: string
+) {
+  const lowerCaseRole = role.toLowerCase();
+  let body = { ...formData, role: lowerCaseRole };
+  if (role === 'Trainer') {
+    body = { ...body, specialization: valueSelectTag };
+  }
+  console.log(body);
+  try {
+    const response = await fetch(
+      'https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/register',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      }
+    );
+    if (!response.ok) {
+      throw new Error('Failed to fetch user registration data');
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}

@@ -16,7 +16,8 @@ import {
   studentList,
   inputsListStudent,
   inputsListTrainer,
-  areValuesTruthy,
+  requiredFields,
+  fetchUserRegistration,
 } from './utils';
 import Role, { UserData } from '../../pages/JoinUsPage/utils';
 import { useNavigate } from 'react-router-dom';
@@ -58,36 +59,51 @@ const RegistrationForm = ({
   };
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!areValuesTruthy(formData)) {
-      if (!formData.firstname) {
+    if (!requiredFields(formData, role, valueSelectTag)) {
+      if (!formData.firstName) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          firstname: 'Username is required',
+          firstName: 'First is required',
         }));
       }
-      if (!formData.lastname) {
+      if (!formData.lastName) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          lastname: 'Username is required',
+          lastName: 'Lastname is required',
         }));
       }
       if (!formData.email) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          email: 'Username is required',
+          email: 'Email is required',
         }));
       }
-      return;
+      if (!valueSelectTag) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          specialization: 'Specialization is required',
+        }));
+      }
+    } else {
+      setIsLoading(true);
+      fetchUserRegistration(formData, role, valueSelectTag)
+        .then((data) => {
+          if (data) {
+            console.log(data);
+            setIsLoading(false);
+            setUserData({
+              username: data.username,
+              password: data.password,
+            });
+            setIsSubmitted(true);
+            navigate(`/joinus/${role}/validation`);
+          } else {
+            console.log('User registration data not found');
+            setIsLoading(false);
+          }
+        })
+        .catch((error) => console.error(error));
     }
-    setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsLoading(false);
-    setUserData({
-      username: formData.firstname + '-' + formData.lastname,
-      password: uuidv4().slice(0, 6),
-    });
-    setIsSubmitted(true);
-    navigate(`/joinus/${role}/validation`);
   };
   return (
     <>
@@ -101,6 +117,7 @@ const RegistrationForm = ({
             let label = inputsList[index];
             let keyIn = key as keyof FormDataType;
             let value = formData[keyIn];
+            if (key === 'specialization') return;
             return (
               <div key={key + 1} className='flex flex-col'>
                 <label

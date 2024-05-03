@@ -27,11 +27,7 @@ export type loggedinObject = {
 };
 
 function App() {
-  const [isloggedin, setIsLoggedin] = useState<loggedinObject | null>({
-    firstName: 'Naomi Smith',
-    username: 'naomi_sm',
-    email: 'demis@email.com',
-  });
+  const [isloggedin, setIsLoggedin] = useState<loggedinObject | null>(null);
 
   return (
     <>

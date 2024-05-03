@@ -6,8 +6,8 @@ import { profilesData } from '../AboutUsPage/utils';
 const MyAccountEditPage = () => {
   const mockDataStudent = {
     status: true,
-    name: 'Marta',
-    lastname: 'Black',
+    firstName: 'Marta',
+    lastName: 'Black',
     dateOfBirth: '01.01.2001',
     address: '123 Main StreetBoston, MA 02108United States',
     email: 'marta_12334@gmail.com',

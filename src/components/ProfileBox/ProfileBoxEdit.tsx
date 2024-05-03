@@ -15,8 +15,8 @@ import SwitchComp from './SwitchComp';
 import UploadFile from '../UploadFile/UploadFile';
 
 interface FormData {
-  name: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   dateOfBirth: string;
   address: string;
   email: string;
@@ -33,8 +33,8 @@ const ProfileBoxEdit = ({
   const [status, setStatus] = useState(true);
   const [formData, setFormData] = useState(newObject as FormData);
   const [errors, setErrors] = useState({
-    name: '',
-    lastname: '',
+    firstName: '',
+    lastName: '',
     dateOfBirth: '',
     address: '',
     email: '',

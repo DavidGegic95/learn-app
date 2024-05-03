@@ -1,5 +1,7 @@
 // import React from 'react';
 
+import { useEffect } from 'react';
+
 const Select = ({
   list,
   valueSelectTag,
@@ -17,10 +19,14 @@ const Select = ({
       setValueSelectTag(value);
     }
   };
+  useEffect(() => {
+    setValueSelectTag && setValueSelectTag(list[0]);
+  }, []);
   return (
     <select
       value={valueSelectTag}
       onChange={handleChange}
+      defaultValue={list[0]}
       name='select'
       id='select'
       className={

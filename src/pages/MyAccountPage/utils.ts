@@ -2,8 +2,8 @@ import { PassedTrainigType } from '../TrainingPage/utils';
 
 export const mockDataStudent = {
   status: true,
-  name: 'Marta',
-  lastname: 'Black',
+  firstName: 'Marta',
+  lastName: 'Black',
   dateOfBirth: '01.01.2001',
   address: '123 Main StreetBoston, MA 02108United States',
   email: 'marta_12334@gmail.com',
@@ -11,7 +11,7 @@ export const mockDataStudent = {
 export const mockDataTrainer = {
   status: true,
   firstname: 'John',
-  lastname: 'Black',
+  lastName: 'Black',
   username: 'Jihn_12',
   specialization: 'Java',
   address: '456 Lake Shore Drive, Chicago, IL 60611United States',
@@ -81,8 +81,8 @@ export type TableType = TrainerType | StudentType | PassedTrainigType;
 
 type StudentData = {
   status: boolean;
-  name: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   dateOfBirth: string;
   address: string;
   email: string;
@@ -90,8 +90,8 @@ type StudentData = {
 
 type TrainerData = {
   status: boolean;
-  name: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   username: string;
   specialization: string;
   address: string;
