@@ -57,6 +57,7 @@ const LoginForm = ({
         return response.json();
       })
       .then((data: any) => {
+        console.log(data);
         setIsLoggedin({
           firstName: data.user.firstName,
           username: data.user.username,

@@ -15,6 +15,9 @@ import {
   initilState,
 } from './utils';
 import { useNavigate } from 'react-router-dom';
+import { USER_SERVICE } from '../../../env';
+import { idFromLocalStorage } from '../../MiniProfile/utils';
+const userId = idFromLocalStorage();
 
 const ChangePasswordForm = () => {
   const navigate = useNavigate();
@@ -22,6 +25,47 @@ const ChangePasswordForm = () => {
   const [isVisible, setIsVisible] = useState(initalStateIsVisible);
   const [formData, setFormData] = useState<FormaDataType>(initilState);
   const [errors, setErrors] = useState(initilState);
+
+  const fetchDataChangePassword = () => {
+    fetch(`${USER_SERVICE}/update-password`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: userId,
+        password: formData.currentPassword,
+        newPassword: formData.newPassword,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          setIsLoading(false);
+          setErrors((prev) => {
+            return {
+              ...prev,
+              currentPassword: 'Failed to update password',
+            };
+          });
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setIsLoading(false);
+        navigate('/change-password/changed-successful');
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setErrors((prev) => {
+          return {
+            ...prev,
+            currentPassword: 'Failed to update password',
+          };
+        });
+        console.error('Error:', error);
+      });
+  };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -53,9 +97,8 @@ const ChangePasswordForm = () => {
       return;
     }
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsLoading(false);
-    navigate('/change-password/changed-successful');
+    fetchDataChangePassword();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
   };
   return (
     <>
@@ -74,7 +117,7 @@ const ChangePasswordForm = () => {
                 {formsLabelText[key as keyof typeof errors]}
               </label>
               <div
-                className={`focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full h-[40px] ${errors[key as keyof typeof errors] ? 'error-border' : ''}`}
+                className={` wrapperDivInput focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full h-[40px] ${errors[key as keyof typeof errors] ? 'error-border' : ''}`}
               >
                 <input
                   className={`flex pl-[16px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:bg-white`}
@@ -116,6 +159,11 @@ const ChangePasswordForm = () => {
             className={purpleButtonStyle + ' h-[40px] mt-[24px]'}
           />
         </div>
+        {errors.currentPassword === 'Failed to update password' && (
+          <p className='w-full text-center error mt-[16px]'>
+            {errors.currentPassword}
+          </p>
+        )}
       </form>
     </>
   );

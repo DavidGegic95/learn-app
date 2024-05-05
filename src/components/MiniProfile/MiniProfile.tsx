@@ -57,8 +57,14 @@ const MiniProfile = ({
         </div>
         <div className='flex h-full flex-col items-start justify-between w-full'>
           <div className='w-full'>
-            <div className='flex items-center p-[16px] gap-[8px]'>
-              <img src={profileIcon} alt='' />
+            <div
+              onClick={() => {
+                setMiniProfile(false);
+                navigate('/my-account');
+              }}
+              className='flex items-center p-[16px] gap-[8px] cursor-pointer'
+            >
+              <img src={profileIcon} alt='profile icon' />
               My Account
             </div>
             <div className='flex items-center justify-between p-[16px] w-full'>

@@ -13,6 +13,9 @@ import {
 import Switch from '@mui/material/Switch';
 import SwitchComp from './SwitchComp';
 import UploadFile from '../UploadFile/UploadFile';
+import { loggedinObject } from '../../App';
+import { USER_SERVICE } from '../../env';
+import { idFromLocalStorage } from '../MiniProfile/utils';
 
 interface FormData {
   firstName: string;
@@ -21,17 +24,24 @@ interface FormData {
   address: string;
   email: string;
 }
+const userId = idFromLocalStorage();
 const ProfileBoxEdit = ({
   data,
   role,
+  isloggedin,
 }: {
   data: ProfileBoxData;
   role: 'student' | 'trainer';
+  isloggedin: loggedinObject | null;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const newObject = { ...data } as Omit<typeof data, 'status'>;
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+  // const newObject = { ...isloggedin } as Omit<typeof data, 'status'>;
   const [status, setStatus] = useState(true);
-  const [formData, setFormData] = useState(newObject as FormData);
+  const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({
     firstName: '',
     lastName: '',
@@ -43,6 +53,28 @@ const ProfileBoxEdit = ({
     role === 'student' ? studentList : trainerList
   );
   const keysOfFormData = Object.keys(formData);
+  function fetchUser() {
+    fetch(`${USER_SERVICE}/me?id=${userId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        const { firstName, lastName, dateOfBirth, address, email } = data.data;
+        setFormData({ firstName, lastName, dateOfBirth, address, email });
+        console.log('Response:', data);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  }
 
   const valuesForMap: string[] = [];
   keysOfFormData.forEach((item) => {

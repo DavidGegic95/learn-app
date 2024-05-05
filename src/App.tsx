@@ -17,7 +17,7 @@ import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
 import MyAccountEditPage from './pages/MyAccountPage/MyAccountEditPage';
 import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedTrainig';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export type loggedinObject = {
   firstName: string;
@@ -27,6 +27,9 @@ export type loggedinObject = {
 
 function App() {
   const [isloggedin, setIsLoggedin] = useState<loggedinObject | null>(null);
+  useEffect(() => {
+    console.log('log inside mount phase app');
+  }, []);
 
   return (
     <>
@@ -60,7 +63,7 @@ function App() {
             />
             <Route
               path='/my-account/edit-profile'
-              element={<MyAccountEditPage />}
+              element={<MyAccountEditPage isloggedin={isloggedin} />}
             />
             <Route
               path='/my-account/add-passed-training'

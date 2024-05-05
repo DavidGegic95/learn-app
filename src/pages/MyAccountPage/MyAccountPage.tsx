@@ -61,6 +61,7 @@ const MyAccountPage = ({
       <div className='flex items-center justify-between w-full '>
         <div className='flex gap-[16px]'>
           <Button
+            onClick={() => navigate('/my-account/edit-profile')}
             text='Edit profile'
             type='button'
             className={purpleButtonStyle + ' py-[8px]'}
