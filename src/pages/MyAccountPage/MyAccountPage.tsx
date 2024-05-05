@@ -1,6 +1,6 @@
 // import React from 'react';
 
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import Button from '../../components/Button/Button';
 import ProfileBox from '../../components/ProfileBox/ProfileBox';
 import BasicTable from '../../components/Table/BasicTable';
@@ -19,8 +19,13 @@ import {
 } from './utils';
 import { useNavigate } from 'react-router-dom';
 import BasicModal from '../../components/Modal/Modal';
+import { loggedinObject } from '../../App';
 
-const MyAccountPage = () => {
+const MyAccountPage = ({
+  setIsLoggedin,
+}: {
+  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
+}) => {
   const navigate = useNavigate();
   const [role, setRole] = useState<'student' | 'trainer'>('student');
   const [data, setData] = useState(
@@ -68,7 +73,9 @@ const MyAccountPage = () => {
           />
         </div>
 
-        {role === 'student' && <BasicModal type='delete' />}
+        {role === 'student' && (
+          <BasicModal setIsLoggedin={setIsLoggedin} type='delete' />
+        )}
       </div>
       <h2 className={subHeaderStyle}>My Trainings</h2>
       <p className='font-poppins text-[1rem] leading-[1.75rem] text-[#171A1FFF] text-center max-min-in-char'>

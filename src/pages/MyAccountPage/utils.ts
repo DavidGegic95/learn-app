@@ -10,7 +10,7 @@ export const mockDataStudent = {
 };
 export const mockDataTrainer = {
   status: true,
-  firstname: 'John',
+  firstName: 'John',
   lastName: 'Black',
   username: 'Jihn_12',
   specialization: 'Java',

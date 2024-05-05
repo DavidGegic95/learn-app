@@ -1,4 +1,3 @@
-// import TestComponent from './components/TestComponent';
 import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage';
@@ -51,7 +50,10 @@ function App() {
             <Route path='/features' element={<FeaturesPage />} />
             <Route path='/aboutus' element={<AboutUsPage />} />
             <Route path='/home' element={<HomePage />} />
-            <Route path='/my-account' element={<MyAccountPage />} />
+            <Route
+              path='/my-account'
+              element={<MyAccountPage setIsLoggedin={setIsLoggedin} />}
+            />
             <Route
               path='/my-account/add-trainer'
               element={<AddTrainerPage />}

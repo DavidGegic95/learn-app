@@ -4,6 +4,10 @@ import Modal from '@mui/material/Modal';
 import Button from '../Button/Button';
 import { grayButtonStyle, redButtonStyle } from '../../styles-for-tailwind';
 import xIcon from '../../assets/x-mark.svg';
+import { USER_SERVICE } from '../../env';
+import { idFromLocalStorage } from '../MiniProfile/utils';
+import { useNavigate } from 'react-router-dom';
+import { loggedinObject } from '../../App';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -16,11 +20,39 @@ const style = {
   boxShadow: '0px 4px 9px #171a1f, 0px 0px 2px #171a1f',
   p: 4,
 };
+const userId = await idFromLocalStorage();
 
-export default function BasicModal({ type }: { type: 'delete' | 'upload' }) {
+export default function BasicModal({
+  type,
+  setIsLoggedin,
+}: {
+  type: 'delete' | 'upload';
+  setIsLoggedin: React.Dispatch<React.SetStateAction<loggedinObject | null>>;
+}) {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const deleteAccount = () => {
+    fetch(`${USER_SERVICE}/me`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: userId }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        setIsLoggedin(null);
+        localStorage.removeItem('user');
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
 
   return (
     <div>
@@ -75,7 +107,7 @@ export default function BasicModal({ type }: { type: 'delete' | 'upload' }) {
             <Button
               text='Confirm'
               type='button'
-              onClick={handleClose}
+              onClick={deleteAccount}
               className={redButtonStyle + ' py-[8px]'}
             />
           </div>
