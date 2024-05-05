@@ -7,7 +7,8 @@ import xIcon from '../../assets/x-mark.svg';
 import { USER_SERVICE } from '../../env';
 import { idFromLocalStorage } from '../MiniProfile/utils';
 import { useNavigate } from 'react-router-dom';
-import { loggedinObject } from '../../App';
+import { UserData } from '../../App';
+import AppContext, { SetUserData } from '../../AppContext';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -22,13 +23,9 @@ const style = {
 };
 const userId = await idFromLocalStorage();
 
-export default function BasicModal({
-  type,
-  setIsLoggedin,
-}: {
-  type: 'delete' | 'upload';
-  setIsLoggedin: React.Dispatch<React.SetStateAction<loggedinObject | null>>;
-}) {
+export default function BasicModal({ type }: { type: 'delete' | 'upload' }) {
+  const { setUserData }: { setUserData: SetUserData } =
+    React.useContext(AppContext);
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -45,7 +42,7 @@ export default function BasicModal({
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        setIsLoggedin(null);
+        setUserData(null);
         localStorage.removeItem('user');
         navigate('/');
       })

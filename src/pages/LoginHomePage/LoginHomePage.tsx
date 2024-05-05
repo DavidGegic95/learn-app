@@ -8,11 +8,12 @@ import {
 import { loginBoxData } from './utils';
 import LoginHomeBox from '../../components/LoginHomeBox/LoginHomeBox';
 import Button from '../../components/Button/Button';
+import { UserData } from '../../App';
 
-const LoginHomePage = ({ name }: { name: string }) => {
+const LoginHomePage = ({ userData }: { userData: UserData | null }) => {
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-center justify-center gap-[32px]'>
-      <h1 className={headerStyle}>Hi, {name}!</h1>
+      <h1 className={headerStyle}>Hi, {userData && userData.firstName}!</h1>
       <p className={grayText + ' max-min-in-char text-center'}>
         Welcome to Learn Platform - where every day is a day to learn. Dive into
         the vast ocean of knowledge and empower yourself with the tools for a

@@ -5,16 +5,16 @@ import logoutIcon from '../../assets/mobile-nav-logout.svg';
 
 import { Dispatch, SetStateAction } from 'react';
 import { idFromLocalStorage } from '../MiniProfile/utils';
-import { loggedinObject } from '../../App';
+import { UserData } from '../../App';
 
 const MobileNav = ({
   isClicked,
   setIsClicked,
-  setIsLoggedin,
+  setUserData,
 }: {
   isClicked: boolean;
   setIsClicked: Dispatch<SetStateAction<boolean>>;
-  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
+  setUserData: Dispatch<SetStateAction<UserData | null>>;
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const MobileNav = ({
         return response.json();
       })
       .then((data: any) => {
-        setIsLoggedin(null);
+        setUserData(null);
         localStorage.removeItem('user');
         setIsClicked((prev) => !prev);
         window.scrollTo({

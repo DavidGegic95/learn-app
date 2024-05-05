@@ -17,74 +17,71 @@ import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
 import MyAccountEditPage from './pages/MyAccountPage/MyAccountEditPage';
 import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedTrainig';
+import AppContext from './AppContext';
 import { useEffect, useState } from 'react';
 
-export type loggedinObject = {
+export type UserData = {
   firstName: string;
   username: string;
   email: string;
 };
 
 function App() {
-  const [isloggedin, setIsLoggedin] = useState<loggedinObject | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   useEffect(() => {
     console.log('log inside mount phase app');
   }, []);
 
   return (
     <>
-      <BrowserRouter>
-        <div className='app'>
-          <Header setIsLoggedin={setIsLoggedin} isloggedin={isloggedin} />
-          <Routes>
-            Features
-            <Route path='/' element={<HomePage />} />
-            <Route
-              path='/loginHome'
-              element={<LoginHomePage name={'Marta'} />}
-            />
-            <Route path='/blog' element={<BlogPage />} />
-            <Route path='/pricing' element={<PricingPage />} />
-            <Route path='/change-password' element={<ChangePasswordPage />} />
-            <Route
-              path='/change-password/changed-successful'
-              element={<PasswordChanged />}
-            />
-            <Route path='/features' element={<FeaturesPage />} />
-            <Route path='/aboutus' element={<AboutUsPage />} />
-            <Route path='/home' element={<HomePage />} />
-            <Route
-              path='/my-account'
-              element={<MyAccountPage setIsLoggedin={setIsLoggedin} />}
-            />
-            <Route
-              path='/my-account/add-trainer'
-              element={<AddTrainerPage />}
-            />
-            <Route
-              path='/my-account/edit-profile'
-              element={<MyAccountEditPage isloggedin={isloggedin} />}
-            />
-            <Route
-              path='/my-account/add-passed-training'
-              element={<MyAccountAddPassedTrainig />}
-            />
-            <Route
-              path='/login'
-              element={<LoginPage setIsLoggedin={setIsLoggedin} />}
-            />
-            <Route path='/trainings' element={<TrainingPage />} />
-            <Route path='/joinus' element={<JoinUsPage />} />
-            <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
-            <Route
-              path='/joinus/:roleparams/validation'
-              element={<JoinUsPage />}
-            />
-            <Route path='*' element={<Navigate to='/' />} />
-          </Routes>
-          <Footer />
-        </div>
-      </BrowserRouter>
+      <AppContext.Provider value={{ userData, setUserData }}>
+        <BrowserRouter>
+          <div className='app'>
+            <Header setUserData={setUserData} userData={userData} />
+            <Routes>
+              Features
+              <Route path='/' element={<HomePage />} />
+              <Route
+                path='/loginHome'
+                element={<LoginHomePage userData={userData} />}
+              />
+              <Route path='/blog' element={<BlogPage />} />
+              <Route path='/pricing' element={<PricingPage />} />
+              <Route path='/change-password' element={<ChangePasswordPage />} />
+              <Route
+                path='/change-password/changed-successful'
+                element={<PasswordChanged />}
+              />
+              <Route path='/features' element={<FeaturesPage />} />
+              <Route path='/aboutus' element={<AboutUsPage />} />
+              <Route path='/home' element={<HomePage />} />
+              <Route path='/my-account' element={<MyAccountPage />} />
+              <Route
+                path='/my-account/add-trainer'
+                element={<AddTrainerPage />}
+              />
+              <Route
+                path='/my-account/edit-profile'
+                element={<MyAccountEditPage />}
+              />
+              <Route
+                path='/my-account/add-passed-training'
+                element={<MyAccountAddPassedTrainig />}
+              />
+              <Route path='/login' element={<LoginPage />} />
+              <Route path='/trainings' element={<TrainingPage />} />
+              <Route path='/joinus' element={<JoinUsPage />} />
+              <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
+              <Route
+                path='/joinus/:roleparams/validation'
+                element={<JoinUsPage />}
+              />
+              <Route path='*' element={<Navigate to='/' />} />
+            </Routes>
+            <Footer />
+          </div>
+        </BrowserRouter>
+      </AppContext.Provider>
     </>
   );
 }

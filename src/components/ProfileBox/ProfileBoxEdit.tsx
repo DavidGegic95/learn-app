@@ -13,9 +13,9 @@ import {
 import Switch from '@mui/material/Switch';
 import SwitchComp from './SwitchComp';
 import UploadFile from '../UploadFile/UploadFile';
-import { loggedinObject } from '../../App';
 import { USER_SERVICE } from '../../env';
 import { idFromLocalStorage } from '../MiniProfile/utils';
+import { UserData } from '../../App';
 
 interface FormData {
   firstName: string;
@@ -26,20 +26,16 @@ interface FormData {
 }
 const userId = idFromLocalStorage();
 const ProfileBoxEdit = ({
-  data,
   role,
-  isloggedin,
 }: {
   data: ProfileBoxData;
   role: 'student' | 'trainer';
-  isloggedin: loggedinObject | null;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     fetchUser();
   }, []);
-  // const newObject = { ...isloggedin } as Omit<typeof data, 'status'>;
   const [status, setStatus] = useState(true);
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({

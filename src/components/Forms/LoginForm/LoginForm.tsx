@@ -4,6 +4,7 @@ import {
   Dispatch,
   FormEvent,
   SetStateAction,
+  useContext,
   useState,
 } from 'react';
 import Loading from '../..//Loading/Loading';
@@ -11,16 +12,13 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import PasswordIcon from '../../PasswordIcon/PasswordIcon';
 import Button from '../../Button/Button';
 import { purpleButtonStyle } from '../../../styles-for-tailwind';
-import { loggedinObject } from '../../../App';
 import { useNavigate } from 'react-router-dom';
+import AppContext from '../../../AppContext';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
 
-const LoginForm = ({
-  setIsLoggedin,
-}: {
-  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
-}) => {
+const LoginForm = () => {
+  const { setUserData } = useContext(AppContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -58,7 +56,7 @@ const LoginForm = ({
       })
       .then((data: any) => {
         console.log(data);
-        setIsLoggedin({
+        setUserData({
           firstName: data.user.firstName,
           username: data.user.username,
           email: data.user.email,

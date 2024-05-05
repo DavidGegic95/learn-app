@@ -2,13 +2,9 @@ import React from 'react';
 import { headerStyle } from '../../styles-for-tailwind';
 import ProfileBoxEdit from '../../components/ProfileBox/ProfileBoxEdit';
 import { profilesData } from '../AboutUsPage/utils';
-import { loggedinObject } from '../../App';
+import { UserData } from '../../App';
 
-const MyAccountEditPage = ({
-  isloggedin,
-}: {
-  isloggedin: loggedinObject | null;
-}) => {
+const MyAccountEditPage = () => {
   const mockDataStudent = {
     status: true,
     firstName: 'Marta',
@@ -20,11 +16,7 @@ const MyAccountEditPage = ({
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-start justify-center gap-[32px]'>
       <h1 className={headerStyle + ' w-full text-center'}>My Account</h1>
-      <ProfileBoxEdit
-        isloggedin={isloggedin}
-        data={mockDataStudent}
-        role='student'
-      />
+      <ProfileBoxEdit data={mockDataStudent} role='student' />
     </div>
   );
 };

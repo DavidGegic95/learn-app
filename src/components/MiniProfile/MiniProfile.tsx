@@ -1,22 +1,23 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useContext } from 'react';
 import avatarHeader from '../../assets/avatar-header.svg';
-import { loggedinObject } from '../../App';
 import moonIcon from '../../assets/mini-profile/moon-icon.svg';
 import profileIcon from '../../assets/mini-profile/profile-icon.svg';
 import SwitchComp from '../ProfileBox/SwitchComp';
 import logoutIcon from '../../assets/mobile-nav-logout.svg';
 import { idFromLocalStorage } from './utils';
 import { useNavigate } from 'react-router-dom';
+import AppContext, { SetUserData } from '../../AppContext';
+import { UserData } from '../../App';
 
 const MiniProfile = ({
-  isloggedin,
   setMiniProfile,
-  setIsLoggedin,
 }: {
-  isloggedin: loggedinObject | null;
   setMiniProfile: Dispatch<SetStateAction<boolean>>;
-  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
 }) => {
+  const {
+    userData,
+    setUserData,
+  }: { userData: UserData; setUserData: SetUserData } = useContext(AppContext)!;
   const navigate = useNavigate();
   const signout = () => {
     let userId = idFromLocalStorage();
@@ -30,7 +31,7 @@ const MiniProfile = ({
         return response.json();
       })
       .then((data: any) => {
-        setIsLoggedin(null);
+        setUserData(null);
         localStorage.removeItem('user');
         setMiniProfile(false);
         navigate('/');
@@ -47,10 +48,10 @@ const MiniProfile = ({
           <img src={avatarHeader} alt='' />
           <div className='w-full'>
             <p className='font-poppins font-bold text-[14px] leading-[22px] text-[#171A1FFF]'>
-              {isloggedin?.username}
+              {userData?.username}
               <br />
               <span className='font-poppins font-normal text-[12px] leading-[20px] text-[#9095A0FF]'>
-                {isloggedin?.email}
+                {userData?.email}
               </span>
             </p>
           </div>

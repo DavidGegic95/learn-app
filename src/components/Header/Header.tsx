@@ -4,16 +4,16 @@ import logo from '../../assets/logo-header.png';
 import mobileNavMenu from '../../assets/mobile-nav-menu.svg';
 import MobileNav from '../MobileNav/MobileNav';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { loggedinObject } from '../../App';
+import { UserData } from '../../App';
 import avatarHeader from '../../assets/avatar-header.svg';
 import MiniProfile from '../MiniProfile/MiniProfile';
 
 const Header = ({
-  isloggedin,
-  setIsLoggedin,
+  userData,
+  setUserData,
 }: {
-  isloggedin: loggedinObject | null;
-  setIsLoggedin: Dispatch<SetStateAction<loggedinObject | null>>;
+  userData: UserData | null;
+  setUserData: Dispatch<SetStateAction<UserData | null>>;
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [miniProfile, setMiniProfile] = useState(false);
@@ -28,7 +28,7 @@ const Header = ({
         className='mobile-view-show'
       />
       <MobileNav
-        setIsLoggedin={setIsLoggedin}
+        setUserData={setUserData}
         setIsClicked={setIsClicked}
         isClicked={isClicked}
       />
@@ -60,13 +60,13 @@ const Header = ({
             About us
           </Link>
         </div>
-        {isloggedin ? (
+        {userData ? (
           <div
             onClick={() => setMiniProfile((prev) => !prev)}
             className='flex items-center justify-end gap-[16px] cursor-pointer'
           >
             <span className='font-poppins text-[1rem] leading-[1.5rem] text-[#171A1F]'>
-              {isloggedin.username}
+              {userData.username}
             </span>
             <img src={avatarHeader} alt='' />
           </div>
@@ -87,13 +87,7 @@ const Header = ({
           </div>
         )}
       </nav>
-      {miniProfile && (
-        <MiniProfile
-          setIsLoggedin={setIsLoggedin}
-          setMiniProfile={setMiniProfile}
-          isloggedin={isloggedin}
-        />
-      )}
+      {miniProfile && <MiniProfile setMiniProfile={setMiniProfile} />}
     </header>
   );
 };
