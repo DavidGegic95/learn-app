@@ -4,16 +4,16 @@ import logo from '../../assets/logo-header.png';
 import mobileNavMenu from '../../assets/mobile-nav-menu.svg';
 import MobileNav from '../MobileNav/MobileNav';
 import { Dispatch, SetStateAction, useState } from 'react';
-import { UserData } from '../../App';
-import avatarHeader from '../../assets/avatar-header.svg';
+import avatarHeader from '../../assets/Avatar 36.png';
 import MiniProfile from '../MiniProfile/MiniProfile';
+import { UserDataType } from '../../AppContext';
 
 const Header = ({
   userData,
   setUserData,
 }: {
-  userData: UserData | null;
-  setUserData: Dispatch<SetStateAction<UserData | null>>;
+  userData: UserDataType | null;
+  setUserData: Dispatch<SetStateAction<UserDataType | null>>;
 }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [miniProfile, setMiniProfile] = useState(false);
@@ -68,7 +68,11 @@ const Header = ({
             <span className='font-poppins text-[1rem] leading-[1.5rem] text-[#171A1F]'>
               {userData.username}
             </span>
-            <img src={avatarHeader} alt='' />
+            <img
+              className='w-[48px] h-[48px]'
+              src={avatarHeader}
+              alt='avatar picture'
+            />
           </div>
         ) : (
           <div className='flex items-center justify-between'>

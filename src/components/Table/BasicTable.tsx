@@ -86,33 +86,3 @@ export default function BasicTable({
     </TableContainer>
   );
 }
-
-// return (
-//   <TableRow
-//     key={row.name}
-//     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-//   >
-// {
-//   checkbox && (
-//     <TableCell component='th' scope='row'>
-//       <Checkbox name={row.name} key={row.name} />
-//     </TableCell>
-//   );
-// }
-//     <TableCell component='th' scope='row'>
-//       {row.name}
-//     </TableCell>
-//     {'specialization' in row ? (
-//       <TableCell align='left'>{row.specialization}</TableCell>
-//     ) : (
-//       <TableCell
-//         sx={{
-//           color: `${row.status === 'ACTIVE' ? '#60CFA5FF' : '#F22128FF'}`,
-//         }}
-//         align='left'
-//       >
-//         {row.status}
-//       </TableCell>
-//     )}
-//   </TableRow>
-// );

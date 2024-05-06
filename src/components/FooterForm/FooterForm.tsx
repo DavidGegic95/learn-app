@@ -4,6 +4,10 @@ import Button from '../Button/Button';
 import { purpleButtonStyle } from '../../styles-for-tailwind';
 
 const FooterForm = () => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
     <div className='flex flex-col gap-[8px] mobile-view-custom'>
       <div className='flex flex-col'>
@@ -15,7 +19,7 @@ const FooterForm = () => {
         </span>
       </div>
 
-      <form className='flex'>
+      <form onSubmit={handleSubmit} className='flex'>
         <input
           type='text'
           id='email'

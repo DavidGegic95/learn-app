@@ -68,7 +68,7 @@ const LoginForm = () => {
             role: data.user.role,
           })
         );
-        navigate('/');
+        navigate('/loginHome');
       })
       .catch((error: any) => {
         console.error('Error:', error);
@@ -102,6 +102,7 @@ const LoginForm = () => {
     }
     setIsLoading(true);
     await loginUser();
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsLoading(false);
   };
   return (

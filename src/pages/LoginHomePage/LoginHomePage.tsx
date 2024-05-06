@@ -8,9 +8,11 @@ import {
 import { loginBoxData } from './utils';
 import LoginHomeBox from '../../components/LoginHomeBox/LoginHomeBox';
 import Button from '../../components/Button/Button';
-import { UserData } from '../../App';
+import { UserDataType } from '../../AppContext';
+import { useNavigate } from 'react-router-dom';
 
-const LoginHomePage = ({ userData }: { userData: UserData | null }) => {
+const LoginHomePage = ({ userData }: { userData: UserDataType | null }) => {
+  const navigate = useNavigate();
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-center justify-center gap-[32px]'>
       <h1 className={headerStyle}>Hi, {userData && userData.firstName}!</h1>
@@ -32,6 +34,13 @@ const LoginHomePage = ({ userData }: { userData: UserData | null }) => {
         })}
       </div>
       <Button
+        onClick={() => {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          });
+          navigate('/blog');
+        }}
         className={purpleButtonStyle + ' py-[8px]'}
         text='Read more articles'
         type='button'

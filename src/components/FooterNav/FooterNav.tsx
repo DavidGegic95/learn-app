@@ -9,7 +9,7 @@ interface FooterNav {
 }
 
 const FooterNav = ({ title, list, routes }: FooterNav) => {
-  const onClickLink = () => {
+  const handleClick = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -23,7 +23,7 @@ const FooterNav = ({ title, list, routes }: FooterNav) => {
       {list.map((item, index) => {
         return (
           <Link
-            onClick={onClickLink}
+            onClick={handleClick}
             to={routes[index]}
             key={item + uuidv4()}
             className='font-poppins font-normal text-base leading-6'

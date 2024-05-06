@@ -104,7 +104,7 @@ const ChangePasswordForm = () => {
     <>
       {isLoading && <Loading />}
       <form
-        className='flex w-[50%] min-w-[400px] align-center justify-center flex-col'
+        className='flex w-[50%] min-w-[400px] align-center justify-center flex-col mv-custom-width'
         onSubmit={handleSubmit}
       >
         {Object.keys(formData).map((key: string) => {
@@ -117,7 +117,8 @@ const ChangePasswordForm = () => {
                 {formsLabelText[key as keyof typeof errors]}
               </label>
               <div
-                className={` wrapperDivInput focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full h-[40px] ${errors[key as keyof typeof errors] ? 'error-border' : ''}`}
+                className={` wrapperDivInput focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full h-[40px]
+                  ${errors[key as keyof typeof errors] ? 'error-border' : ''}`}
               >
                 <input
                   className={`flex pl-[16px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:bg-white`}
@@ -149,6 +150,9 @@ const ChangePasswordForm = () => {
         })}
         <div className='flex items-center justify-end gap-[8px]'>
           <Button
+            onClick={() => {
+              navigate('/my-account');
+            }}
             text='Cancel'
             type='button'
             className={grayButtonStyle + ' h-[40px] mt-[24px]'}

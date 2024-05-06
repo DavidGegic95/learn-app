@@ -1,13 +1,12 @@
 import { subHeaderStyle } from '../../styles-for-tailwind';
-import avatarStudentImg from '../../assets/profile-box-avatar.svg';
-import avatarTrainerImg from '../../assets/profile-box-avatar-trainer.svg';
+import avatarImg from '../../assets/Avatar 36.png';
 import checkIcon from '../../assets/profile-box-check.svg';
 import { useContext, useState } from 'react';
 import { classname_p, classname_span, studentList, trainerList } from './utils';
 import { ProfileBoxData } from '../../pages/MyAccountPage/utils';
 import AppContext, { UserDataType } from '../../AppContext';
 
-const ProfileBox = ({ role }: { role: 'student' | 'trainer' }) => {
+const ProfileBox = ({ role }: { role: string }) => {
   const [list, setList] = useState(
     role === 'student' ? studentList : trainerList
   );
@@ -23,8 +22,9 @@ const ProfileBox = ({ role }: { role: 'student' | 'trainer' }) => {
       </p>
       <div className='flex gap-[32px]'>
         <img
-          src={role === 'student' ? avatarStudentImg : avatarTrainerImg}
-          alt=''
+          src={avatarImg}
+          alt='avatar profile picture'
+          className='w-[96px] h-[96px]'
         />
         <div>
           <p>Status</p>

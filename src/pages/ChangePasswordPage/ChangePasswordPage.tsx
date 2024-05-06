@@ -4,7 +4,7 @@ import ChangePasswordForm from '../../components/Forms/ChangePasswordForm/Change
 
 const ChangePasswordPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto flex'>
+    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto flex mv-custom-flex-col'>
       <section className='w-[40%] flex flex-col  gap-[32px]'>
         <h2 className='font-montserrat font-bold text-[2rem] leading-12 text-[#323842]'>
           Security

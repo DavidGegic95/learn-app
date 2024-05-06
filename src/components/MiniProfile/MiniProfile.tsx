@@ -1,13 +1,12 @@
 import React, { Dispatch, SetStateAction, useContext } from 'react';
-import avatarHeader from '../../assets/avatar-header.svg';
+import avatarHeader from '../../assets/Avatar 36.png';
 import moonIcon from '../../assets/mini-profile/moon-icon.svg';
 import profileIcon from '../../assets/mini-profile/profile-icon.svg';
 import SwitchComp from '../ProfileBox/SwitchComp';
 import logoutIcon from '../../assets/mobile-nav-logout.svg';
 import { idFromLocalStorage } from './utils';
 import { useNavigate } from 'react-router-dom';
-import AppContext, { SetUserData } from '../../AppContext';
-import { UserData } from '../../App';
+import AppContext, { SetUserData, UserDataType } from '../../AppContext';
 
 const MiniProfile = ({
   setMiniProfile,
@@ -17,7 +16,8 @@ const MiniProfile = ({
   const {
     userData,
     setUserData,
-  }: { userData: UserData; setUserData: SetUserData } = useContext(AppContext)!;
+  }: { userData: UserDataType; setUserData: SetUserData } =
+    useContext(AppContext)!;
   const navigate = useNavigate();
   const signout = () => {
     let userId = idFromLocalStorage();
@@ -45,7 +45,7 @@ const MiniProfile = ({
       <div onClick={() => setMiniProfile(false)} className='custom-fixed'></div>
       <div className='fixed flex flex-col justify-between  top-[10px] right-[10px] w-[256px] h-[367px] bg-[#fff] rounded-[6px] custom-box-shadow-miniprofile'>
         <div className='flex  p-[16px] gap-[16px] border-b-[1px] border-[#DEE1E6] w-full'>
-          <img src={avatarHeader} alt='' />
+          <img className='w-[48px] h-[48px]' src={avatarHeader} alt='' />
           <div className='w-full'>
             <p className='font-poppins font-bold text-[14px] leading-[22px] text-[#171A1FFF]'>
               {userData?.username}

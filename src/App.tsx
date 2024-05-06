@@ -40,7 +40,6 @@ function App() {
       .catch((error) => {
         console.error(error);
       });
-    console.log('log inside mount phase app');
   }, []);
 
   return (
@@ -66,7 +65,10 @@ function App() {
               <Route path='/features' element={<FeaturesPage />} />
               <Route path='/aboutus' element={<AboutUsPage />} />
               <Route path='/home' element={<HomePage />} />
-              <Route path='/my-account' element={<MyAccountPage />} />
+              <Route
+                path='/my-account'
+                element={<MyAccountPage userRole={userData?.role || ''} />}
+              />
               <Route
                 path='/my-account/add-trainer'
                 element={<AddTrainerPage />}
@@ -79,8 +81,11 @@ function App() {
                 path='/my-account/add-passed-training'
                 element={<MyAccountAddPassedTrainig />}
               />
+              <Route
+                path='/my-account/trainings/:roleparams'
+                element={<TrainingPage />}
+              />
               <Route path='/login' element={<LoginPage />} />
-              <Route path='/trainings' element={<TrainingPage />} />
               <Route path='/joinus' element={<JoinUsPage />} />
               <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
               <Route

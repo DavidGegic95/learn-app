@@ -209,6 +209,15 @@ body,
   .mobile-view-w-auto {
     width: 100%;
   }
+  .mv-hidden-custom {
+    display: none;
+  }
+  .mv-custom-flex-col {
+    flex-direction: column;
+  }
+  .mv-custom-width {
+    min-width: 300px;
+  }
 }
 
 .show-mobile-nav {

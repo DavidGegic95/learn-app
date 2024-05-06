@@ -1,5 +1,4 @@
-import avatarStudentImg from '../../assets/profile-box-avatar.svg';
-import avatarTrainerImg from '../../assets/profile-box-avatar-trainer.svg';
+import avatarImg from '../../assets/Avatar 36.png';
 import { useContext, useEffect, useState } from 'react';
 import {
   classname_p,
@@ -17,6 +16,7 @@ import SwitchComp from './SwitchComp';
 import UploadFile from '../UploadFile/UploadFile';
 import AppContext, { SetUserData, UserDataType } from '../../AppContext';
 import { allValuesTruthy } from '../Forms/ChangePasswordForm/utils';
+import { useNavigate } from 'react-router-dom';
 interface FormData {
   firstName: string;
   lastName: string;
@@ -27,6 +27,7 @@ interface FormData {
 }
 const ProfileBoxEdit = () => {
   const defaultRole = 'student';
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { userData }: { userData: UserDataType; setUserData: SetUserData } =
     useContext(AppContext);
@@ -67,7 +68,7 @@ const ProfileBoxEdit = () => {
         });
       }
     }
-  }, [userData]);
+  }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -96,12 +97,9 @@ const ProfileBoxEdit = () => {
         </p>
         <div className='flex gap-[32px] w-full'>
           <img
-            src={
-              userData && userData.role === 'student'
-                ? avatarStudentImg
-                : avatarTrainerImg
-            }
-            alt=''
+            className='w-[96px] h-[96px]'
+            src={avatarImg}
+            alt='avatar profile image'
           />
           <div className='flex flex-col items-start justify-center gap-[16px]'>
             <p className='font-poppins font-normal text-[0.9rem] leading-[1.4rem] text-[#171A1F]'>
@@ -158,6 +156,13 @@ const ProfileBoxEdit = () => {
         <div className='w-full flex items-center justify-center gap-[8px] w-full'>
           <div className='flex items-center justify-end w-[50%] min-w-[400px]'>
             <Button
+              onClick={() => {
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
+                });
+                navigate('/my-account');
+              }}
               text='Cancel'
               type='button'
               className={grayButtonStyle + ' py-[8px]'}

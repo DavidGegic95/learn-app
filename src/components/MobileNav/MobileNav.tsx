@@ -5,7 +5,7 @@ import logoutIcon from '../../assets/mobile-nav-logout.svg';
 
 import { Dispatch, SetStateAction } from 'react';
 import { idFromLocalStorage } from '../MiniProfile/utils';
-import { UserData } from '../../App';
+import { UserDataType } from '../../AppContext';
 
 const MobileNav = ({
   isClicked,
@@ -14,7 +14,7 @@ const MobileNav = ({
 }: {
   isClicked: boolean;
   setIsClicked: Dispatch<SetStateAction<boolean>>;
-  setUserData: Dispatch<SetStateAction<UserData | null>>;
+  setUserData: Dispatch<SetStateAction<UserDataType | null>>;
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const MobileNav = ({
     { path: '/blog', text: 'Blog' },
     { path: '/pricing', text: 'Pricing' },
     { path: '/aboutus', text: 'About us' },
-    { path: '/home', text: 'My Account' },
+    { path: '/my-account', text: 'My Account' },
   ];
   const signout = () => {
     let userId = idFromLocalStorage();

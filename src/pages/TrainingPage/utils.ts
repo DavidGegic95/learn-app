@@ -9,21 +9,21 @@ export type PassedTrainigType = {
 export const myPassedTrainings = [
   {
     date: '12.03.2023',
-    trainingName: 'JavaScript Cource 1',
+    name: 'JavaScript Cource 1',
     type: 'Webinar',
     trainerName: 'Matthew Martinez',
     duration: '15 d',
   },
   {
     date: '12.03.2023',
-    trainingName: 'JS Course 2',
+    name: 'JS Course 2',
     type: 'Webinar',
     trainerName: 'Matthew Martinez',
     duration: '10 d',
   },
   {
     date: '12.03.2023',
-    trainingName: 'Java',
+    name: 'Java',
     type: 'Webinar',
     trainerName: 'Maria White',
     duration: '2 d',
