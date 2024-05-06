@@ -23,9 +23,6 @@ import BasicModal from '../../components/Modal/Modal';
 const MyAccountPage = ({}) => {
   const navigate = useNavigate();
   const [role, setRole] = useState<'student' | 'trainer'>('student');
-  const [data, setData] = useState(
-    role === 'student' ? mockDataStudent : mockDataTrainer
-  );
   const [tableData, setTableData] = useState(
     role === 'student' ? mockTrainersList : mockStudentList
   );
@@ -33,7 +30,7 @@ const MyAccountPage = ({}) => {
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-center justify-center gap-[32px]'>
       <h1 className={headerStyle}>My Account</h1>
       <div className='flex items-start w-full justify-between'>
-        <ProfileBox role={role} data={data} />
+        <ProfileBox role={role} />
 
         <div className='flex flex-col gap-[32px]'>
           <div className='flex items-center justify-between'>

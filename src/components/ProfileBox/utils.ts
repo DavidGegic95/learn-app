@@ -1,18 +1,34 @@
 export const studentList = [
-  'First Name',
-  'Last Name',
-  'Date of birth',
-  'Address',
-  'Email',
+  { text: 'First Name', key: 'firstName' },
+  { text: 'Last Name', key: 'lastName' },
+  { text: 'Date of birth', key: 'dateOfBirth' },
+  { text: 'Address', key: 'address' },
+  { text: 'Email', key: 'email' },
 ];
 export const trainerList = [
-  'First Name',
-  'Last Name',
-  'User name',
-  'Specialization',
-  'Address',
-  'Email',
+  { text: 'First Name', key: 'firstName' },
+  { text: 'Last Name', key: 'lastName' },
+  { text: 'Specialization', key: 'specialization' },
 ];
+
+export const createFormDataByRole = (role: string) => {
+  if (role === 'student') {
+    return {
+      firstName: '',
+      lastName: '',
+      dateOfBirth: '',
+      address: '',
+      email: '',
+    };
+  }
+
+  return {
+    firstName: '',
+    lastName: '',
+    email: '',
+    specialization: '',
+  };
+};
 
 export const classname_p =
   'font-poppins text-[1rem] leading-[1.75rem] font-bold text-[#424955]';

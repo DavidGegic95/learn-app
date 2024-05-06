@@ -2,22 +2,16 @@ import { subHeaderStyle } from '../../styles-for-tailwind';
 import avatarStudentImg from '../../assets/profile-box-avatar.svg';
 import avatarTrainerImg from '../../assets/profile-box-avatar-trainer.svg';
 import checkIcon from '../../assets/profile-box-check.svg';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { classname_p, classname_span, studentList, trainerList } from './utils';
 import { ProfileBoxData } from '../../pages/MyAccountPage/utils';
+import AppContext, { UserDataType } from '../../AppContext';
 
-const ProfileBox = ({
-  data,
-  role,
-}: {
-  data: ProfileBoxData;
-  role: 'student' | 'trainer';
-}) => {
+const ProfileBox = ({ role }: { role: 'student' | 'trainer' }) => {
   const [list, setList] = useState(
     role === 'student' ? studentList : trainerList
   );
-  const dataValues = Object.values(data);
-
+  const { userData }: { userData: UserDataType } = useContext(AppContext);
   return (
     <div className='flex flex-col gap-[32px]'>
       <p
@@ -37,20 +31,23 @@ const ProfileBox = ({
           <div className='flex gap-[8px]'>
             <img src={checkIcon} alt='' />
             <span className={classname_span + ' text-[#60CFA5]'}>
-              {data.status ? 'Active' : 'Not Active'}
+              {userData?.isActive ? 'Active' : 'Not Active'}
             </span>
           </div>
         </div>
       </div>
-      {list.map((item, index) => {
-        return (
-          <p key={item} className={classname_p}>
-            {item}
-            <br />
-            <span className={classname_span}>{dataValues[index + 1]}</span>
-          </p>
-        );
-      })}
+      {userData &&
+        list?.map((item) => {
+          return (
+            <p key={item?.text} className={classname_p}>
+              {item?.text}
+              <br />
+              <span className={classname_span}>
+                {userData && userData[item?.key as keyof typeof userData]}
+              </span>
+            </p>
+          );
+        })}
     </div>
   );
 };

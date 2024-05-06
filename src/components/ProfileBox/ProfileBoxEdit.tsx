@@ -1,83 +1,74 @@
 import avatarStudentImg from '../../assets/profile-box-avatar.svg';
 import avatarTrainerImg from '../../assets/profile-box-avatar-trainer.svg';
-import checkIcon from '../../assets/profile-box-check.svg';
-import { useEffect, useState } from 'react';
-import { classname_p, classname_span, studentList, trainerList } from './utils';
-import { ProfileBoxData } from '../../pages/MyAccountPage/utils';
+import { useContext, useEffect, useState } from 'react';
+import {
+  classname_p,
+  createFormDataByRole,
+  studentList,
+  trainerList,
+} from './utils';
 import Button from '../Button/Button';
 import {
   grayButtonStyle,
   grayPurpleButtonStyle,
   purpleButtonStyle,
 } from '../../styles-for-tailwind';
-import Switch from '@mui/material/Switch';
 import SwitchComp from './SwitchComp';
 import UploadFile from '../UploadFile/UploadFile';
-import { USER_SERVICE } from '../../env';
-import { idFromLocalStorage } from '../MiniProfile/utils';
-import { UserData } from '../../App';
-
+import AppContext, { SetUserData, UserDataType } from '../../AppContext';
+import { allValuesTruthy } from '../Forms/ChangePasswordForm/utils';
 interface FormData {
   firstName: string;
   lastName: string;
-  dateOfBirth: string;
-  address: string;
   email: string;
+  dateOfBirth?: string;
+  address?: string;
+  specialization?: string;
 }
-const userId = idFromLocalStorage();
-const ProfileBoxEdit = ({
-  role,
-}: {
-  data: ProfileBoxData;
-  role: 'student' | 'trainer';
-}) => {
+const ProfileBoxEdit = () => {
+  const defaultRole = 'student';
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const { userData }: { userData: UserDataType; setUserData: SetUserData } =
+    useContext(AppContext);
   const [status, setStatus] = useState(true);
-  const [formData, setFormData] = useState({});
-  const [errors, setErrors] = useState({
-    firstName: '',
-    lastName: '',
-    dateOfBirth: '',
-    address: '',
-    email: '',
-  });
-  const [list, setList] = useState(
-    role === 'student' ? studentList : trainerList
+  const [formData, setFormData] = useState<FormData>(
+    createFormDataByRole(defaultRole)
   );
-  const keysOfFormData = Object.keys(formData);
-  function fetchUser() {
-    fetch(`${USER_SERVICE}/me?id=${userId}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        const { firstName, lastName, dateOfBirth, address, email } = data.data;
-        setFormData({ firstName, lastName, dateOfBirth, address, email });
-        console.log('Response:', data);
-      })
-      .catch((error: any) => {
-        console.error(error);
-      });
-  }
-
-  const valuesForMap: string[] = [];
-  keysOfFormData.forEach((item) => {
-    if (item !== 'status') {
-      valuesForMap.push(item);
+  const [errors, setErrors] = useState(createFormDataByRole(defaultRole));
+  const [list, setList] = useState(
+    defaultRole === 'student' ? studentList : trainerList
+  );
+  useEffect(() => {
+    if (userData) {
+      setFormData(createFormDataByRole(userData.role));
+      setList(userData.role === 'student' ? studentList : trainerList);
+      setErrors(createFormDataByRole(userData.role));
+      if (
+        'role' in userData &&
+        userData.role === 'student' &&
+        'dateOfBirth' in userData &&
+        'address' in userData
+      ) {
+        const { firstName, lastName, dateOfBirth, address, email } = userData;
+        setFormData({
+          firstName: firstName ?? '',
+          lastName: lastName ?? '',
+          dateOfBirth: dateOfBirth ?? '',
+          address: address ?? '',
+          email: email ?? '',
+        });
+      } else if ('specialization' in userData) {
+        const { firstName, lastName, specialization, email } = userData;
+        setFormData({
+          firstName: firstName ?? '',
+          lastName: lastName ?? '',
+          specialization: specialization ?? '',
+          email: email ?? '',
+        });
+      }
     }
-  });
+  }, [userData]);
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log({ ...formData, status: status });
@@ -89,6 +80,7 @@ const ProfileBoxEdit = ({
       [name]: value,
     });
   };
+
   return (
     <div className='flex flex-col gap-[32px] w-full '>
       <p
@@ -104,7 +96,11 @@ const ProfileBoxEdit = ({
         </p>
         <div className='flex gap-[32px] w-full'>
           <img
-            src={role === 'student' ? avatarStudentImg : avatarTrainerImg}
+            src={
+              userData && userData.role === 'student'
+                ? avatarStudentImg
+                : avatarTrainerImg
+            }
             alt=''
           />
           <div className='flex flex-col items-start justify-center gap-[16px]'>
@@ -135,23 +131,24 @@ const ProfileBoxEdit = ({
       </div>
 
       <form onSubmit={handleSubmit} className='flex flex-col w-full'>
-        {valuesForMap.map((key: string, index) => {
-          return (
-            <div key={key}>
-              <label key={key + 'label'} className={classname_p}>
-                {list[index]}
-              </label>
-              <input
-                className={`flex mb-[16px] pl-[16px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 min-w-[400px] w-[50%] h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors[key as keyof typeof formData] ? 'error-border' : ''}`}
-                onChange={handleChange}
-                key={key + ' item'}
-                name={key}
-                type='text'
-                value={formData[key as keyof typeof formData]}
-              />
-            </div>
-          );
-        })}
+        {userData &&
+          list.map((item) => {
+            return (
+              <div key={item.text}>
+                <label key={item.text} className={classname_p}>
+                  {item.text}
+                </label>
+                <input
+                  className={`flex mb-[16px] pl-[16px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 min-w-[400px] w-[50%] h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors[item.key as keyof typeof formData] ? 'error-border' : ''}`}
+                  onChange={handleChange}
+                  key={item.key + ' item'}
+                  name={item.key}
+                  type='text'
+                  value={formData[item.key as keyof typeof formData]}
+                />
+              </div>
+            );
+          })}
         <div className='flex items-center justify-start gap-[16px]'>
           <p className='font-poppins font-bold text-[1rem] leading-[1.75rem] text-[#323842]'>
             Active

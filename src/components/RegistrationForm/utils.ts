@@ -23,7 +23,7 @@ type StudentListType = {
   firstName: string;
   lastName: string;
   email: string;
-  dateofBirth?: string;
+  dateOfBirth?: string;
   address?: string;
 };
 export type FormDataType = TrainerListType | StudentListType;
@@ -38,7 +38,7 @@ export const studentList: StudentListType = {
   firstName: '',
   lastName: '',
   email: '',
-  dateofBirth: '',
+  dateOfBirth: '',
   address: '',
 };
 export const inputsListTrainer = ['First name', 'Last name', 'Email'];
@@ -79,19 +79,6 @@ export default {
   requiredFields,
 };
 
-// const registerUserFetch = async (formData: FormData) => {
-//   fetch(
-//     'https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/register',
-//     {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(formData),
-//     }
-//   );
-// };
-
 export async function fetchUserRegistration(
   formData: FormDataType,
   role: Role,
@@ -99,10 +86,11 @@ export async function fetchUserRegistration(
 ) {
   const lowerCaseRole = role.toLowerCase();
   let body = { ...formData, role: lowerCaseRole };
-  if (role === 'Trainer') {
-    body = { ...body, specialization: valueSelectTag };
-  }
+  console.log(formData, 'formdata');
   console.log(body);
+  if (role === 'Trainer') {
+    body = { ...body, specialization: valueSelectTag, role: 'trainer' };
+  }
   try {
     const response = await fetch(
       'https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/register',

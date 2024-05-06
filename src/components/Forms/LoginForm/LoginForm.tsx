@@ -13,12 +13,12 @@ import PasswordIcon from '../../PasswordIcon/PasswordIcon';
 import Button from '../../Button/Button';
 import { purpleButtonStyle } from '../../../styles-for-tailwind';
 import { useNavigate } from 'react-router-dom';
-import AppContext from '../../../AppContext';
+import AppContext, { SetUserData } from '../../../AppContext';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
 
 const LoginForm = () => {
-  const { setUserData } = useContext(AppContext);
+  const { setUserData }: { setUserData: SetUserData } = useContext(AppContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -57,9 +57,7 @@ const LoginForm = () => {
       .then((data: any) => {
         console.log(data);
         setUserData({
-          firstName: data.user.firstName,
-          username: data.user.username,
-          email: data.user.email,
+          ...data.user,
         });
 
         localStorage.setItem(
@@ -67,6 +65,7 @@ const LoginForm = () => {
           JSON.stringify({
             token: data.token,
             userId: data.user.id,
+            role: data.user.role,
           })
         );
         navigate('/');

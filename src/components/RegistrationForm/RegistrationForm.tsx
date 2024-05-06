@@ -89,7 +89,6 @@ const RegistrationForm = ({
       fetchUserRegistration(formData, role, valueSelectTag)
         .then((data) => {
           if (data) {
-            console.log(data);
             setIsLoading(false);
             setUserData({
               username: data.username,
@@ -129,7 +128,7 @@ const RegistrationForm = ({
                 </label>
                 <input
                   key={key + 3}
-                  className={`flex mb-[16px] pl-[16px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors[keyIn] ? 'error-border' : ''}`}
+                  className={`input-box-shadow flex mb-[16px] pl-[16px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors[keyIn] ? 'error-border' : ''}`}
                   type='text'
                   id={key}
                   name={key}

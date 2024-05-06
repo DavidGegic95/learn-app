@@ -17,18 +17,29 @@ import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
 import MyAccountEditPage from './pages/MyAccountPage/MyAccountEditPage';
 import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedTrainig';
-import AppContext from './AppContext';
+import AppContext, { UserDataType } from './AppContext';
 import { useEffect, useState } from 'react';
-
-export type UserData = {
-  firstName: string;
-  username: string;
-  email: string;
-};
-
+import { idFromLocalStorage } from './components/MiniProfile/utils';
+import { USER_SERVICE } from './env';
+const id = idFromLocalStorage();
 function App() {
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserDataType | null>(null);
   useEffect(() => {
+    fetch(USER_SERVICE + '/me?id=' + id)
+      .then((res) => {
+        if (!res.ok) {
+          setUserData(null);
+          throw new Error('Failed to fetch user data');
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setUserData({ ...data?.data });
+        console.log(data.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     console.log('log inside mount phase app');
   }, []);
 

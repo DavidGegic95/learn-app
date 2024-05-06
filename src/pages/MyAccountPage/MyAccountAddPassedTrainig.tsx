@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import {
   grayButtonStyle,
@@ -19,6 +19,7 @@ import Checkbox from '@mui/material/Checkbox';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Button from '../../components/Button/Button';
+import { allValuesTruthy } from '../../components/Forms/ChangePasswordForm/utils';
 const names = [
   'Oliver Hansen',
   'Van Henry',
@@ -31,6 +32,7 @@ const names = [
   'Virginia Andrews',
   'Kelly Snyder',
 ];
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -55,20 +57,62 @@ const MyAccountAddPassedTrainig = () => {
     'bg-white border border-[#6355D8] px-[8px] rounded-[6px] h-[42px]';
   const labelStyle =
     'font-poppins font-bold text-[1rem] leading-[1.6rem] text-[#424955] flex flex-col';
-  const [date, setDate] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
   const [personName, setPersonName] = React.useState<string[]>([]);
-
+  const [formData, setFormData] = useState({
+    name: '',
+    date: dayjs('2022-04-17'),
+    duration: 0,
+    type: '',
+    description: '',
+  });
+  const [errors, setErrors] = useState({
+    name: '',
+    date: '',
+    duration: 0,
+    type: '',
+    description: '',
+  });
+  const handleChangeForm = (event: any) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
       target: { value },
     } = event;
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value
-    );
+    setPersonName(typeof value === 'string' ? value.split(',') : value);
   };
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    if (!allValuesTruthy(formData)) {
+      Object.keys(formData).forEach((key) => {
+        if (!formData[key as keyof typeof formData]) {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            [key as keyof typeof formData]: 'This field is required',
+          }));
+        }
+      });
+      return;
+    }
+    console.log({ ...formData, ...names });
+    ///////
+  };
+
+  const handleChangeDate = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    // event.$d.toISOString();
+    // let onlyDate = event.$d.toISOString().split('T')[0];
+    console.log(value);
+    setFormData((prev) => ({
+      ...prev,
+      date: dayjs(value),
+    }));
   };
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-start justify-center gap-[16px]'>
@@ -80,13 +124,20 @@ const MyAccountAddPassedTrainig = () => {
       <main className='flex items-start justify-start gap-[10%] w-full'>
         <section>
           <form
+            onChange={handleChangeForm}
             onSubmit={handleSubmit}
             action=''
             className='flex flex-col gap-[16px]'
           >
             <label className={labelStyle} htmlFor=''>
               Name
-              <input className={inputStyle} type='text' />
+              <input
+                onChange={handleChangeForm}
+                name='name'
+                value={formData.name}
+                className={inputStyle}
+                type='text'
+              />
             </label>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <label className={labelStyle}>
@@ -99,30 +150,44 @@ const MyAccountAddPassedTrainig = () => {
                     },
                     div: { borderColor: '#6355D8' },
                   }}
-                  value={date}
-                  onChange={(newValue) => setDate(newValue)}
+                  value={formData.date}
+                  name='date'
+                  onChange={() => handleChangeDate(event)}
                 />
               </label>
             </LocalizationProvider>
             <label className={labelStyle} htmlFor=''>
               Duration
-              <input className={inputStyle} type='text' />
+              <input
+                onChange={handleChangeForm}
+                value={formData.duration}
+                name='duration'
+                className={inputStyle}
+                type='number'
+              />
             </label>
             <label className={labelStyle} htmlFor=''>
               Type
-              <select className={inputStyle} id='cars' name='cars'>
-                <option value='volvo'>Volvo</option>
-                <option value='saab'>Saab</option>
-                <option value='fiat'>Fiat</option>
-                <option value='audi'>Audi</option>
+              <select
+                onChange={handleChangeForm}
+                value={formData.type}
+                name='type'
+                className={inputStyle}
+              >
+                <option value='volvo'>Java</option>
+                <option value='saab'>Go</option>
+                <option value='fiat'>Rust</option>
+                <option value='audi'>C++</option>
               </select>
             </label>
             <label className={labelStyle} htmlFor=''>
               Description
               <textarea
+                onChange={handleChangeForm}
+                value={formData.description}
+                name='description'
                 placeholder='Enter item description'
                 className='textarea w-[400px] h-[113px] pt-[9px] pb-[9px] pl-[12px] pr-[12px] font-poppins text-base leading-[26px] font-normal text-#171A1FFF bg-#F3F4F6FF rounded-[6px]'
-                name='message'
                 rows={10}
                 cols={30}
               ></textarea>
@@ -158,7 +223,6 @@ const MyAccountAddPassedTrainig = () => {
             </MenuItem>
             {names.map((name) => (
               <MenuItem key={name} value={name}>
-                {/* <Checkbox checked={personName.indexOf(name) > -1} /> */}
                 <Checkbox
                   checked={personName.indexOf(name) > -1}
                   icon={<RadioButtonUncheckedIcon />}
