@@ -20,7 +20,6 @@ const MyAccountEditPage = () => {
       })
       .then((data) => {
         setUserData({ ...data?.data });
-        console.log(data.data);
       })
       .catch((error) => {
         console.error(error);

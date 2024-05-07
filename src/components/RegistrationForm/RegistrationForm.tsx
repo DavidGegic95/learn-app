@@ -97,7 +97,7 @@ const RegistrationForm = ({
             setIsSubmitted(true);
             navigate(`/joinus/${role}/validation`);
           } else {
-            console.log('User registration data not found');
+            console.error('User registration data not found');
             setIsLoading(false);
           }
         })

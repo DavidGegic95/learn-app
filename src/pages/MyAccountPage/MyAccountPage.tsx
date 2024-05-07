@@ -46,9 +46,9 @@ const MyAccountPage = ({ userRole }: { userRole: string }) => {
         );
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
-  }, [userData]);
+  }, []);
   return (
     <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-center justify-center gap-[32px]'>
       <h1 className={headerStyle}>My Account</h1>

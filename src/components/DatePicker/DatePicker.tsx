@@ -20,7 +20,7 @@ export default function DatePicker() {
       const formattedDate1 = dayjs(e[1]['$d']).format('YYYY-MM-DD');
       setDateRange([dayjs(formattedDate), dayjs(formattedDate1)]);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   return (

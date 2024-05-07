@@ -57,8 +57,6 @@ const AddTrainerPage = () => {
     setCurrentList((prev) => {
       return [...prev, ...updateList];
     });
-
-    console.log(listChecked);
   };
 
   let object: any = {};

@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { FiUpload } from 'react-icons/fi';
 import Button from '../../Button/Button';
 import {
   browseButtonStyle,
   grayButtonStyle,
-  grayPurpleButtonStyle,
   purpleButtonStyle,
 } from '../../../styles-for-tailwind';
 import uploadIcon from '../../../assets/upload-cloud.svg';
@@ -45,13 +43,10 @@ export default function FirstTab({ setIsOpen }: { setIsOpen: any }) {
   const checkSize = (e: any, eventType: any) => {
     let size;
     if (eventType === 'drop') {
-      // console.log("size", e.dataTransfer.files[0]);
       size = e.dataTransfer.files[0].size / 8;
     } else {
-      // console.log("size", e.target.files[0].size);
       size = e.target.files[0].size / 8;
     }
-    // console.log("converted size", size);
 
     if (size <= 51200) {
       checkFileType(e, eventType);
@@ -83,7 +78,6 @@ export default function FirstTab({ setIsOpen }: { setIsOpen: any }) {
     setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       checkSize(e, 'drop');
-      // checkFileType(e, "drop");
     }
   };
 
@@ -123,9 +117,7 @@ export default function FirstTab({ setIsOpen }: { setIsOpen: any }) {
               <div className='w-full flex items-center justify-center'>
                 <label
                   htmlFor='img'
-                  className={
-                    browseButtonStyle + ' text-center  cursor-pointer'
-                  }
+                  className={browseButtonStyle + ' text-center  cursor-pointer'}
                   onClick={() => document.getElementById('getFile')?.click()}
                 >
                   Browse files

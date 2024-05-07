@@ -86,8 +86,6 @@ export async function fetchUserRegistration(
 ) {
   const lowerCaseRole = role.toLowerCase();
   let body = { ...formData, role: lowerCaseRole };
-  console.log(formData, 'formdata');
-  console.log(body);
   if (role === 'Trainer') {
     body = { ...body, specialization: valueSelectTag, role: 'trainer' };
   }

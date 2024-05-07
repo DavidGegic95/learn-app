@@ -14,6 +14,7 @@ import Button from '../../Button/Button';
 import { purpleButtonStyle } from '../../../styles-for-tailwind';
 import { useNavigate } from 'react-router-dom';
 import AppContext, { SetUserData } from '../../../AppContext';
+import { AUTH_SERVICE } from '../../../env';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
 
@@ -31,19 +32,16 @@ const LoginForm = () => {
     password: '',
   });
   const loginUser = async () => {
-    fetch(
-      'https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/login',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      }
-    )
+    fetch(`${AUTH_SERVICE}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+      }),
+    })
       .then((response: any) => {
         if (!response.ok) {
           setErrors({
@@ -55,7 +53,6 @@ const LoginForm = () => {
         return response.json();
       })
       .then((data: any) => {
-        console.log(data);
         setUserData({
           ...data.user,
         });
@@ -115,7 +112,7 @@ const LoginForm = () => {
         <div className='flex flex-col'>
           <label htmlFor='email'>User email</label>
           <input
-            className={`profileIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] focus:bg-white ${errors.email ? 'error-border' : ''}`}
+            className={`profileIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF]  ${errors.email ? 'error-border' : ''}`}
             type='text'
             id='email'
             name='email'

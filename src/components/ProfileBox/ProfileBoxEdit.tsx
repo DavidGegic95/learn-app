@@ -15,7 +15,6 @@ import {
 import SwitchComp from './SwitchComp';
 import UploadFile from '../UploadFile/UploadFile';
 import AppContext, { SetUserData, UserDataType } from '../../AppContext';
-import { allValuesTruthy } from '../Forms/ChangePasswordForm/utils';
 import { useNavigate } from 'react-router-dom';
 interface FormData {
   firstName: string;

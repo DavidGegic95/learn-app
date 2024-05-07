@@ -79,7 +79,6 @@ const MyAccountAddPassedTrainig = () => {
   };
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(formData);
     if (
       !formData.name ||
       !formData.description ||

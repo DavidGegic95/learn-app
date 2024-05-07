@@ -20,7 +20,7 @@ const Header = ({
   const navigate = useNavigate();
 
   return (
-    <header className='w-full relative bg-white border border-gray-300  flex items-center justify-start p-3 gap-[32px]'>
+    <header className=' w-full  bg-white border border-gray-300  flex items-center justify-start p-3 gap-[32px]'>
       <img
         onClick={() => setIsClicked((prev) => !prev)}
         src={mobileNavMenu}

@@ -44,7 +44,10 @@ body,
   min-height: 100vh;
 }
 .profileIcon,
-.profileIcon:focus {
+.profileIcon:focus-visible,
+.profileIcon:focus-within,
+.profileIcon:focus,
+.profileIcon:hover {
   background-image: url('./assets/Profile.svg');
   background-repeat: no-repeat;
   background-position: 8px center;
@@ -334,4 +337,10 @@ select:hover {
 }
 .boxShadow:hover {
   box-shadow: 0px 0px 5px #9095a0;
+}
+
+.miniprofile-custom {
+  z-index: 1000;
+  overflow: visible;
+  opacity: 1;
 }

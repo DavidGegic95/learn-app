@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext } from 'react';
+import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
 import avatarHeader from '../../assets/Avatar 36.png';
 import moonIcon from '../../assets/mini-profile/moon-icon.svg';
 import profileIcon from '../../assets/mini-profile/profile-icon.svg';
@@ -7,12 +7,15 @@ import logoutIcon from '../../assets/mobile-nav-logout.svg';
 import { idFromLocalStorage } from './utils';
 import { useNavigate } from 'react-router-dom';
 import AppContext, { SetUserData, UserDataType } from '../../AppContext';
+import Loading from '../Loading/Loading';
+import { AUTH_SERVICE } from '../../env';
 
 const MiniProfile = ({
   setMiniProfile,
 }: {
   setMiniProfile: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const {
     userData,
     setUserData,
@@ -20,10 +23,14 @@ const MiniProfile = ({
     useContext(AppContext)!;
   const navigate = useNavigate();
   const signout = () => {
+    fetchSignoutUser();
+  };
+  async function fetchSignoutUser() {
     let userId = idFromLocalStorage();
-    fetch(
-      `https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/logout?id=${userId}`
-    )
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    fetch(`${AUTH_SERVICE}/logout?id=${userId}`)
       .then((response: any) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -35,15 +42,19 @@ const MiniProfile = ({
         localStorage.removeItem('user');
         setMiniProfile(false);
         navigate('/');
+        setIsLoading(false);
       })
       .catch((error: any) => {
         console.error('Error:', error);
       });
-  };
+  }
   return (
     <>
-      <div onClick={() => setMiniProfile(false)} className='custom-fixed'></div>
-      <div className='fixed flex flex-col justify-between  top-[10px] right-[10px] w-[256px] h-[367px] bg-[#fff] rounded-[6px] custom-box-shadow-miniprofile'>
+      {isLoading && <Loading />}
+      <div
+        onClick={() => setMiniProfile(false)}
+        className='absolute flex flex-col justify-between  top-[10px] right-[10px] w-[256px] h-[367px] bg-[#fff] rounded-[6px] custom-box-shadow-miniprofile miniprofile-custom'
+      >
         <div className='flex  p-[16px] gap-[16px] border-b-[1px] border-[#DEE1E6] w-full'>
           <img className='w-[48px] h-[48px]' src={avatarHeader} alt='' />
           <div className='w-full'>
@@ -81,7 +92,7 @@ const MiniProfile = ({
             onClick={signout}
             className='flex w-full gap-[8px] border-t-[1px] border-[#DEE1E6] p-[16px] cursor-pointer'
           >
-            <img src={logoutIcon} alt='' />
+            <img src={logoutIcon} alt='logout icon' />
             <span className='font-poppins text-[14px] leading-[22px] text-[#565E6C]'>
               Sign out
             </span>

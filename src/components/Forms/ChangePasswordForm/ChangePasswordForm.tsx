@@ -97,8 +97,8 @@ const ChangePasswordForm = () => {
       return;
     }
     setIsLoading(true);
-    fetchDataChangePassword();
     await new Promise((resolve) => setTimeout(resolve, 1000));
+    fetchDataChangePassword();
   };
   return (
     <>

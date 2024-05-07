@@ -36,7 +36,7 @@ const TrainingPage = () => {
     fetch(TRAINING_SERVICE)
       .then((res) => {
         if (!res.ok) {
-          console.log('error fetching training');
+          console.error('error fetching training');
         }
         return res.json();
       })
