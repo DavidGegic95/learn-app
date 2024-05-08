@@ -4,19 +4,19 @@ import ChangePasswordForm from '../../components/Forms/ChangePasswordForm/Change
 
 const ChangePasswordPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto flex mv-custom-flex-col'>
-      <section className='w-[40%] flex flex-col  gap-[32px]'>
-        <h2 className='font-montserrat font-bold text-[2rem] leading-12 text-[#323842]'>
-          Security
-        </h2>
-        <div className='flex items-center justify-start gap-[4px]'>
-          <img src={lockIcon} alt='' />
+    <div className='py-[64px] w-[80%]  mx-auto flex flex-col gap-[32px] mv-custom-password-page mv-custom-flex-col'>
+      <h2 className='font-montserrat font-bold text-[2rem] leading-12 text-[#323842]'>
+        Security
+      </h2>
+      <section className='flex justify-between gap-[32px] mv-custom-flex-col'>
+        <div className='flex items-start justify-start gap-[4px] w-full  mb-[16px]'>
+          <img src={lockIcon} alt='lock icon' />
           <p className='font-montserrat font-bold text-[1.1rem] leading-[1.5rem] text-[#323842]'>
             Change Password
           </p>
         </div>
+        <ChangePasswordForm />
       </section>
-      <ChangePasswordForm />
     </div>
   );
 };

@@ -104,7 +104,7 @@ const ChangePasswordForm = () => {
     <>
       {isLoading && <Loading />}
       <form
-        className='flex w-[50%] min-w-[400px] align-center justify-center flex-col mv-custom-width'
+        className='flex w-[50%] min-w-[400px] gap-[16px] align-center justify-center flex-col mv-custom-width'
         onSubmit={handleSubmit}
       >
         {Object.keys(formData).map((key: string) => {

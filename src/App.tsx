@@ -40,7 +40,6 @@ function App() {
         console.error(error);
       });
   }, []);
-
   return (
     <>
       <div className='relative'>

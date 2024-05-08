@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import avatar from '../../assets/avatar-mobile-nav.svg';
+import avatar from '../../assets/Avatar 36.png';
 import xButton from '../../assets/x-mobile-nav.svg';
 import logoutIcon from '../../assets/mobile-nav-logout.svg';
 
@@ -53,7 +53,7 @@ const MobileNav = ({
   return (
     <div className={`${isClicked ? ' show-mobile-nav' : ' hide-mobile-nav'}`}>
       <div className='w-full  flex items-center justify-between gap-[16px] p-[16px]'>
-        <img src={avatar} alt='' />
+        <img className='w-[54px] h-[54px]' src={avatar} alt='avatar image' />
         <p className='font-poppins font-normal text-[14px] leading-[22px] text-[#171A1F]'>
           John_12
           <br />

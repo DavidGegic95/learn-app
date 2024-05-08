@@ -48,7 +48,7 @@ const TrainingPage = () => {
   return (
     <>
       {roleparams === 'student' ? (
-        <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto'>
+        <div className='py-[64px] w-[80%] flex flex-col mx-auto gap-[32px]'>
           <Breadcrumbs steps={['My Account', 'Tranings']} />
           <ToastContainer
             hideProgressBar={true}
@@ -61,7 +61,7 @@ const TrainingPage = () => {
             onClick={notify}
             text='Add training'
             type='button'
-            className={greenButtonStyle + ' py-[8px]'}
+            className={greenButtonStyle + ' max-w-[240px] py-[8px]'}
           />
           <h2
             className={
@@ -70,9 +70,9 @@ const TrainingPage = () => {
           >
             Search Tranings
           </h2>
-          <main className='flex flex w-full items-start justify-between'>
+          <main className='flex w-full items-start justify-between mv-custom-flex-col gap-[32px]'>
             <section className='flex flex-col items-start justify-start gap-[16px]'>
-              <div className='flex items-center justify-between gap-[32px]'>
+              <div className='flex items-center justify-between gap-[32px] mv-custom-flex-col'>
                 <div className='flex flex-col items-start justify-between '>
                   <label htmlFor='trainer-name'>Trainer name</label>
                   <input
@@ -111,7 +111,7 @@ const TrainingPage = () => {
           </div>
         </div>
       ) : (
-        <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto flex flex-col items-center justify-between gap-[32px]'>
+        <div className='py-[64px] w-[80%] mx-auto flex flex-col items-center justify-between gap-[32px]'>
           <h1 className={headerStyle}>Trainings</h1>
           <h2
             className={
@@ -121,8 +121,11 @@ const TrainingPage = () => {
           >
             Trainings
           </h2>
-          <div className='w-full flex items-start justify-between '>
-            <label htmlFor=''>
+          <div className='flex w-full items-start gap-[32px] justify-between mv-custom-flex-col'>
+            <label
+              className='flex flex-col items-start  font-poppins font-bold text-base leading-[1.4rem] text-[#424955]'
+              htmlFor=''
+            >
               Student name
               <input
                 className={

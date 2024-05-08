@@ -32,37 +32,37 @@ const MyAccountPage = ({ userRole }: { userRole: string }) => {
   const { userData }: { userData: UserDataType } = useContext(AppContext);
   const [role, setRole] = useState(userRole);
   const [tableData, setTableData] = useState(
-    role === 'student' ? mockTrainersList : mockStudentList
+    role === 'student' ? mockStudentList : mockTrainersList
   );
   useEffect(() => {
     try {
       if (
         (userData && 'role' in userData && userData.role === 'student') ||
-        userData.role === 'trainer'
+        (userData && userData.role === 'trainer')
       ) {
         setRole(userData.role);
         setTableData(
-          userData.role === 'student' ? mockTrainersList : mockStudentList
+          userData.role === 'student' ? mockStudentList : mockTrainersList
         );
       }
     } catch (err) {
       console.error(err);
     }
-  }, []);
+  }, [userData]);
   return (
-    <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-center justify-center gap-[32px]'>
+    <div className='w-[80%] my-[64px] mv-custom-py-8px mv-custom-w-full mv-custom-my-0 mx-auto flex flex-col items-center justify-center gap-[32px]'>
       <h1 className={headerStyle}>My Account</h1>
-      <div className='flex items-start w-full justify-between'>
-        <ProfileBox role={role} />
+      <div className='flex items-start w-full justify-between mv-custom-flex-col mv-custom-gap-32px'>
+        <ProfileBox />
 
-        <div className='flex flex-col gap-[32px] mv-hidden-custom'>
+        <div className='flex flex-col gap-[32px]'>
           <div className='flex items-center justify-between'>
             <p className='font-montserrat font-normal text-[2rem] leading-[3rem] text-[#171A1F]'>
               {role === 'student' ? 'My Trainers' : 'My Students'}
             </p>
             {role === 'student' && (
               <Button
-                onClick={() => navigate('/my-account/addTrainer')}
+                onClick={() => navigate('/my-account/add-trainer')}
                 type='button'
                 text='Add trainer'
                 className={purpleButtonStyle + ' py-[8px]'}
@@ -74,7 +74,7 @@ const MyAccountPage = ({ userRole }: { userRole: string }) => {
       </div>
 
       <div className='flex items-center justify-between w-full '>
-        <div className='flex gap-[16px]'>
+        <div className='flex gap-[16px] mv-custom-flex-col'>
           <Button
             onClick={() => navigate('/my-account/edit-profile')}
             text='Edit profile'

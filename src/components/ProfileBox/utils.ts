@@ -3,12 +3,11 @@ export const studentList = [
   { text: 'Last Name', key: 'lastName' },
   { text: 'Date of birth', key: 'dateOfBirth' },
   { text: 'Address', key: 'address' },
-  { text: 'Email', key: 'email' },
 ];
 export const trainerList = [
   { text: 'First Name', key: 'firstName' },
   { text: 'Last Name', key: 'lastName' },
-  { text: 'Specialization', key: 'specialization' },
+  { text: 'Username', key: 'username' },
 ];
 
 export const createFormDataByRole = (role: string) => {
@@ -18,15 +17,14 @@ export const createFormDataByRole = (role: string) => {
       lastName: '',
       dateOfBirth: '',
       address: '',
-      email: '',
+      username: '',
     };
   }
 
   return {
     firstName: '',
     lastName: '',
-    email: '',
-    specialization: '',
+    username: '',
   };
 };
 

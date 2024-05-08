@@ -51,14 +51,12 @@ const MiniProfile = ({
   return (
     <>
       {isLoading && <Loading />}
-      <div
-        onClick={() => setMiniProfile(false)}
-        className='absolute flex flex-col justify-between  top-[10px] right-[10px] w-[256px] h-[367px] bg-[#fff] rounded-[6px] custom-box-shadow-miniprofile miniprofile-custom'
-      >
+      <div onClick={() => setMiniProfile(false)} className='custom-fixed'></div>
+      <div className='absolute  flex flex-col justify-between  top-[10px] right-[10px] w-[256px] h-[367px] bg-[#fff] rounded-[6px] custom-box-shadow-miniprofile miniprofile-custom'>
         <div className='flex  p-[16px] gap-[16px] border-b-[1px] border-[#DEE1E6] w-full'>
           <img className='w-[48px] h-[48px]' src={avatarHeader} alt='' />
-          <div className='w-full'>
-            <p className='font-poppins font-bold text-[14px] leading-[22px] text-[#171A1FFF]'>
+          <div className='w-full overflow-hidden'>
+            <p className='font-poppins  font-bold text-[14px] leading-[22px] text-[#171A1FFF]'>
               {userData?.username}
               <br />
               <span className='font-poppins font-normal text-[12px] leading-[20px] text-[#9095A0FF]'>

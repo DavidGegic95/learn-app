@@ -26,7 +26,15 @@ export default function BasicTable({
   setListChecked?: Dispatch<SetStateAction<{}>>;
 }) {
   return (
-    <TableContainer sx={{ minWidth: '400px' }} component={Paper}>
+    <TableContainer
+      sx={{
+        '@media (max-width: 599px)': {
+          minWidth: '360px',
+        },
+        minWidth: '400px',
+      }}
+      component={Paper}
+    >
       <Table aria-label='simple table'>
         <TableHead>
           <TableRow>

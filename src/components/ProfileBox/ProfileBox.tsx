@@ -1,18 +1,23 @@
 import { subHeaderStyle } from '../../styles-for-tailwind';
 import avatarImg from '../../assets/Avatar 36.png';
 import checkIcon from '../../assets/profile-box-check.svg';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { classname_p, classname_span, studentList, trainerList } from './utils';
 import { ProfileBoxData } from '../../pages/MyAccountPage/utils';
 import AppContext, { UserDataType } from '../../AppContext';
 
-const ProfileBox = ({ role }: { role: string }) => {
-  const [list, setList] = useState(
-    role === 'student' ? studentList : trainerList
-  );
+const ProfileBox = () => {
   const { userData }: { userData: UserDataType } = useContext(AppContext);
+  const [list, setList] = useState(
+    userData && userData.role === 'student' ? studentList : trainerList
+  );
+  useEffect(() => {
+    setList(
+      userData && userData.role === 'student' ? studentList : trainerList
+    );
+  }, [userData]);
   return (
-    <div className='flex flex-col gap-[32px]'>
+    <div className='flex flex-col gap-[32px] mv-custom-items-center mv-custom-justify-center'>
       <p
         className={
           'font-montserrat font-normal text-[2rem] leading-[3rem] text-[#171A1F]'
