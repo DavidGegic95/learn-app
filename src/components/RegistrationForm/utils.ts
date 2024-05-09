@@ -53,7 +53,7 @@ export function requiredFields(
   valueSelectTag: string
 ): boolean {
   const reqFieldsList = ['firstName', 'lastName', 'email', 'specialization'];
-  for (let field of reqFieldsList) {
+  for (const field of reqFieldsList) {
     if (field === 'specialization' && role !== 'Trainer') {
       continue;
     } else if (field === 'specialization' && role === 'Trainer') {

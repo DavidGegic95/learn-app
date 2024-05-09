@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import {
-  headerStyle,
-  purpleButtonStyle,
-  subHeaderStyle,
-} from '../../styles-for-tailwind';
-// import DataTable from '../../components/DataTable/DataTable';
+import { headerStyle, purpleButtonStyle } from '../../styles-for-tailwind';
 import Button from '../../components/Button/Button';
 import BasicTable from '../../components/Table/BasicTable';
-import { trainerList } from '../../components/ProfileBox/utils';
 import { TrainerType, mockTrainersList } from '../MyAccountPage/utils';
 import { rows } from './utils';
 
 const AddTrainerPage = () => {
-  // const [formData, setFormData] = useState();
   const [currentList, setCurrentList] = useState(mockTrainersList);
   const [allTrainers, setAllTrainers] = useState(rows);
   let objectOfCheckedRows = {};

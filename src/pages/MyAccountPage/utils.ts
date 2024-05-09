@@ -8,15 +8,6 @@ export const mockDataStudent = {
   address: '123 Main StreetBoston, MA 02108United States',
   email: 'marta_12334@gmail.com',
 };
-export const mockDataTrainer = {
-  status: true,
-  firstName: 'John',
-  lastName: 'Black',
-  username: 'Jihn_12',
-  specialization: 'Java',
-  address: '456 Lake Shore Drive, Chicago, IL 60611United States',
-  email: 'Jiohn_12@gmail.com',
-};
 export const mockTrainersList: TrainerType[] = [
   {
     name: 'Elizabeth Lopez',

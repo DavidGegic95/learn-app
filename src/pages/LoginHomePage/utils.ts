@@ -35,10 +35,3 @@ export const loginBoxStyles: loginBoxDataInterface = {
   readTime:
     'font-poppins text-[0.75rem] leading-[1.25rem] font-normal text-[#323842FF] bg-[#F3F4F6FF] px-[8px] py-[4px] rounded-[14px]',
 };
-
-//   font-family: Poppins;
-//   font-size: 12px;
-//   line-height: 20px;
-//   font-weight: 400;
-//   color: #323842FF;
-//   background: #F3F4F6FF;

@@ -113,9 +113,9 @@ const RegistrationForm = ({
       >
         <div>
           {Object.keys(formData).map((key: string, index) => {
-            let label = inputsList[index];
-            let keyIn = key as keyof FormDataType;
-            let value = formData[keyIn];
+            const label = inputsList[index];
+            const keyIn = key as keyof FormDataType;
+            const value = formData[keyIn];
             if (key === 'specialization') return;
             return (
               <div key={key + 1} className='flex flex-col'>

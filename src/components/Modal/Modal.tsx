@@ -19,7 +19,7 @@ const style = {
   boxShadow: '0px 4px 9px #171a1f, 0px 0px 2px #171a1f',
   p: 4,
 };
-const userId = await idFromLocalStorage();
+const userId = idFromLocalStorage();
 
 export default function BasicModal({ type }: { type: 'delete' | 'upload' }) {
   const { setUserData }: { setUserData: SetUserData } =

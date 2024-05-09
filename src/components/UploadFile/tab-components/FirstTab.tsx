@@ -12,7 +12,7 @@ export default function FirstTab({ setIsOpen }: { setIsOpen: any }) {
     selectedFile: null,
   });
 
-  const [dragActive, setDragActive] = useState(false);
+  // const [dragActive, setDragActive] = useState(false);
   const [msg, setMsg] = useState('');
 
   const checkFileType = (e: any, eventType: any) => {
@@ -66,16 +66,16 @@ export default function FirstTab({ setIsOpen }: { setIsOpen: any }) {
     e.preventDefault();
     e.stopPropagation();
     if (e.type === 'dragenter' || e.type === 'dragover') {
-      setDragActive(true);
+      // setDragActive(true);
     } else if (e.type === 'dragleave') {
-      setDragActive(false);
+      // setDragActive(false);
     }
   };
 
   const handleDrop = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
-    setDragActive(false);
+    // setDragActive(false);
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       checkSize(e, 'drop');
     }

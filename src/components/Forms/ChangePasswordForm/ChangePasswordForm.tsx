@@ -51,7 +51,7 @@ const ChangePasswordForm = () => {
         }
         return response.json();
       })
-      .then((data) => {
+      .then(() => {
         setIsLoading(false);
         navigate('/change-password/changed-successful');
       })

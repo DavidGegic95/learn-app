@@ -1,10 +1,4 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from '../../components/Button/Button';
 import ProfileBox from '../../components/ProfileBox/ProfileBox';
 import BasicTable from '../../components/Table/BasicTable';
@@ -12,15 +6,9 @@ import {
   greenButtonStyle,
   headerStyle,
   purpleButtonStyle,
-  redButtonStyle,
   subHeaderStyle,
 } from '../../styles-for-tailwind';
-import {
-  mockDataStudent,
-  mockDataTrainer,
-  mockStudentList,
-  mockTrainersList,
-} from './utils';
+import { mockStudentList, mockTrainersList } from './utils';
 import { useNavigate } from 'react-router-dom';
 import BasicModal from '../../components/Modal/Modal';
 import AppContext, { UserDataType } from '../../AppContext';

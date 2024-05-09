@@ -38,7 +38,7 @@ const MiniProfile = ({
         }
         return response.json();
       })
-      .then((data: any) => {
+      .then(() => {
         setUserData(null);
         localStorage.removeItem('user');
         setMiniProfile(false);

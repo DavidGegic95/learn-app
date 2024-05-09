@@ -36,7 +36,7 @@ const MobileNav = ({
         }
         return response.json();
       })
-      .then((data: any) => {
+      .then(() => {
         setUserData(null);
         localStorage.removeItem('user');
         setIsClicked((prev) => !prev);

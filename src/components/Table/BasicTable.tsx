@@ -5,9 +5,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { TableType, TrainerType } from '../../pages/MyAccountPage/utils';
-import Checkbox from '@mui/material/Checkbox';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { TableType } from '../../pages/MyAccountPage/utils';
+import { Dispatch, SetStateAction } from 'react';
 import SimpleCheckbox from '../SimpleCheckbox/SimpleCheckbox';
 import { v4 as uuidv4 } from 'uuid';
 

@@ -13,7 +13,7 @@ import SuccessfulRegistration from '../../components/SuccessfulRegistration/Succ
 const JoinUsPage = () => {
   const navigate = useNavigate();
   let location = useLocation();
-  let { roleparams } = useParams();
+  const { roleparams } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [userData, setUserData] = useState<UserData>({
     username: '',
@@ -38,7 +38,7 @@ const JoinUsPage = () => {
   }, [roleparams]);
   useEffect(() => {
     const { pathname } = location;
-    let path = pathname.split('/');
+    const path = pathname.split('/');
     const validationPath = path[path.length - 1];
     if (validationPath !== 'validation') {
       setIsSubmitted(false);
