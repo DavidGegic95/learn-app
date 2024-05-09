@@ -1,4 +1,4 @@
-import './App.css';
+// import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage';
 import HomePage from './pages/HomePage/HomePage';
@@ -16,15 +16,25 @@ import AddTrainerPage from './pages/AddTrainerPage/AddTrainerPage';
 import ChangePasswordPage from './pages/ChangePasswordPage/ChangePasswordPage';
 import PasswordChanged from './pages/ChangePasswordPage/PasswordChanged';
 import MyAccountEditPage from './pages/MyAccountPage/MyAccountEditPage';
-import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedTrainig';
+import MyAccountAddPassedTrainig from './pages/MyAccountPage/MyAccountAddPassedTraining';
 import AppContext, { UserDataType } from './AppContext';
 import { useEffect, useState } from 'react';
-import { idFromLocalStorage } from './components/MiniProfile/utils';
+import {
+  getTokenFromLocalStorage,
+  idFromLocalStorage,
+} from './components/MiniProfile/utils';
 import { USER_SERVICE } from './env';
 const id = idFromLocalStorage();
+const tokenFromLS = getTokenFromLocalStorage();
+
 function App() {
   const [userData, setUserData] = useState<UserDataType | null>(null);
+  const [token, setToken] = useState(tokenFromLS);
   useEffect(() => {
+    setToken(tokenFromLS);
+  }, [userData]);
+  useEffect(() => {
+    setToken(tokenFromLS);
     fetch(USER_SERVICE + '/me?id=' + id)
       .then((res) => {
         if (!res.ok) {
@@ -42,62 +52,66 @@ function App() {
   }, []);
   return (
     <>
-      <div className='relative'>
-        <AppContext.Provider value={{ userData, setUserData }}>
+      <div className='app relative'>
+        <AppContext.Provider value={{ userData, setUserData, setToken }}>
           <BrowserRouter>
-            <div className='app'>
-              <Header setUserData={setUserData} userData={userData} />
-              <Routes>
-                Features
-                <Route path='/' element={<HomePage />} />
-                <Route
-                  path='/loginHome'
-                  element={<LoginHomePage userData={userData} />}
-                />
-                <Route path='/blog' element={<BlogPage />} />
-                <Route path='/pricing' element={<PricingPage />} />
-                <Route
-                  path='/change-password'
-                  element={<ChangePasswordPage />}
-                />
-                <Route
-                  path='/change-password/changed-successful'
-                  element={<PasswordChanged />}
-                />
-                <Route path='/features' element={<FeaturesPage />} />
-                <Route path='/aboutus' element={<AboutUsPage />} />
-                <Route path='/home' element={<HomePage />} />
-                <Route
-                  path='/my-account'
-                  element={<MyAccountPage userRole={userData?.role || ''} />}
-                />
-                <Route
-                  path='/my-account/add-trainer'
-                  element={<AddTrainerPage />}
-                />
-                <Route
-                  path='/my-account/edit-profile'
-                  element={<MyAccountEditPage />}
-                />
-                <Route
-                  path='/my-account/add-passed-training'
-                  element={<MyAccountAddPassedTrainig />}
-                />
-                <Route
-                  path='/my-account/trainings/:roleparams'
-                  element={<TrainingPage />}
-                />
-                <Route path='/login' element={<LoginPage />} />
-                <Route path='/joinus' element={<JoinUsPage />} />
-                <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
-                <Route
-                  path='/joinus/:roleparams/validation'
-                  element={<JoinUsPage />}
-                />
-                <Route path='*' element={<Navigate to='/' />} />
-              </Routes>
-              <Footer />
-            </div>
+            <Header setUserData={setUserData} userData={userData} />
+            <Routes>
+              {token ? (
+                <>
+                  <Route
+                    path='/'
+                    element={<LoginHomePage userData={userData} />}
+                  />
+                  <Route
+                    path='/change-password'
+                    element={<ChangePasswordPage />}
+                  />
+                  <Route
+                    path='/change-password/changed-successful'
+                    element={<PasswordChanged />}
+                  />
+
+                  <Route
+                    path='/my-account'
+                    element={<MyAccountPage userRole={userData?.role || ''} />}
+                  />
+                  <Route
+                    path='/my-account/add-trainer'
+                    element={<AddTrainerPage />}
+                  />
+                  <Route
+                    path='/my-account/edit-profile'
+                    element={<MyAccountEditPage />}
+                  />
+                  <Route
+                    path='/my-account/add-passed-training'
+                    element={<MyAccountAddPassedTrainig />}
+                  />
+                  <Route
+                    path='/my-account/trainings/:roleparams'
+                    element={<TrainingPage />}
+                  />
+                </>
+              ) : (
+                <>
+                  <Route path='/login' element={<LoginPage />} />
+                  <Route path='/joinus' element={<JoinUsPage />} />
+                  <Route path='/joinus/:roleparams' element={<JoinUsPage />} />
+                  <Route
+                    path='/joinus/:roleparams/validation'
+                    element={<JoinUsPage />}
+                  />
+                  <Route path='/' element={<HomePage />} />
+                </>
+              )}
+              <Route path='/blog' element={<BlogPage />} />
+              <Route path='/pricing' element={<PricingPage />} />
+              <Route path='/features' element={<FeaturesPage />} />
+              <Route path='/aboutus' element={<AboutUsPage />} />
+              <Route path='*' element={<Navigate to='/' />} />
+            </Routes>
+            <Footer />
           </BrowserRouter>
         </AppContext.Provider>
       </div>

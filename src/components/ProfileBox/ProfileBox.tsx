@@ -1,20 +1,16 @@
-import { subHeaderStyle } from '../../styles-for-tailwind';
 import avatarImg from '../../assets/Avatar 36.png';
 import checkIcon from '../../assets/profile-box-check.svg';
 import { useContext, useEffect, useState } from 'react';
 import { classname_p, classname_span, studentList, trainerList } from './utils';
-import { ProfileBoxData } from '../../pages/MyAccountPage/utils';
 import AppContext, { UserDataType } from '../../AppContext';
 
 const ProfileBox = () => {
   const { userData }: { userData: UserDataType } = useContext(AppContext);
   const [list, setList] = useState(
-    userData && userData.role === 'student' ? studentList : trainerList
+    userData?.role === 'student' ? studentList : trainerList
   );
   useEffect(() => {
-    setList(
-      userData && userData.role === 'student' ? studentList : trainerList
-    );
+    setList(userData?.role === 'student' ? studentList : trainerList);
   }, [userData]);
   return (
     <div className='flex flex-col gap-[32px] mv-custom-items-center mv-custom-justify-center'>
@@ -34,8 +30,16 @@ const ProfileBox = () => {
         <div>
           <p>Status</p>
           <div className='flex gap-[8px]'>
-            <img src={checkIcon} alt='' />
-            <span className={classname_span + ' text-[#60CFA5]'}>
+            {userData?.isActive && (
+              <img src={checkIcon} alt='active status icon' />
+            )}
+
+            <span
+              className={
+                classname_span +
+                ` ${userData?.isActive ? 'text-[#60CFA5]' : 'text-[#F22128FF]'}`
+              }
+            >
               {userData?.isActive ? 'Active' : 'Not Active'}
             </span>
           </div>

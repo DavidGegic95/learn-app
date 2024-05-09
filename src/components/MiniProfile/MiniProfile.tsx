@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import avatarHeader from '../../assets/Avatar 36.png';
 import moonIcon from '../../assets/mini-profile/moon-icon.svg';
 import profileIcon from '../../assets/mini-profile/profile-icon.svg';
@@ -15,6 +15,7 @@ const MiniProfile = ({
 }: {
   setMiniProfile: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const [status, setStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const {
     userData,
@@ -41,7 +42,6 @@ const MiniProfile = ({
         setUserData(null);
         localStorage.removeItem('user');
         setMiniProfile(false);
-        navigate('/');
         setIsLoading(false);
       })
       .catch((error: any) => {
@@ -83,7 +83,7 @@ const MiniProfile = ({
                 Night mode
               </div>
 
-              <SwitchComp />
+              <SwitchComp setStatus={setStatus} status={status} />
             </div>
           </div>
           <div

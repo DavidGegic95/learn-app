@@ -1,4 +1,3 @@
-// import React from 'react';
 import aboutUsImg from '../../assets/about-us.svg';
 import AboutProfile from '../../components/AboutProfile/AboutProfile';
 import { grayText, headerStyle } from '../../styles-for-tailwind';

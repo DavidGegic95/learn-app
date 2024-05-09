@@ -29,7 +29,7 @@ export default function BasicTable({
     <TableContainer
       sx={{
         '@media (max-width: 599px)': {
-          minWidth: '360px',
+          minWidth: '340px',
         },
         minWidth: '400px',
       }}

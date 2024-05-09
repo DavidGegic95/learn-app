@@ -3,9 +3,10 @@ import avatar from '../../assets/Avatar 36.png';
 import xButton from '../../assets/x-mobile-nav.svg';
 import logoutIcon from '../../assets/mobile-nav-logout.svg';
 
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 import { idFromLocalStorage } from '../MiniProfile/utils';
-import { UserDataType } from '../../AppContext';
+import AppContext, { UserDataType } from '../../AppContext';
+import { AUTH_SERVICE } from '../../env';
 
 const MobileNav = ({
   isClicked,
@@ -19,17 +20,16 @@ const MobileNav = ({
   const location = useLocation();
   const navigate = useNavigate();
   const { pathname } = location;
+  const { userData }: { userData: UserDataType } = useContext(AppContext);
   const linksData = [
     { path: '/blog', text: 'Blog' },
     { path: '/pricing', text: 'Pricing' },
     { path: '/aboutus', text: 'About us' },
-    { path: '/my-account', text: 'My Account' },
   ];
+
   const signout = () => {
     let userId = idFromLocalStorage();
-    fetch(
-      `https://j2xsxqcnd6.execute-api.eu-central-1.amazonaws.com/dev/auth/logout?id=${userId}`
-    )
+    fetch(`${AUTH_SERVICE}/logout?id=${userId}`)
       .then((response: any) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -55,10 +55,10 @@ const MobileNav = ({
       <div className='w-full  flex items-center justify-between gap-[16px] p-[16px]'>
         <img className='w-[54px] h-[54px]' src={avatar} alt='avatar image' />
         <p className='font-poppins font-normal text-[14px] leading-[22px] text-[#171A1F]'>
-          John_12
+          {userData?.username}
           <br />
           <span className='font-poppins font-normal text-[12px] leading-[20px] text-[#9095A0]'>
-            John_12@gmail.com
+            {userData?.email}
           </span>
         </p>
         <button className='' onClick={() => setIsClicked((prev) => !prev)}>
@@ -83,6 +83,48 @@ const MobileNav = ({
             </Link>
           );
         })}
+        {userData && (
+          <Link
+            onClick={() => setIsClicked((prev) => !prev)}
+            className={
+              'pl-[16px] font-poppins font-normal font-medium text-base leading-6 text-[#565E6C]' +
+              (pathname === '/my-account'
+                ? ' text-[#6355d8] border-left-purple'
+                : '')
+            }
+            to='/my-account'
+          >
+            My Account
+          </Link>
+        )}
+        {!userData && (
+          <>
+            <Link
+              onClick={() => setIsClicked((prev) => !prev)}
+              className={
+                'pl-[16px] font-poppins font-normal font-medium text-base leading-6 text-[#565E6C]' +
+                (pathname === '/login'
+                  ? ' text-[#6355d8] border-left-purple'
+                  : '')
+              }
+              to='/login'
+            >
+              Login
+            </Link>
+            <Link
+              onClick={() => setIsClicked((prev) => !prev)}
+              className={
+                'pl-[16px] font-poppins font-normal font-medium text-base leading-6 text-[#565E6C]' +
+                (pathname === '/register'
+                  ? ' text-[#6355d8] border-left-purple'
+                  : '')
+              }
+              to='/register'
+            >
+              Register
+            </Link>
+          </>
+        )}
       </div>
 
       <button

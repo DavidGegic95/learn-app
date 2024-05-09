@@ -99,6 +99,7 @@ type TrainerData = {
 };
 
 export type ProfileBoxData = StudentData | TrainerData;
+
 export function uuid() {
   const uuid = new Array(36);
   for (let i = 0; i < 36; i++) {

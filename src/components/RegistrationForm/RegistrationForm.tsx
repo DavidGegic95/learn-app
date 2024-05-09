@@ -10,7 +10,7 @@ import {
 import Select from '../Select/Select';
 import Loading from '../Loading/Loading';
 import {
-  scienceSpecializations,
+  specializationList,
   trainerList,
   FormDataType,
   studentList,
@@ -21,7 +21,6 @@ import {
 } from './utils';
 import Role, { UserData } from '../../pages/JoinUsPage/utils';
 import { useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import Button from '../Button/Button';
 import { purpleButtonStyle } from '../../styles-for-tailwind';
 
@@ -152,7 +151,7 @@ const RegistrationForm = ({
                 className='w-full'
                 valueSelectTag={valueSelectTag}
                 setValueSelectTag={setValueSelectTag}
-                list={[...scienceSpecializations]}
+                list={specializationList}
               />
             </>
           )}

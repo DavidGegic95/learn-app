@@ -1,4 +1,3 @@
-// import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import checkmark from '../../assets/checkmark.svg';
 import { UserData } from '../../pages/JoinUsPage/utils';

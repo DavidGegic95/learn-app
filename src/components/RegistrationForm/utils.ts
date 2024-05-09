@@ -1,15 +1,12 @@
 import Role from '../../pages/JoinUsPage/utils';
 
-export const scienceSpecializations = [
-  'Physics',
-  'Chemistry',
-  'Biology',
-  'Mathematics',
-  'Astronomy',
-  'Geology',
-  'Environmental Science',
-  'Computer Science',
-  'Neuroscience',
+export const specializationList = [
+  'Java',
+  'Go',
+  'Rust',
+  'TypeScript',
+  'C++',
+  'Puthon',
 ];
 
 type TrainerListType = {
@@ -71,7 +68,7 @@ export function requiredFields(
   return true;
 }
 export default {
-  scienceSpecializations,
+  specializationList,
   trainerList,
   studentList,
   inputsListTrainer,

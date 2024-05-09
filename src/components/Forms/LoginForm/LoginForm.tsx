@@ -1,25 +1,21 @@
-// import React from 'react';
-import {
-  ChangeEvent,
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useContext,
-  useState,
-} from 'react';
+import { ChangeEvent, Dispatch, FormEvent, useContext, useState } from 'react';
 import Loading from '../..//Loading/Loading';
 import ReCAPTCHA from 'react-google-recaptcha';
 import PasswordIcon from '../../PasswordIcon/PasswordIcon';
 import Button from '../../Button/Button';
 import { purpleButtonStyle } from '../../../styles-for-tailwind';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppContext, { SetUserData } from '../../../AppContext';
 import { AUTH_SERVICE } from '../../../env';
 
 const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
 
 const LoginForm = () => {
-  const { setUserData }: { setUserData: SetUserData } = useContext(AppContext);
+  const {
+    setUserData,
+    setToken,
+  }: { setUserData: SetUserData; setToken: Dispatch<string> } =
+    useContext(AppContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -31,6 +27,7 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
+
   const loginUser = async () => {
     fetch(`${AUTH_SERVICE}/login`, {
       method: 'POST',
@@ -54,23 +51,25 @@ const LoginForm = () => {
       })
       .then((data: any) => {
         setUserData({
-          ...data.user,
+          ...data?.user,
         });
 
         localStorage.setItem(
           'user',
           JSON.stringify({
-            token: data.token,
-            userId: data.user.id,
-            role: data.user.role,
+            token: data?.token,
+            userId: data?.user?.id,
+            role: data?.user?.role,
           })
         );
+        setToken(data?.token);
         navigate('/loginHome');
       })
       .catch((error: any) => {
         console.error('Error:', error);
       });
   };
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({
@@ -80,6 +79,7 @@ const LoginForm = () => {
 
     setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }));
   };
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
@@ -102,17 +102,18 @@ const LoginForm = () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsLoading(false);
   };
+
   return (
     <>
       {isLoading && <Loading />}
       <form
-        className='flex w-[400px] align-center justify-center flex-col'
+        className='flex w-[400px] mv-custom-w-340px align-center justify-center flex-col'
         onSubmit={handleSubmit}
       >
         <div className='flex flex-col'>
           <label htmlFor='email'>User email</label>
           <input
-            className={`profileIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF]  ${errors.email ? 'error-border' : ''}`}
+            className={`profileIcon box-shadow-custom-hover flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full mv-custom-w-340px h-[40px]  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF]  ${errors.email ? 'error-border' : ''}`}
             type='text'
             id='email'
             name='email'
@@ -129,10 +130,10 @@ const LoginForm = () => {
         <div className='flex flex-col'>
           <label htmlFor='password'>Password</label>
           <div
-            className={`boxShadow focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full h-[40px] ${errors.password ? 'error-border' : ''}`}
+            className={`box-shadow-custom-hover focus-within:bg-white focus-within:border border-solid border-[#F3F4F6FF]  flex bg-[#F3F4F6FF] rounded-lg border-[1px] w-full mv-custom-w-340px h-[40px] ${errors.password ? 'error-border' : ''}`}
           >
             <input
-              className={`passwordIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:bg-white hover:border-none`}
+              className={`passwordIcon flex  pl-[32px] pr-1 bg-[#F3F4F6FF] rounded-lg border-0 w-full  font-poppins text-base leading-26 font-normal bg-[#F3F4F6FF] rounded-lg border-0 outline-none focus:text-[#171A1FFF] focus:bg-white hover:border-none`}
               type={isVisible ? 'text' : 'password'}
               id='password'
               name='password'
@@ -156,7 +157,9 @@ const LoginForm = () => {
         <Button
           text='Sign in'
           type='submit'
-          className={purpleButtonStyle + ' w-full h-[40px] mt-[24px]'}
+          className={
+            purpleButtonStyle + ' w-full mv-custom-w-340px h-[40px] mt-[24px]'
+          }
         />
       </form>
       <span className='text-center mt-[24px] font-poppins text-12 leading-20 font-bold text-[#6E7787FF]'>
@@ -164,12 +167,12 @@ const LoginForm = () => {
       </span>
       <span className='text-center mt-[24px] font-poppins text-14 leading-22 text-[#171A1FFF]'>
         Don't have account?{' '}
-        <a
+        <Link
           className='font-poppins text-14 leading-22 font-bold text-[#6355D8FF]'
-          href=''
+          to='/joinus'
         >
           Sign Up
-        </a>
+        </Link>
       </span>
       <div className='flex align-center justify-center mt-[32px]'>
         <ReCAPTCHA sitekey={siteKey} />

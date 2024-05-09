@@ -1,5 +1,3 @@
-// import React from 'react';
-
 import { useEffect } from 'react';
 
 const Select = ({
@@ -40,6 +38,7 @@ const Select = ({
             key={item + index}
             className='mt-1 bg-[#F5F5F5] border border-gray-300 rounded-md px-3 py-2 text-sm font-poppins font-normal'
             value={item}
+            defaultValue=''
           >
             {item}
           </option>

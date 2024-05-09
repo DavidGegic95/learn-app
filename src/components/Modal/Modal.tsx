@@ -7,7 +7,6 @@ import xIcon from '../../assets/x-mark.svg';
 import { USER_SERVICE } from '../../env';
 import { idFromLocalStorage } from '../MiniProfile/utils';
 import { useNavigate } from 'react-router-dom';
-import { UserData } from '../../App';
 import AppContext, { SetUserData } from '../../AppContext';
 
 const style = {
@@ -17,7 +16,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 600,
   bgcolor: '#FFF',
-  //   border: '2px solid #000',
   boxShadow: '0px 4px 9px #171a1f, 0px 0px 2px #171a1f',
   p: 4,
 };

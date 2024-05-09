@@ -20,6 +20,10 @@ import Button from '../../components/Button/Button';
 import { TRAINING_SERVICE } from '../../env';
 import { idFromLocalStorage } from '../../components/MiniProfile/utils';
 import { uuid } from './utils';
+import { toast } from 'react-toastify';
+import toasterIcon from '../../assets/toaster-icon.svg';
+import { useNavigate } from 'react-router-dom';
+
 const names = [
   'Oliver Hansen',
   'Van Henry',
@@ -42,12 +46,23 @@ const MenuProps = {
     },
   },
 };
-const inputStyle =
-  'bg-white border border-[#6355D8] px-[8px] rounded-[6px] h-[42px]';
+const inputStyle = `flex mb-[16px] pl-[16px]  bg-[#F3F4F6FF] rounded-lg border-0 min-w-[340px]  
+  w-[50%] h-[40px]  font-poppins text-base leading-26 font-normal  outline-none 
+  focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] 
+  focus:bg-white 
+   focus:border border-solid border-[#F3F4F6FF] box-shadow-custom-focus`;
 const labelStyle =
   'font-poppins font-bold text-[1rem] leading-[1.6rem] text-[#424955] flex flex-col';
+const ToasterMessage = () => (
+  <div className='flex items-center justify-start gap-[8px]'>
+    <img src={toasterIcon} alt='toaster icon' />
+    Training added
+  </div>
+);
 
 const MyAccountAddPassedTrainig = () => {
+  const navigate = useNavigate();
+  const notify = () => toast(<ToasterMessage />, { theme: 'light' });
   const [trainerNames, setTrainerNames] = React.useState<string[]>([]);
   const [date, setDate] = React.useState<Dayjs | null>(dayjs('2022-04-17'));
   const [formData, setFormData] = useState({
@@ -123,6 +138,12 @@ const MyAccountAddPassedTrainig = () => {
         return response.json();
       })
       .then((data) => {
+        notify();
+        navigate('/my-account/trainings/student');
+        window.scrollTo({
+          top: 0,
+          behavior: 'auto',
+        });
         console.log(data);
       })
       .catch((error) => {
@@ -133,13 +154,13 @@ const MyAccountAddPassedTrainig = () => {
   };
 
   return (
-    <div className='w-[80%] my-[64px] mobile-view-w-90 mx-auto flex flex-col items-start justify-center gap-[16px]'>
+    <div className='w-[80%] my-[64px] mv-custom-my-0 mv-custom-py-16px mx-auto flex flex-col items-start justify-center gap-[16px]'>
       <Breadcrumbs steps={['My Account', 'Tranings', 'Add training']} />
       <h1 className={headerStyle + ' text-center w-full'}>
         Add passed training
       </h1>
       <h2>Training</h2>
-      <main className='flex items-start justify-start gap-[10%] w-full'>
+      <main className='flex items-start justify-start gap-[10%] w-full  flex-wrap'>
         <section>
           <form
             onChange={handleChangeForm}
@@ -161,6 +182,7 @@ const MyAccountAddPassedTrainig = () => {
               <label className={labelStyle}>
                 Traning start date
                 <DatePicker
+                  className='mv-custom-w-340px'
                   sx={{
                     input: {
                       padding: '10px',
@@ -193,10 +215,10 @@ const MyAccountAddPassedTrainig = () => {
                 name='type'
                 className={inputStyle + ` ${errors.type ? 'error-border' : ''}`}
               >
-                <option value='volvo'>Java</option>
-                <option value='saab'>Go</option>
-                <option value='fiat'>Rust</option>
-                <option value='audi'>C++</option>
+                <option value='Java'>Java</option>
+                <option value='Go'>Go</option>
+                <option value='Rust'>Rust</option>
+                <option value='C++'>C++</option>
               </select>
             </label>
             <label className={labelStyle} htmlFor=''>
@@ -207,7 +229,7 @@ const MyAccountAddPassedTrainig = () => {
                 name='description'
                 placeholder='Enter item description'
                 className={
-                  'textarea w-[400px] h-[113px] pt-[9px] pb-[9px] pl-[12px] pr-[12px] font-poppins text-base leading-[26px] font-normal text-#171A1FFF bg-#F3F4F6FF rounded-[6px]' +
+                  'textarea w-[400px] mv-custom-w-340px h-[113px] pt-[9px] pb-[9px] pl-[12px] pr-[12px] font-poppins text-base leading-[26px] font-normal text-#171A1FFF bg-#F3F4F6FF rounded-[6px]' +
                   ` ${errors.description ? 'error-border' : ''}`
                 }
                 rows={10}
@@ -231,7 +253,16 @@ const MyAccountAddPassedTrainig = () => {
         <section className='flex flex-col'>
           <InputLabel htmlFor='demo-multiple-checkbo'>Add trainers</InputLabel>
           <Select
-            sx={{ width: '400px', div: { padding: '10px' } }}
+            sx={{
+              width: '400px',
+              div: {
+                padding: '10px',
+              },
+              '@media (max-width: 600px)': {
+                width: '340px',
+              },
+            }}
+            className='mv-custom-w-340px'
             id='demo-multiple-checkbox'
             multiple
             value={trainerNames}

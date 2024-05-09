@@ -1,5 +1,3 @@
-// import React from 'react';
-
 import AccordionContainer from '../../components/Accordion/Accordion';
 import PricingOptionBox from '../../components/PricingOptionBox/PricingOptionBox';
 import { PricingOptionContent } from '../../components/PricingOptionBox/utils';

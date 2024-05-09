@@ -1,4 +1,3 @@
-// import React from 'react';
 import { ItemType, PricingOptionType } from './utils';
 import Button from '../Button/Button';
 import checkmark from '../../assets/checkmark.svg';

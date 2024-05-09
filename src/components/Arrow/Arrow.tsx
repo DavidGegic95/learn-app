@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Arrow = ({ fill }: { fill?: boolean }) => {
   return (
     <>

@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import { Dispatch } from 'react';
 
@@ -59,7 +58,7 @@ export default function SwitchComp({
   setStatus,
 }: {
   status?: boolean;
-  setStatus?: any;
+  setStatus: Dispatch<any>;
 }) {
   return (
     <>
