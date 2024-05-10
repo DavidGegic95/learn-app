@@ -5,7 +5,7 @@ import { styleClasses, profilesData } from './utils';
 
 const AboutUsPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto'>
+    <div className='py-[64px] w-[80%] 2xl:w-[1200px] mobile-view-w-90 mx-auto'>
       <h1 className={headerStyle}>About Us</h1>
       <p className={grayText + ' text-center  my-[64px]'}>
         Welcome to the 'About Us' section of Learn Platform, where we aim to

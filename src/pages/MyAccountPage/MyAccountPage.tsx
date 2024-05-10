@@ -36,9 +36,9 @@ const MyAccountPage = ({ userRole }: { userRole: string }) => {
     }
   }, [userData]);
   return (
-    <div className='w-[80%] my-[64px] mv-custom-py-8px mv-custom-w-full mv-custom-my-0 mx-auto flex flex-col items-center justify-center gap-[32px]'>
+    <div className='w-[80%] 2xl:w-[1200px] my-[64px] mv-custom-py-8px mv-custom-w-full mv-custom-my-0 mx-auto flex flex-col items-center justify-center gap-[32px]'>
       <h1 className={headerStyle}>My Account</h1>
-      <div className='flex items-start w-full justify-between mv-custom-flex-col mv-custom-gap-32px'>
+      <div className='flex items-start w-full justify-between flex-wrap  mv-custom-flex-col mv-custom-gap-32px'>
         <ProfileBox />
 
         <div className='flex flex-col gap-[32px]'>
@@ -62,7 +62,13 @@ const MyAccountPage = ({ userRole }: { userRole: string }) => {
       <div className='flex items-center justify-between w-full '>
         <div className='flex gap-[16px] mv-custom-flex-col'>
           <Button
-            onClick={() => navigate('/my-account/edit-profile')}
+            onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              });
+              navigate('/my-account/edit-profile');
+            }}
             text='Edit profile'
             type='button'
             className={purpleButtonStyle + ' py-[8px]'}

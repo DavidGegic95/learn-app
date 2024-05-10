@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const PasswordChanged = () => {
   const navigate = useNavigate();
   return (
-    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto flex flex-col gap-[32px] items-center justify-center'>
+    <div className='py-[64px] w-[80%] 2xl:w-[1200px] mobile-view-w-90 mx-auto flex flex-col gap-[32px] items-center justify-center'>
       <h1 className={subHeaderStyle}>Password changed</h1>
       <img className='w-[50px]' src={checkmark} alt='' />
       <p className={grayText}>Please proceed sign in with new password</p>

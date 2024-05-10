@@ -151,6 +151,10 @@ const ChangePasswordForm = () => {
         <div className='flex items-center justify-end gap-[8px]'>
           <Button
             onClick={() => {
+              window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+              });
               navigate('/my-account');
             }}
             text='Cancel'

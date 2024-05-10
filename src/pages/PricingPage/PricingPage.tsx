@@ -1,11 +1,11 @@
 import AccordionContainer from '../../components/Accordion/Accordion';
 import PricingOptionBox from '../../components/PricingOptionBox/PricingOptionBox';
-import { PricingOptionContent } from '../../components/PricingOptionBox/utils';
+import { pricingOptionContent } from '../../components/PricingOptionBox/utils';
 import { grayText, headerStyle } from '../../styles-for-tailwind';
 
 const PricingPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto flex flex-col gap-[48px] items-center mobile-view-pricingPage'>
+    <div className='py-[64px] w-[90%] 2xl:w-[1200px] mobile-view-w-90 mx-auto flex flex-col gap-[48px] items-center mobile-view-pricingPage'>
       <h1 className={headerStyle}>Pricing</h1>
       <p className={grayText + ' max-min-in-char  text-center'}>
         At Learn Platform, we believe in providing high-quality education that's
@@ -13,8 +13,8 @@ const PricingPage = () => {
         cater to individual learners, groups, and organizations. Let's explore
         each option below:
       </p>
-      <div className='w-full flex items-center justify-center mobile-view-pricing-boxes'>
-        {PricingOptionContent.map((content) => {
+      <div className='w-full  flex items-center justify-center mobile-view-pricing-boxes sm:max-lg:flex-col'>
+        {pricingOptionContent.map((content) => {
           return <PricingOptionBox key={content.title} {...content} />;
         })}
       </div>

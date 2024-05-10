@@ -46,7 +46,7 @@ export const PricingOptionStyleObj = {
   list: '',
 };
 
-export const PricingOptionContent: PricingOptionType[] = [
+export const pricingOptionContent: PricingOptionType[] = [
   {
     mailIcon: false,
     popular: false,

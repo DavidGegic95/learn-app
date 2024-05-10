@@ -6,7 +6,7 @@ import { headerStyle, purpleButtonStyle } from '../../styles-for-tailwind';
 
 const FeaturesPage = () => {
   return (
-    <div className='py-[64px] w-[80%] mobile-view-w-90 mx-auto'>
+    <div className='py-[64px] w-[80%] 2xl:w-[1200px] mobile-view-w-90 mx-auto'>
       <h1 className={headerStyle + ' mb-[64px]'}>Features</h1>
       <h2 className='mb-[16px] font-montserrat font-semibold text-4xl leading-17 text-center text-[#171A1F]'>
         Learning

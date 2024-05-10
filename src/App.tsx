@@ -1,4 +1,3 @@
-// import './App.css';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage';
 import HomePage from './pages/HomePage/HomePage';
@@ -32,25 +31,27 @@ function App() {
     setToken(getTokenFromLocalStorage());
   }, [userData]);
   useEffect(() => {
-    setToken(getTokenFromLocalStorage());
-    fetch(USER_SERVICE + '/me?id=' + idFromLocalStorage())
-      .then((res) => {
-        if (!res.ok) {
-          setUserData(null);
-          throw new Error('Failed to fetch user data');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setUserData({ ...data?.data });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (getTokenFromLocalStorage()) {
+      setToken(getTokenFromLocalStorage());
+      fetch(USER_SERVICE + '/me?id=' + idFromLocalStorage())
+        .then((res) => {
+          if (!res.ok) {
+            setUserData(null);
+            throw new Error('Failed to fetch user data');
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setUserData({ ...data?.data });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, []);
   return (
     <>
-      <div className='app relative'>
+      <div className='app relative flex flex-col justify-between min-h-[100vh] w-[100%]'>
         <AppContext.Provider value={{ userData, setUserData, setToken }}>
           <BrowserRouter>
             <Header setUserData={setUserData} userData={userData} />

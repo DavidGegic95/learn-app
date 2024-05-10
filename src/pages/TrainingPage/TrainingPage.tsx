@@ -36,7 +36,7 @@ const TrainingPage = () => {
   return (
     <>
       {roleparams === 'student' ? (
-        <div className='py-[64px] w-[80%] flex flex-col  mx-auto gap-[32px] mv-custom-w-full mv-custom-py-16px mv-custom-my-0'>
+        <div className='py-[64px] w-[80%] 2xl:w-[1200px] flex flex-col  mx-auto gap-[32px] mv-custom-w-full mv-custom-py-16px mv-custom-my-0'>
           <Breadcrumbs steps={['My Account', 'Tranings']} />
 
           <h1 className={headerStyle}>Trainings</h1>
@@ -102,7 +102,7 @@ const TrainingPage = () => {
           </div>
         </div>
       ) : (
-        <div className='py-[64px] w-[80%] mx-auto flex flex-col items-center justify-between gap-[32px]'>
+        <div className='py-[64px] 2xl:w-[1200px] w-[80%] mx-auto flex flex-col items-center justify-between gap-[32px]'>
           <h1 className={headerStyle}>Trainings</h1>
           <h2
             className={

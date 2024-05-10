@@ -9,7 +9,7 @@ import FooterForm from '../FooterForm/FooterForm';
 const Footer = () => {
   return (
     <footer className='w-full bg-[#FAFAFBFF] mobile-view-custom'>
-      <div className='tablet-view-custom w-[80%] py-[64px] mx-auto flex justify-between items-start md:max-lg:w-full md:max-lg:m-0   mv-custom-w-full mobile-view-custom mv-custom-gap-32px mv-custom-py-16px'>
+      <div className=' w-[80%] py-[64px] mx-auto flex  justify-between items-start sm:max-lg:flex-col md:max-lg:w-full md:max-lg:m-0 tablet-view-custom  mv-custom-w-full mobile-view-custom mv-custom-gap-32px mv-custom-py-16px'>
         <img src={logo} alt='learn app logo' className='mobile-view-hidden' />
         <FooterNav
           title='Product'
