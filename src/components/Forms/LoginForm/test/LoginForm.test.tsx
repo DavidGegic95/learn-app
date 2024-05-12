@@ -2,7 +2,6 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import LoginForm from '../LoginForm';
 import AppContext from '../../../../AppContext';
-import '@testing-library/jest-dom';
 
 describe('LoginForm', () => {
   test('renders login form elements', () => {
@@ -47,7 +46,6 @@ describe('LoginForm', () => {
     expect(mockSetToken).not.toHaveBeenCalled();
   });
 
-  // Add more tests for successful login, invalid credentials etc.
 
   test('calls setUserData and setToken on successful login', async () => {
     const mockSetUserData = jest.fn();
@@ -56,7 +54,7 @@ describe('LoginForm', () => {
       ok: true,
       json: () => ({ token: 'fake-token', user: { name: 'John Doe' } }),
     });
-    window.fetch = mockFetch; // Mock fetch for controlled testing
+    window.fetch = mockFetch; 
 
     render(
       <BrowserRouter>
@@ -79,8 +77,7 @@ describe('LoginForm', () => {
     await waitFor(() => {
       expect(mockSetUserData).toHaveBeenCalledWith({ name: 'John Doe' });
       expect(mockSetToken).toHaveBeenCalledWith('fake-token');
-      // expect(screen.getByText('Login')).not.toBeTruthy();
-      expect(window.location.pathname).toEqual('/loginHome'); // redirected
+      expect(window.location.pathname).toEqual('/loginHome'); 
     });
   });
 });

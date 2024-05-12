@@ -106,7 +106,7 @@ const ProfileBoxEdit = () => {
     setIsLoading(false);
     window.scrollTo({
       top: 0,
-      behavior: 'instant',
+      behavior: 'smooth',
     });
     navigate('/my-account');
   };
