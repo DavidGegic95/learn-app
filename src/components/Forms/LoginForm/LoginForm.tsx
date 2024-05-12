@@ -8,7 +8,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import AppContext, { SetUserData } from '../../../AppContext';
 import { AUTH_SERVICE } from '../../../env';
 
-const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
+// const siteKey = import.meta.env.VITE_APP_SITE_KEY || 'invalid key';
+const siteKey = ''; ///test env
 
 const LoginForm = () => {
   const {
