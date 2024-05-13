@@ -2,9 +2,6 @@ export default {
   preset: 'ts-jest',
   transform: { '^.+\\.ts?$': 'ts-jest' },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
-  // transform: {
-  //   '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/ts-jest/esm-jest', // Use esm-jest for all files
-  // },
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',

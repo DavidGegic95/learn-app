@@ -168,7 +168,7 @@ const MyAccountAddPassedTrainig = () => {
             action=''
             className='flex flex-col gap-[16px]'
           >
-            <label className={labelStyle} htmlFor=''>
+            <label className={labelStyle} htmlFor='name'>
               Name
               <input
                 onChange={handleChangeForm}

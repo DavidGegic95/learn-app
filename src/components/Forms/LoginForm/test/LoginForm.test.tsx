@@ -46,7 +46,6 @@ describe('LoginForm', () => {
     expect(mockSetToken).not.toHaveBeenCalled();
   });
 
-
   test('calls setUserData and setToken on successful login', async () => {
     const mockSetUserData = jest.fn();
     const mockSetToken = jest.fn();
@@ -54,7 +53,7 @@ describe('LoginForm', () => {
       ok: true,
       json: () => ({ token: 'fake-token', user: { name: 'John Doe' } }),
     });
-    window.fetch = mockFetch; 
+    window.fetch = mockFetch;
 
     render(
       <BrowserRouter>
@@ -77,7 +76,7 @@ describe('LoginForm', () => {
     await waitFor(() => {
       expect(mockSetUserData).toHaveBeenCalledWith({ name: 'John Doe' });
       expect(mockSetToken).toHaveBeenCalledWith('fake-token');
-      expect(window.location.pathname).toEqual('/loginHome'); 
+      expect(window.location.pathname).toEqual('/loginHome');
     });
   });
 });

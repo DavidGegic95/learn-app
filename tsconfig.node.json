@@ -8,5 +8,5 @@
     "strict": true,
   },
   "include": ["vite.config.ts"],
-  "types": ["jest", "node", ]
+  "types": ["jest", "node","@testing-library/jest-dom" ]
 }

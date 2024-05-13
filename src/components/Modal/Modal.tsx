@@ -75,7 +75,7 @@ export default function BasicModal({ type }: { type: 'delete' | 'upload' }) {
               type='button'
               onClick={handleClose}
             >
-              <img src={xIcon} alt='' />
+              <img src={xIcon} alt='close icon' />
             </Button>
           </div>
           {type === 'delete' && (
