@@ -32,6 +32,10 @@ const JoinUsBox = ({
           onClick={() => {
             setRole(role);
             navigate(`/joinus/${role}`);
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth',
+            });
           }}
         />
       </div>

@@ -1,8 +1,7 @@
-# Link:
+- Live Demo:
+  https://d3ih24owcl8w56.cloudfront.net/
 
-https://d3ih24owcl8w56.cloudfront.net/
-
-- Vite, React, TypeScript, Jest, and Tailwind CSS,
+- Used React, TypeScript, Tailwind CSS, Vite and Jest for unit tests,
 
 - deployed using CloudFront and an S3 bucket on AWS,
   with Serverless Framework.
