@@ -15,7 +15,7 @@ import {
   initilState,
 } from './utils';
 import { useNavigate } from 'react-router-dom';
-import { USER_SERVICE } from '../../../env';
+import { USER_SERVICE } from '../../../services';
 import { idFromLocalStorage } from '../../MiniProfile/utils';
 const userId = idFromLocalStorage();
 

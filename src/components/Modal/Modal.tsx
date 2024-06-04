@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import Button from '../Button/Button';
 import { grayButtonStyle, redButtonStyle } from '../../styles-for-tailwind';
 import xIcon from '../../assets/x-mark.svg';
-import { USER_SERVICE } from '../../env';
+import { USER_SERVICE } from '../../services';
 import { idFromLocalStorage } from '../MiniProfile/utils';
 import { useNavigate } from 'react-router-dom';
 import AppContext, { SetUserData } from '../../AppContext';

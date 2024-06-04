@@ -17,7 +17,7 @@ import Checkbox from '@mui/material/Checkbox';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import Button from '../../components/Button/Button';
-import { TRAINING_SERVICE } from '../../env';
+import { TRAINING_SERVICE } from '../../services';
 import { idFromLocalStorage } from '../../components/MiniProfile/utils';
 import { uuid } from './utils';
 import { toast } from 'react-toastify';

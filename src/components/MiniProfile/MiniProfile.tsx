@@ -8,7 +8,7 @@ import { idFromLocalStorage } from './utils';
 import { useNavigate } from 'react-router-dom';
 import AppContext, { SetUserData, UserDataType } from '../../AppContext';
 import Loading from '../Loading/Loading';
-import { AUTH_SERVICE } from '../../env';
+import { AUTH_SERVICE } from '../../services';
 
 const MiniProfile = ({
   setMiniProfile,

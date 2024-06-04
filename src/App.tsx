@@ -22,7 +22,7 @@ import {
   getTokenFromLocalStorage,
   idFromLocalStorage,
 } from './components/MiniProfile/utils';
-import { USER_SERVICE } from './env';
+import { USER_SERVICE } from './services';
 
 function App() {
   const [userData, setUserData] = useState<UserDataType | null>(null);
@@ -31,8 +31,9 @@ function App() {
     setToken(getTokenFromLocalStorage());
   }, [userData]);
   useEffect(() => {
-    if (getTokenFromLocalStorage()) {
-      setToken(getTokenFromLocalStorage());
+    const token = getTokenFromLocalStorage();
+    if (token) {
+      setToken(token);
       fetch(USER_SERVICE + '/me?id=' + idFromLocalStorage())
         .then((res) => {
           if (!res.ok) {

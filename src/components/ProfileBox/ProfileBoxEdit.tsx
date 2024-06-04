@@ -16,7 +16,7 @@ import SwitchComp from './SwitchComp';
 import UploadFile from '../UploadFile/UploadFile';
 import AppContext, { SetUserData, UserDataType } from '../../AppContext';
 import { useNavigate } from 'react-router-dom';
-import { USER_SERVICE } from '../../env';
+import { USER_SERVICE } from '../../services';
 import Loading from '../Loading/Loading';
 interface FormData {
   firstName: string;
@@ -176,7 +176,7 @@ const ProfileBoxEdit = () => {
                   </label>
                   <input
                     required
-                    className={`boxShadow flex mb-[16px] pl-[16px]  bg-[#F3F4F6FF] rounded-lg border-0 min-w-[400px] mv-custom-min-w-360px  
+                    className={`box-shadow-custom-1 flex mb-[16px] pl-[16px]  bg-[#F3F4F6FF] rounded-lg border-0 min-w-[400px] mv-custom-min-w-360px  
                     w-[50%] h-[40px]  font-poppins text-base leading-26 font-normal  outline-none 
                     focus:text-[#171A1FFF] focus:outline-[#F3F4F6FF] 
                     focus:bg-white ${errors[item.key as keyof typeof formData] ? 'error-border' : ''}

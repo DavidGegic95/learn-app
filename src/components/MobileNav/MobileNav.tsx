@@ -6,7 +6,7 @@ import logoutIcon from '../../assets/mobile-nav-logout.svg';
 import { Dispatch, SetStateAction, useContext } from 'react';
 import { idFromLocalStorage } from '../MiniProfile/utils';
 import AppContext, { UserDataType } from '../../AppContext';
-import { AUTH_SERVICE } from '../../env';
+import { AUTH_SERVICE } from '../../services';
 
 const MobileNav = ({
   isClicked,

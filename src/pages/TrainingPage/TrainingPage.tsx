@@ -13,7 +13,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { useEffect, useState } from 'react';
-import { TRAINING_SERVICE } from '../../env';
+import { TRAINING_SERVICE } from '../../services';
 
 const TrainingPage = () => {
   const navigate = useNavigate();
